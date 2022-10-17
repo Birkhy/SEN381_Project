@@ -16,5 +16,10 @@ namespace Ukupholisa3
         {
             InitializeComponent();
         }
+
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
