@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Genisis;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,20 @@ namespace Ukupholisa3
         public NavigationForm()
         {
             InitializeComponent();
+        }
+
+        private void btnCallForm_Click(object sender, EventArgs e)
+        {
+            CallForm cf = new CallForm();
+            cf.Show();
+            this.Hide();
+        }
+
+        private void btnClientForm_Click(object sender, EventArgs e)
+        {
+            ClientForm clf = new ClientForm();
+            clf.Show();
+            this.Hide();
         }
     }
 }
