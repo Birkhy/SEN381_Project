@@ -64,16 +64,17 @@
             // 
             this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvClients.Location = new System.Drawing.Point(384, 71);
-            this.dgvClients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvClients.Margin = new System.Windows.Forms.Padding(4);
             this.dgvClients.Name = "dgvClients";
             this.dgvClients.RowHeadersWidth = 51;
             this.dgvClients.Size = new System.Drawing.Size(667, 400);
             this.dgvClients.TabIndex = 1;
+            this.dgvClients.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClients_CellContentClick);
             // 
             // btnInsert
             // 
             this.btnInsert.Location = new System.Drawing.Point(129, 489);
-            this.btnInsert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnInsert.Margin = new System.Windows.Forms.Padding(4);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(100, 28);
             this.btnInsert.TabIndex = 2;
@@ -84,7 +85,7 @@
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(617, 489);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(100, 28);
             this.btnDelete.TabIndex = 4;
@@ -95,7 +96,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(371, 489);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(100, 28);
             this.btnUpdate.TabIndex = 5;
@@ -106,7 +107,7 @@
             // txtName
             // 
             this.txtName.Location = new System.Drawing.Point(179, 121);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(132, 22);
             this.txtName.TabIndex = 6;
@@ -114,7 +115,7 @@
             // txtSName
             // 
             this.txtSName.Location = new System.Drawing.Point(179, 164);
-            this.txtSName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSName.Margin = new System.Windows.Forms.Padding(4);
             this.txtSName.Name = "txtSName";
             this.txtSName.Size = new System.Drawing.Size(132, 22);
             this.txtSName.TabIndex = 7;
@@ -166,7 +167,7 @@
             // dtkDOB
             // 
             this.dtkDOB.Location = new System.Drawing.Point(179, 208);
-            this.dtkDOB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtkDOB.Margin = new System.Windows.Forms.Padding(4);
             this.dtkDOB.Name = "dtkDOB";
             this.dtkDOB.Size = new System.Drawing.Size(193, 22);
             this.dtkDOB.TabIndex = 14;
@@ -186,7 +187,7 @@
             // txtID
             // 
             this.txtID.Location = new System.Drawing.Point(179, 71);
-            this.txtID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtID.Margin = new System.Windows.Forms.Padding(4);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(132, 22);
             this.txtID.TabIndex = 15;
@@ -194,7 +195,7 @@
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(836, 489);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(100, 28);
             this.btnSearch.TabIndex = 17;
@@ -258,7 +259,7 @@
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.dgvClients);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ClientForm";
             this.Text = "ClientForm";
             this.Load += new System.EventHandler(this.ClientForm_Load);

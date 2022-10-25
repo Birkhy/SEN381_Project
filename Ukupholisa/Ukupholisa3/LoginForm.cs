@@ -30,7 +30,11 @@ namespace Genisis
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            NavigationForm nf = new NavigationForm();
+            //NavigationForm nf = new NavigationForm();
+            //nf.Show();
+            //this.Hide();
+
+            ClientForm nf = new ClientForm();
             nf.Show();
             this.Hide();
         }

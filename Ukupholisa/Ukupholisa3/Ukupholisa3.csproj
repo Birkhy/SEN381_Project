@@ -110,6 +110,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts.cs" />
     <Compile Include="Call.cs" />
     <Compile Include="CallForm.cs">
       <SubType>Form</SubType>

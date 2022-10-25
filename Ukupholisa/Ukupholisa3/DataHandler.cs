@@ -8,28 +8,37 @@ namespace Ukupholisa3
 {
     internal class DataHandler
     {
-        public string conn = "Data source=.;Initial Catalog=StudentInfo;Integrated security=True";
+        public static string server = "localhost";
+        public static string database = "ukupholisadb";
+        public static string username = "root";
+        public static string password = "";
+        public static string conn = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
 
-        public List<Client> GetClient()
+        
+        public string GetClient()
         {
-            List<Client> AllClients = new List<Client>();
+            List<Accounts> AllAccounts = new List<Accounts>();
             SqlConnection connect = new SqlConnection(conn);
-            if (connect.State != ConnectionState.Open)
-            {
+           // if (connect.State != ConnectionState.Open)
+           // {
                 connect.Open();
-                SqlCommand command = new SqlCommand("showClient", connect);
+                SqlCommand command = new SqlCommand("getAccounts", connect);
                 command.CommandType = CommandType.StoredProcedure;
 
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        AllClients.Add(new Client(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString()));
+                        AllAccounts.Add(new Accounts(int.Parse(reader[0].ToString()), int.Parse(reader[1].ToString()), reader[2].ToString(), reader[3].ToString(), int.Parse(reader[4].ToString())));
                     }
                 }
-            }
+           // }
+          //  else
+           // {
+           //     return "Iets het hier verkeerd gegaan.";
+          //  }
             connect.Close();
-            return AllClients;
+            return "Works";
         }
 
         public string UpdateClient(string CID, string SName, string SSName, DateTime DOB, string Sex)

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,17 +16,23 @@ namespace Ukupholisa3
     public partial class ClientForm : Form
     {
         DataHandler Handle = new DataHandler();
+        BindingSource Source = new BindingSource();
+        List<Accounts> getAccounts = new List<Accounts>();
         public ClientForm()
         {
             InitializeComponent();
+            dgvClients.DataSource = Source;
+
+            MessageBox.Show(Handle.GetClient());
 
             try
             {
-                Handle.GetClient();
+                
+                Source.DataSource = getAccounts;
             }
             catch (Exception)
             {
-                MessageBox.Show("Something went wrong trying to register Student.");
+                MessageBox.Show("Something went wrong trying to view Account.");
             }
 
         }
@@ -104,6 +111,11 @@ namespace Ukupholisa3
         }
 
         private void ClientForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvClients_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

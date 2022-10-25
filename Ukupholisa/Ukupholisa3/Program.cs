@@ -19,15 +19,15 @@ namespace Ukupholisa3
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Genisis.LoginForm());
 
-            Product banana = new Product();
-            banana.Availabilty = true;
-            banana.Treatments.Add("hahsdi");
-            banana.Treatments.Add("asdsa");
-            banana.Treatments.Add("hadsgfdghsdi");
-            banana.Treatments.Add("hahsaeqwedi");
-            banana.Treatments.Add("hahqwewwersdi");
+            //Product banana = new Product();
+            //banana.Availabilty = true;
+            //banana.Treatments.Add("hahsdi");
+            //banana.Treatments.Add("asdsa");
+            //banana.Treatments.Add("hadsgfdghsdi");
+            //banana.Treatments.Add("hahsaeqwedi");
+            //banana.Treatments.Add("hahqwewwersdi");
 
-            Console.WriteLine(banana.Treatments[1]);
+            //Console.WriteLine(banana.Treatments[1]);
 
             string server = "localhost";
             string database = "ukupholisadb";
