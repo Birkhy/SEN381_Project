@@ -33,36 +33,45 @@ namespace Ukupholisa3
         }
 
         public string UpdateClient(string CID, string SName, string SSName, DateTime DOB, string Sex)
-        {
+        { 
             SqlConnection connect = new SqlConnection(conn);
 
-            if (CID != "" && SName != "" && SSName != "" && Sex != "")
+            if(DOB.Year > 1900 && DOB.Year < DateTime.Now.Year)
             {
-                connect.Open();
-                SqlCommand sql_cmnd = new SqlCommand("updateClient", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = CID;
-                sql_cmnd.Parameters.AddWithValue("@LAST_NAME", SqlDbType.NVarChar).Value = SName;
-                sql_cmnd.Parameters.AddWithValue("@AGE", SqlDbType.NVarChar).Value = SSName;
-                sql_cmnd.Parameters.AddWithValue("@DOB", SqlDbType.Date).Value = DOB;
-                sql_cmnd.Parameters.AddWithValue("@SEX", SqlDbType.NVarChar).Value = Sex;
-                int Row = sql_cmnd.ExecuteNonQuery();
-                if (Row > 0)
+                if (CID != "" && SName != "" && SSName != "" && Sex != "")
                 {
-                    connect.Close();
-                    return "Client with ID " + CID + " was updated.";
+                    connect.Open();
+                    SqlCommand sql_cmnd = new SqlCommand("updateClient", connect);
+                    sql_cmnd.CommandType = CommandType.StoredProcedure;
+                    sql_cmnd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = CID;
+                    sql_cmnd.Parameters.AddWithValue("@LAST_NAME", SqlDbType.NVarChar).Value = SName;
+                    sql_cmnd.Parameters.AddWithValue("@AGE", SqlDbType.NVarChar).Value = SSName;
+                    sql_cmnd.Parameters.AddWithValue("@DOB", SqlDbType.Date).Value = DOB;
+                    sql_cmnd.Parameters.AddWithValue("@SEX", SqlDbType.NVarChar).Value = Sex;
+                    int Row = sql_cmnd.ExecuteNonQuery();
+                    if (Row > 0)
+                    {
+                        connect.Close();
+                        return "Client with ID " + CID + " was updated.";
+                    }
+                    else
+                    {
+                        connect.Close();
+                        return "Client with ID " + CID + " failed to be updated.";
+                    }
                 }
                 else
                 {
                     connect.Close();
-                    return "Client with ID " + CID + " failed to be updated.";
+                    return "Please enter all the needed data to be updated.";
                 }
             }
             else
             {
-                connect.Close();
-                return "Please enter all the needed data to be updated.";
+                return "Please enter a correct date.";
             }
+
+            
         }
 
         public string AddClient(string CID, string SName, string SSName, DateTime DOB, string Sex)

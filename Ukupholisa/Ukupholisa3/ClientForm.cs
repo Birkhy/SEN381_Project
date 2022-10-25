@@ -66,6 +66,7 @@ namespace Ukupholisa3
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            
             string Sex = string.Empty;
             if (rbnMale.Checked == true)
             {
