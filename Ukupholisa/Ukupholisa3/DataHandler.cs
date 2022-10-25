@@ -1,4 +1,5 @@
 ﻿using Genisis;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,17 +14,18 @@ namespace Ukupholisa3
         public static string username = "root";
         public static string password = "";
         public static string conn = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
-
         
-        public string GetClient()
+        public List<Accounts> GetAccount()
         {
-            List<Accounts> AllAccounts = new List<Accounts>();
-            SqlConnection connect = new SqlConnection(conn);
-           // if (connect.State != ConnectionState.Open)
-           // {
+        List<Accounts> AllAccounts = new List<Accounts>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
                 connect.Open();
-                SqlCommand command = new SqlCommand("getAccounts", connect);
+                MySqlCommand command = new MySqlCommand("getAccounts", connect);
                 command.CommandType = CommandType.StoredProcedure;
+
+                
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -32,25 +34,25 @@ namespace Ukupholisa3
                         AllAccounts.Add(new Accounts(int.Parse(reader[0].ToString()), int.Parse(reader[1].ToString()), reader[2].ToString(), reader[3].ToString(), int.Parse(reader[4].ToString())));
                     }
                 }
-           // }
-          //  else
-           // {
-           //     return "Iets het hier verkeerd gegaan.";
-          //  }
+            }
+            //else
+            //{
+            //    return "Iets het hier verkeerd gegaan.";
+            //}
             connect.Close();
-            return "Works";
+            return AllAccounts;
         }
 
         public string UpdateClient(string CID, string SName, string SSName, DateTime DOB, string Sex)
         { 
-            SqlConnection connect = new SqlConnection(conn);
+            MySqlConnection connect = new MySqlConnection(conn);
 
             if(DOB.Year > 1900 && DOB.Year < DateTime.Now.Year)
             {
                 if (CID != "" && SName != "" && SSName != "" && Sex != "")
                 {
                     connect.Open();
-                    SqlCommand sql_cmnd = new SqlCommand("updateClient", connect);
+                    MySqlCommand sql_cmnd = new MySqlCommand("updateClient", connect);
                     sql_cmnd.CommandType = CommandType.StoredProcedure;
                     sql_cmnd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = CID;
                     sql_cmnd.Parameters.AddWithValue("@LAST_NAME", SqlDbType.NVarChar).Value = SName;

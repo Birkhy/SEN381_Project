@@ -42,10 +42,10 @@ namespace Ukupholisa3
             MySqlDataReader reader = cmd1.ExecuteReader();
 
             while (reader.Read()) {
-                //Console.WriteLine(reader["Provider_ID"]);
-                //Console.WriteLine(reader["Provider_Name"]);
-                //Console.WriteLine(reader["Provider_Status"]);
-                //Console.WriteLine(reader["Agreement"]);
+                Console.WriteLine(reader["Provider_ID"]);
+                Console.WriteLine(reader["Provider_Name"]);
+                Console.WriteLine(reader["Provider_Status"]);
+                Console.WriteLine(reader["Agreement"]);
             };
 
         }

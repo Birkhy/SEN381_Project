@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
@@ -17,18 +18,20 @@ namespace Ukupholisa3
     {
         DataHandler Handle = new DataHandler();
         BindingSource Source = new BindingSource();
-        List<Accounts> getAccounts = new List<Accounts>();
+        //List<Accounts> getAccounts = new List<Accounts>();
         public ClientForm()
         {
             InitializeComponent();
+
+           // getAccounts = Handle.GetClient();
             dgvClients.DataSource = Source;
 
-            MessageBox.Show(Handle.GetClient());
+            //MessageBox.Show(Handle.GetClient(););
 
             try
             {
-                
-                Source.DataSource = getAccounts;
+
+                Source.DataSource = Handle.GetAccount();//Handle.GetClient();
             }
             catch (Exception)
             {
