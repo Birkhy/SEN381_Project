@@ -101,5 +101,10 @@ namespace Ukupholisa3
                 MessageBox.Show("Something went wrong trying to delete the specified Client.");
             }
         }
+
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
