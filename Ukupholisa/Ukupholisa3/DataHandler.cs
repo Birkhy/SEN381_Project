@@ -1,9 +1,11 @@
 ﻿using Genisis;
 using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Ukupholisa3
 {
@@ -165,6 +167,42 @@ namespace Ukupholisa3
             }
             connect.Close();
             return FoundList;
+        }
+
+        public DataTable SearchTreatment(string partialString)
+        {
+            ArrayList FoundList = new ArrayList();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("GetProviderWithTreatment", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@TreatmentName", partialString);
+                MySqlDataAdapter sda = new MySqlDataAdapter(command);
+                
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                //while (reader.Read())
+                //{
+                //    // var Foundlist = new ArrayList() { reader[0].ToString(), reader[1].ToString(), reader[2].ToString() };
+                //    FoundList.Add(reader[0].ToString());
+                //    FoundList.Add(reader[1].ToString());
+                //    FoundList.Add(reader[2].ToString());
+                //}
+                connect.Close();
+                MessageBox.Show("Actually returns the datatable");
+                return dt;
+                
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+            
+            
         }
     }
 }

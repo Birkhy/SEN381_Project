@@ -230,6 +230,7 @@
             this.Controls.Add(this.label1);
             this.Name = "ClientCall";
             this.Text = "ClientCall";
+            this.Load += new System.EventHandler(this.ClientCall_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

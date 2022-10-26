@@ -17,21 +17,22 @@ namespace Ukupholisa3
     public partial class ClientForm : Form
     {
         DataHandler Handle = new DataHandler();
-        BindingSource Source = new BindingSource();
+        //BindingSource Source = new BindingSource();
         //List<Accounts> getAccounts = new List<Accounts>();
         public ClientForm()
         {
             InitializeComponent();
 
            // getAccounts = Handle.GetClient();
-            dgvClients.DataSource = Source;
+            //dgvClients.DataSource = Source;
 
             //MessageBox.Show(Handle.GetClient(););
 
             try
             {
 
-                Source.DataSource = Handle.GetAccount();//Handle.GetClient();
+                dgvClients.DataSource = Handle.GetAccount();//Handle.GetClient();
+                dgvClients.AutoResizeColumns();
             }
             catch (Exception)
             {
