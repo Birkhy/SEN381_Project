@@ -1,11 +1,14 @@
 ﻿using Genisis;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities.Encoders;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Ukupholisa3
 {
@@ -171,7 +174,7 @@ namespace Ukupholisa3
 
         public DataTable SearchTreatment(string partialString)
         {
-            ArrayList FoundList = new ArrayList();
+            //ArrayList FoundList = new ArrayList();
             MySqlConnection connect = new MySqlConnection(conn);
             if (connect.State != ConnectionState.Open)
             {
@@ -203,6 +206,47 @@ namespace Ukupholisa3
             }
             
             
+        }
+
+        public bool checkAccount(string holderID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (holderID != "" && holderID.Length == 13)
+            {
+                connect.Open();
+                //MySqlCommand sql_cmnd = new MySqlCommand("addClient", connect);
+                //sql_cmnd.CommandType = CommandType.StoredProcedure;
+                //sql_cmnd.Parameters.AddWithValue("@ID", SqlDbType.NVarChar).Value = CID;
+                //sql_cmnd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = SName;
+                //sql_cmnd.Parameters.AddWithValue("@SURNAME", SqlDbType.NVarChar).Value = SSName;
+                //sql_cmnd.Parameters.AddWithValue("@DOB", SqlDbType.Date).Value = DOB;
+                //sql_cmnd.Parameters.AddWithValue("@SEX", SqlDbType.NVarChar).Value = Sex;
+                //int Row = sql_cmnd.ExecuteNonQuery();
+
+                //string query = "select Provider_ID from provider, providermedical where providermedical.trt_ID = 4";
+                MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID = @paramval1;)", connect);
+                check_if_account_exists.Parameters.Add(new MySqlParameter("@paramval1",holderID));
+                int accExists = (int)check_if_account_exists.ExecuteScalar();
+
+                if (accExists > 0)
+                {
+                    MessageBox.Show("account does indeed exist");
+                    connect.Close();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("account does indeed not exist");
+                    connect.Close();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("failed validation");
+                connect.Close();
+                return false;
+            }
         }
     }
 }

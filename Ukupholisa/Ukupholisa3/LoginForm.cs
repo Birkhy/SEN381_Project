@@ -34,8 +34,12 @@ namespace Genisis
             //nf.Show();
             //this.Hide();
 
-            ClientForm nf = new ClientForm();
-            nf.Show();
+            //ClientForm nf = new ClientForm();
+            //nf.Show();
+            //this.Hide();
+
+            UserForm uf = new UserForm();
+            uf.Show();
             this.Hide();
         }
 
