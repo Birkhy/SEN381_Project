@@ -19,10 +19,10 @@ namespace Ukupholisa3
         public static string username = "root";
         public static string password = "";
         public static string conn = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
-        
+
         public List<Accounts> GetAccount()
         {
-        List<Accounts> AllAccounts = new List<Accounts>();
+            List<Accounts> AllAccounts = new List<Accounts>();
             MySqlConnection connect = new MySqlConnection(conn);
             if (connect.State != ConnectionState.Open)
             {
@@ -30,7 +30,7 @@ namespace Ukupholisa3
                 MySqlCommand command = new MySqlCommand("getAccounts", connect);
                 command.CommandType = CommandType.StoredProcedure;
 
-                
+
 
                 using (var reader = command.ExecuteReader())
                 {
@@ -49,10 +49,10 @@ namespace Ukupholisa3
         }
 
         public string UpdateClient(string CID, string SName, string SSName, DateTime DOB, string Sex)
-        { 
+        {
             MySqlConnection connect = new MySqlConnection(conn);
 
-            if(DOB.Year > 1900 && DOB.Year < DateTime.Now.Year)
+            if (DOB.Year > 1900 && DOB.Year < DateTime.Now.Year)
             {
                 if (CID != "" && SName != "" && SSName != "" && Sex != "")
                 {
@@ -87,7 +87,7 @@ namespace Ukupholisa3
                 return "Please enter a correct date.";
             }
 
-            
+
         }
 
         public string AddClient(string CID, string SName, string SSName, DateTime DOB, string Sex)
@@ -183,7 +183,7 @@ namespace Ukupholisa3
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@TreatmentName", partialString);
                 MySqlDataAdapter sda = new MySqlDataAdapter(command);
-                
+
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
 
@@ -197,56 +197,132 @@ namespace Ukupholisa3
                 connect.Close();
                 MessageBox.Show("Actually returns the datatable");
                 return dt;
-                
+
             }
             else
             {
                 MessageBox.Show("Returns a null");
                 return null;
             }
-            
-            
-        }
 
+
+        }
+        //This method checks whether an account exists and returns a boolean, it works.
         public bool checkAccount(string holderID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (holderID != "" && holderID.Length == 13)
             {
                 connect.Open();
-                //MySqlCommand sql_cmnd = new MySqlCommand("addClient", connect);
-                //sql_cmnd.CommandType = CommandType.StoredProcedure;
-                //sql_cmnd.Parameters.AddWithValue("@ID", SqlDbType.NVarChar).Value = CID;
-                //sql_cmnd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = SName;
-                //sql_cmnd.Parameters.AddWithValue("@SURNAME", SqlDbType.NVarChar).Value = SSName;
-                //sql_cmnd.Parameters.AddWithValue("@DOB", SqlDbType.Date).Value = DOB;
-                //sql_cmnd.Parameters.AddWithValue("@SEX", SqlDbType.NVarChar).Value = Sex;
-                //int Row = sql_cmnd.ExecuteNonQuery();
+                //string testID = "0101265114088";
 
-                //string query = "select Provider_ID from provider, providermedical where providermedical.trt_ID = 4";
-                MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID = @paramval1;)", connect);
-                check_if_account_exists.Parameters.Add(new MySqlParameter("@paramval1",holderID));
-                int accExists = (int)check_if_account_exists.ExecuteScalar();
+                // THIS WORKS AS WELL!!!!!!!
+                MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID", connect);
+                check_if_account_exists.Parameters.AddWithValue("@hID", holderID);
+                Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
+
+                // THIS WORKS!!!!!!
+                //MySqlCommand check_if_account_exists = new MySqlCommand("CheckAccount", connect);
+                //check_if_account_exists.CommandType = CommandType.StoredProcedure;
+                //check_if_account_exists.Parameters.AddWithValue("@hID", holderID);
+                //Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
+
+                // THIS WORKS!!!!!!!
+                //MessageBox.Show("We got here");
+                //MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =" + holderID + ";", connect);
+                //MessageBox.Show("We got there");
+                //Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
 
                 if (accExists > 0)
                 {
-                    MessageBox.Show("account does indeed exist");
+                    //MessageBox.Show("account does indeed exist");
                     connect.Close();
                     return true;
                 }
                 else
                 {
-                    MessageBox.Show("account does indeed not exist");
+                    MessageBox.Show("Account does not exist within the system!");
                     connect.Close();
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("failed validation");
+                MessageBox.Show("Invalid ID number");
                 connect.Close();
                 return false;
             }
         }
+        //This method verifies an account holderkey and returns a boolean, it works.
+        public bool checkHolderKey(int holderKey, string holderID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (holderKey != 0 && (holderKey.ToString()).Length == 5)
+            {
+                connect.Open();
+
+                // THIS WORKS AS WELL!!!!!!!
+                MySqlCommand check_holderkey_correct = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID AND Holder_Key = @hKey", connect);
+                check_holderkey_correct.Parameters.AddWithValue("@hID", holderID);
+                check_holderkey_correct.Parameters.AddWithValue("@hKey", holderKey);
+                Int32 keyCorrect = Convert.ToInt32(check_holderkey_correct.ExecuteScalar());
+
+                if (keyCorrect > 0)
+                {
+                    //MessageBox.Show("account does indeed exist");
+                    connect.Close();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Key!");
+                    connect.Close();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid Key");
+                connect.Close();
+                return false;
+            }
+        }
+
+        //This method verifies an account phone number and returns a boolean, it works.
+        public bool checkHolderPhone(string holderPhone, string holderID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (holderPhone != "" && holderPhone.Length == 10)
+            {
+                connect.Open();
+
+                // THIS WORKS AS WELL!!!!!!!
+                MySqlCommand check_holderkey_correct = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID AND Holder_Cell = @hPhone", connect);
+                check_holderkey_correct.Parameters.AddWithValue("@hID", holderID);
+                check_holderkey_correct.Parameters.AddWithValue("@hPhone", holderPhone);
+                Int32 keyCorrect = Convert.ToInt32(check_holderkey_correct.ExecuteScalar());
+
+                if (keyCorrect > 0)
+                {
+                    //MessageBox.Show("account does indeed exist");
+                    connect.Close();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Phone Number!");
+                    connect.Close();
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid Phone Number");
+                connect.Close();
+                return false;
+            }
+        }
+
+
     }
 }

@@ -12,7 +12,8 @@ namespace Ukupholisa3
 {
     public partial class UserForm : Form
     {
-        DataHandler Handle = new DataHandler();
+        DataHandler userHandle = new DataHandler();
+        DataHandler test = new DataHandler();
         public UserForm()
         {
             InitializeComponent();
@@ -20,18 +21,24 @@ namespace Ukupholisa3
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            string holderID = txtHID.Text;
+            Int16 holderKey = Convert.ToInt16(txtHKey.Text);
+            string holderPhone = txtHPone.Text;
             try
             {
-                MessageBox.Show(Handle.checkAccount(txtHID.Text).ToString());
-                //if (Handle.checkAccount(txtHID.Text) == true)
-                //{
-                //    MessageBox.Show("Account Exists");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Account does not exist");
-                //}
                 
+                //MessageBox.Show(userHandle.checkAccount((txtHID.Text).ToString()).ToString());
+                if (userHandle.checkAccount(holderID) && userHandle.checkHolderKey(holderKey,holderID) && userHandle.checkHolderPhone(holderPhone,holderID))
+                {
+                    MessageBox.Show("Account Exists");
+                    userTabCtrl.SelectTab(tabShowAccounts);
+                    
+                }
+                else
+                {
+                    //MessageBox.Show("Account does not exist");
+                }
+
             }
             catch (Exception)
             {
