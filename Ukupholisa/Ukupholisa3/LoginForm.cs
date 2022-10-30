@@ -13,6 +13,7 @@ namespace Genisis
 {
     public partial class LoginForm : Form
     {
+        DataHandler handler = new DataHandler();
         public LoginForm()
         {
             InitializeComponent();
@@ -30,17 +31,20 @@ namespace Genisis
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //NavigationForm nf = new NavigationForm();
-            //nf.Show();
-            //this.Hide();
+            try{
+                if (handler.CheckUserLog(txtUserName.Text, txtPass.Text) == true)
+                {
+                    NavigationForm nf = new NavigationForm();
+                    nf.Show();
+                    this.Hide();
+                }else{ 
+                    MessageBox.Show("These credential does not exist within the database.");
+                }
+            }
+            catch{
+                MessageBox.Show("Somthing whent wrong trying to login to the program, please try again later.");
+            }
 
-            //ClientForm nf = new ClientForm();
-            //nf.Show();
-            //this.Hide();
-
-            UserForm uf = new UserForm();
-            uf.Show();
-            this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -20,6 +20,22 @@ namespace Ukupholisa3
         public static string password = "";
         public static string conn = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
 
+        public bool CheckUserLog(string UName, string Password)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            MySqlCommand sql_cmnd = new MySqlCommand("getLogin", connect);
+            sql_cmnd.CommandType = CommandType.StoredProcedure;
+            sql_cmnd.Parameters.AddWithValue("@UName", SqlDbType.NVarChar).Value = UName;
+            sql_cmnd.Parameters.AddWithValue("@UPassword", SqlDbType.NVarChar).Value = Password;
+
+            int Row = sql_cmnd.ExecuteNonQuery();
+            if(Row > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public List<Accounts> GetAccount()
         {
             List<Accounts> AllAccounts = new List<Accounts>();
@@ -40,10 +56,6 @@ namespace Ukupholisa3
                     }
                 }
             }
-            //else
-            //{
-            //    return "Iets het hier verkeerd gegaan.";
-            //}
             connect.Close();
             return AllAccounts;
         }
