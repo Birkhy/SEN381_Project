@@ -31,17 +31,21 @@ namespace Genisis
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            try{
-                if (handler.CheckUserLog(txtUserName.Text, txtPass.Text) == true)
+            try
+            {
+                if (handler.CheckUserLog(txtUserName.Text.Trim(), txtPass.Text))
                 {
-                    NavigationForm nf = new NavigationForm();
+                    UserForm nf = new UserForm();
                     nf.Show();
                     this.Hide();
-                }else{ 
+                }
+                else 
+                {
                     MessageBox.Show("These credential does not exist within the database.");
                 }
             }
-            catch{
+            catch
+            {
                 MessageBox.Show("Somthing whent wrong trying to login to the program, please try again later.");
             }
 
@@ -49,9 +53,23 @@ namespace Genisis
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ProviderManage pm = new ProviderManage();
-            pm.Show();
-            this.Hide();
+            try
+            {
+                if (handler.CheckAdminLog(txtUserName.Text.Trim(), txtPass.Text))
+                {
+                    ProviderManage nf = new ProviderManage();
+                    nf.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("These credential does not exist within the database.");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Somthing whent wrong trying to login to the program, please try again later.");
+            }
         }
     }
 }

@@ -29,24 +29,24 @@ namespace Ukupholisa3
 
             //Console.WriteLine(banana.Treatments[1]);
 
-            string server = "localhost";
-            string database = "ukupholisadb";
-            string username = "root";
-            string password = "";
-            string constring = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
-            MySqlConnection conn = new MySqlConnection(constring);
-            conn.Open();
+            //string server = "localhost";
+            //string database = "ukupholisadb";
+            //string username = "root";
+            //string password = "";
+            //string constring = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
+            //MySqlConnection conn = new MySqlConnection(constring);
+            //conn.Open();
 
-            string query = "select Provider_ID from provider, providermedical where providermedical.trt_ID = 4";
-            MySqlCommand cmd1 = new MySqlCommand(query,conn);
-            MySqlDataReader reader = cmd1.ExecuteReader();
+            //string query = "select Provider_ID from provider, providermedical where providermedical.trt_ID = 4";
+            //MySqlCommand cmd1 = new MySqlCommand(query,conn);
+            //MySqlDataReader reader = cmd1.ExecuteReader();
 
-            while (reader.Read()) {
-                Console.WriteLine(reader["Provider_ID"]);
-                Console.WriteLine(reader["Provider_Name"]);
-                Console.WriteLine(reader["Provider_Status"]);
-                Console.WriteLine(reader["Agreement"]);
-            };
+            //while (reader.Read()) {
+            //    Console.WriteLine(reader["Provider_ID"]);
+            //    Console.WriteLine(reader["Provider_Name"]);
+            //    Console.WriteLine(reader["Provider_Status"]);
+            //    Console.WriteLine(reader["Agreement"]);
+            //};
 
         }
     }

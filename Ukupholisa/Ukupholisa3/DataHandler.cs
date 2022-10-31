@@ -22,17 +22,39 @@ namespace Ukupholisa3
 
         public bool CheckUserLog(string UName, string Password)
         {
+            
             MySqlConnection connect = new MySqlConnection(conn);
-            MySqlCommand sql_cmnd = new MySqlCommand("getLogin", connect);
+            MySqlCommand sql_cmnd = new MySqlCommand("getLoginUser", connect);
             sql_cmnd.CommandType = CommandType.StoredProcedure;
-            sql_cmnd.Parameters.AddWithValue("@UName", SqlDbType.NVarChar).Value = UName;
-            sql_cmnd.Parameters.AddWithValue("@UPassword", SqlDbType.NVarChar).Value = Password;
-
-            int Row = sql_cmnd.ExecuteNonQuery();
+            sql_cmnd.Parameters.AddWithValue("@UName", UName);
+            sql_cmnd.Parameters.AddWithValue("@UPassword", Password);
+            connect.Open();
+            Int16 Row = Convert.ToInt16(sql_cmnd.ExecuteScalar());
             if(Row > 0)
             {
+                connect.Close();
                 return true;
             }
+            connect.Close();
+            return false;
+        }
+
+        public bool CheckAdminLog(string UName, string Password)
+        {
+
+            MySqlConnection connect = new MySqlConnection(conn);
+            MySqlCommand sql_cmnd = new MySqlCommand("getLoginAdmin", connect);
+            sql_cmnd.CommandType = CommandType.StoredProcedure;
+            sql_cmnd.Parameters.AddWithValue("@UName", UName);
+            sql_cmnd.Parameters.AddWithValue("@UPassword", Password);
+            connect.Open();
+            Int16 Row = Convert.ToInt16(sql_cmnd.ExecuteScalar());
+            if (Row > 0)
+            {
+                connect.Close();
+                return true;
+            }
+            connect.Close();
             return false;
         }
 
@@ -232,18 +254,6 @@ namespace Ukupholisa3
                 MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID", connect);
                 check_if_account_exists.Parameters.AddWithValue("@hID", holderID);
                 Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
-
-                // THIS WORKS!!!!!!
-                //MySqlCommand check_if_account_exists = new MySqlCommand("CheckAccount", connect);
-                //check_if_account_exists.CommandType = CommandType.StoredProcedure;
-                //check_if_account_exists.Parameters.AddWithValue("@hID", holderID);
-                //Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
-
-                // THIS WORKS!!!!!!!
-                //MessageBox.Show("We got here");
-                //MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =" + holderID + ";", connect);
-                //MessageBox.Show("We got there");
-                //Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
 
                 if (accExists > 0)
                 {
