@@ -20,9 +20,10 @@ namespace Ukupholisa3
         public static string password = "";
         public static string conn = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + username + ";" + "PASSWORD=" + password + ";";
 
+        //This method does verification for user at login. WORKS!
+        //Not finished
         public bool CheckUserLog(string UName, string Password)
         {
-            
             MySqlConnection connect = new MySqlConnection(conn);
             MySqlCommand sql_cmnd = new MySqlCommand("getLoginUser", connect);
             sql_cmnd.CommandType = CommandType.StoredProcedure;
@@ -39,9 +40,10 @@ namespace Ukupholisa3
             return false;
         }
 
+        //This method does verification for admin at login. WORKS!
+        //Not finished
         public bool CheckAdminLog(string UName, string Password)
         {
-
             MySqlConnection connect = new MySqlConnection(conn);
             MySqlCommand sql_cmnd = new MySqlCommand("getLoginAdmin", connect);
             sql_cmnd.CommandType = CommandType.StoredProcedure;
@@ -206,9 +208,9 @@ namespace Ukupholisa3
             return FoundList;
         }
 
+        // This method returns a datatable to show the treatments that is searched with relevant providers. WORKS!
         public DataTable SearchTreatment(string partialString)
         {
-            //ArrayList FoundList = new ArrayList();
             MySqlConnection connect = new MySqlConnection(conn);
             if (connect.State != ConnectionState.Open)
             {
@@ -220,14 +222,6 @@ namespace Ukupholisa3
 
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
-
-                //while (reader.Read())
-                //{
-                //    // var Foundlist = new ArrayList() { reader[0].ToString(), reader[1].ToString(), reader[2].ToString() };
-                //    FoundList.Add(reader[0].ToString());
-                //    FoundList.Add(reader[1].ToString());
-                //    FoundList.Add(reader[2].ToString());
-                //}
                 connect.Close();
                 MessageBox.Show("Actually returns the datatable");
                 return dt;
@@ -241,6 +235,36 @@ namespace Ukupholisa3
 
 
         }
+        // This method returns a datatable to show the relevant account and dependants and their conditions. WORKS!
+        public DataTable ViewAccountCall(string AccountID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("ViewAccountCall", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@hID", AccountID);
+                MySqlDataAdapter sda = new MySqlDataAdapter(command);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                MessageBox.Show("Actually returns the datatable");
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+
+
+        }
+
+
         //This method checks whether an account exists and returns a boolean, it works.
         public bool checkAccount(string holderID)
         {
@@ -248,7 +272,6 @@ namespace Ukupholisa3
             if (holderID != "" && holderID.Length == 13)
             {
                 connect.Open();
-                //string testID = "0101265114088";
 
                 // THIS WORKS AS WELL!!!!!!!
                 MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID", connect);
@@ -257,7 +280,6 @@ namespace Ukupholisa3
 
                 if (accExists > 0)
                 {
-                    //MessageBox.Show("account does indeed exist");
                     connect.Close();
                     return true;
                 }
@@ -287,11 +309,10 @@ namespace Ukupholisa3
                 MySqlCommand check_holderkey_correct = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID AND Holder_Key = @hKey", connect);
                 check_holderkey_correct.Parameters.AddWithValue("@hID", holderID);
                 check_holderkey_correct.Parameters.AddWithValue("@hKey", holderKey);
-                Int32 keyCorrect = Convert.ToInt32(check_holderkey_correct.ExecuteScalar());
+                Int16 keyCorrect = Convert.ToInt16(check_holderkey_correct.ExecuteScalar());
 
                 if (keyCorrect > 0)
                 {
-                    //MessageBox.Show("account does indeed exist");
                     connect.Close();
                     return true;
                 }
@@ -326,7 +347,6 @@ namespace Ukupholisa3
 
                 if (keyCorrect > 0)
                 {
-                    //MessageBox.Show("account does indeed exist");
                     connect.Close();
                     return true;
                 }

@@ -22,21 +22,20 @@ namespace Ukupholisa3
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             string holderID = txtHID.Text;
-            Int16 holderKey = Convert.ToInt16(txtHKey.Text);
+            int holderKey = int.Parse(txtHKey.Text);
             string holderPhone = txtHPone.Text;
             try
             {
-                
-                //MessageBox.Show(userHandle.checkAccount((txtHID.Text).ToString()).ToString());
                 if (userHandle.checkAccount(holderID) && userHandle.checkHolderKey(holderKey,holderID) && userHandle.checkHolderPhone(holderPhone,holderID))
                 {
                     MessageBox.Show("Account Exists");
                     userTabCtrl.SelectTab(tabShowAccounts);
+                    dgvViewAccounts.DataSource = userHandle.ViewAccountCall(holderID);
                     
                 }
                 else
                 {
-                    //MessageBox.Show("Account does not exist");
+                    MessageBox.Show("Something wrongly failed validation");
                 }
 
             }
@@ -45,6 +44,16 @@ namespace Ukupholisa3
                 //e.GetBaseException();
                 MessageBox.Show("Something went wrong trying to check account.");
             }
+        }
+
+        private void UserForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabShowAccounts_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

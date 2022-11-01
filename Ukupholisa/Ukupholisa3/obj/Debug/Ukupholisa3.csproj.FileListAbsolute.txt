@@ -112,11 +112,7 @@ C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Uk
 C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Ukupholisa3.csproj.AssemblyReference.cache
 C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Ukupholisa3.csproj.SuggestedBindingRedirects.cache
-C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Genisis.CallForm.resources
-C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Ukupholisa3.ClientCall.resources
-C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Ukupholisa3.ClientForm.resources
 C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Genisis.LoginForm.resources
-C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Ukupholisa3.NavigationForm.resources
 C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Ukupholisa3.Properties.Resources.resources
 C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Genisis.ProviderManage.resources
 C:\Users\Francois-Dean\Documents\SEN381\GIT_Project\SEN381_Project\Ukupholisa\Ukupholisa3\obj\Debug\Ukupholisa3.csproj.GenerateResource.cache

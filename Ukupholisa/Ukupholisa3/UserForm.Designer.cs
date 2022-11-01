@@ -62,7 +62,6 @@
             this.btnSrchTrt = new System.Windows.Forms.Button();
             this.dgvTreatments = new System.Windows.Forms.DataGridView();
             this.Conditions = new System.Windows.Forms.TabPage();
-            this.label21 = new System.Windows.Forms.Label();
             this.rbnOther = new System.Windows.Forms.RadioButton();
             this.rbnFemale = new System.Windows.Forms.RadioButton();
             this.rbnMale = new System.Windows.Forms.RadioButton();
@@ -81,6 +80,7 @@
             this.btnInsert = new System.Windows.Forms.Button();
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
             this.tabShowAccounts.SuspendLayout();
@@ -123,7 +123,7 @@
             this.tabCall.Margin = new System.Windows.Forms.Padding(2);
             this.tabCall.Name = "tabCall";
             this.tabCall.Padding = new System.Windows.Forms.Padding(2);
-            this.tabCall.Size = new System.Drawing.Size(751, 434);
+            this.tabCall.Size = new System.Drawing.Size(795, 491);
             this.tabCall.TabIndex = 0;
             this.tabCall.Text = "Call";
             this.tabCall.UseVisualStyleBackColor = true;
@@ -235,17 +235,18 @@
             this.tabShowAccounts.Margin = new System.Windows.Forms.Padding(2);
             this.tabShowAccounts.Name = "tabShowAccounts";
             this.tabShowAccounts.Padding = new System.Windows.Forms.Padding(2);
-            this.tabShowAccounts.Size = new System.Drawing.Size(751, 434);
+            this.tabShowAccounts.Size = new System.Drawing.Size(795, 491);
             this.tabShowAccounts.TabIndex = 1;
             this.tabShowAccounts.Text = "Accounts";
             this.tabShowAccounts.UseVisualStyleBackColor = true;
+            this.tabShowAccounts.Click += new System.EventHandler(this.tabShowAccounts_Click);
             // 
             // dgvViewAccounts
             // 
             this.dgvViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvViewAccounts.Location = new System.Drawing.Point(200, 32);
+            this.dgvViewAccounts.Location = new System.Drawing.Point(77, 121);
             this.dgvViewAccounts.Name = "dgvViewAccounts";
-            this.dgvViewAccounts.Size = new System.Drawing.Size(500, 325);
+            this.dgvViewAccounts.Size = new System.Drawing.Size(640, 370);
             this.dgvViewAccounts.TabIndex = 21;
             // 
             // Product
@@ -268,7 +269,7 @@
             this.Product.Location = new System.Drawing.Point(4, 22);
             this.Product.Margin = new System.Windows.Forms.Padding(2);
             this.Product.Name = "Product";
-            this.Product.Size = new System.Drawing.Size(751, 434);
+            this.Product.Size = new System.Drawing.Size(795, 491);
             this.Product.TabIndex = 2;
             this.Product.Text = "Product";
             this.Product.UseVisualStyleBackColor = true;
@@ -405,7 +406,7 @@
             this.Treatments.Location = new System.Drawing.Point(4, 22);
             this.Treatments.Margin = new System.Windows.Forms.Padding(2);
             this.Treatments.Name = "Treatments";
-            this.Treatments.Size = new System.Drawing.Size(751, 434);
+            this.Treatments.Size = new System.Drawing.Size(795, 491);
             this.Treatments.TabIndex = 3;
             this.Treatments.Text = "Treatments";
             this.Treatments.UseVisualStyleBackColor = true;
@@ -463,15 +464,6 @@
             this.Conditions.TabIndex = 4;
             this.Conditions.Text = "Conditions";
             this.Conditions.UseVisualStyleBackColor = true;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(161, 109);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(61, 17);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "label21";
             // 
             // rbnOther
             // 
@@ -643,6 +635,15 @@
             this.label10.TabIndex = 21;
             this.label10.Text = "Client Manage";
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(161, 109);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(61, 17);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "label21";
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -651,6 +652,7 @@
             this.Controls.Add(this.userTabCtrl);
             this.Name = "UserForm";
             this.Text = "UserForm";
+            this.Load += new System.EventHandler(this.UserForm_Load);
             this.userTabCtrl.ResumeLayout(false);
             this.tabCall.ResumeLayout(false);
             this.tabCall.PerformLayout();
