@@ -40,23 +40,17 @@
             this.txtHID = new System.Windows.Forms.TextBox();
             this.txtHKey = new System.Windows.Forms.TextBox();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.tabShowAccounts = new System.Windows.Forms.TabPage();
+            this.tabShowDependants = new System.Windows.Forms.TabPage();
             this.dgvViewAccounts = new System.Windows.Forms.DataGridView();
-            this.Product = new System.Windows.Forms.TabPage();
-            this.btnPSub = new System.Windows.Forms.Button();
-            this.cmbCover = new System.Windows.Forms.ComboBox();
-            this.chkPro = new System.Windows.Forms.CheckBox();
-            this.chkAvail = new System.Windows.Forms.CheckBox();
-            this.txtPPrice = new System.Windows.Forms.TextBox();
-            this.txtPerform = new System.Windows.Forms.TextBox();
-            this.txtPName = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.tabAddAccount = new System.Windows.Forms.TabPage();
+            this.dgvAccount = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblHolderID = new System.Windows.Forms.Label();
+            this.btnAddAccount = new System.Windows.Forms.Button();
+            this.txtHolderCell = new System.Windows.Forms.TextBox();
+            this.txtHolderKey = new System.Windows.Forms.TextBox();
+            this.cmbPackage = new System.Windows.Forms.ComboBox();
+            this.txtHolderID = new System.Windows.Forms.TextBox();
             this.Treatments = new System.Windows.Forms.TabPage();
             this.txtSrchTrt = new System.Windows.Forms.TextBox();
             this.btnSrchTrt = new System.Windows.Forms.Button();
@@ -81,11 +75,16 @@
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.lblHolderKey = new System.Windows.Forms.Label();
+            this.lblPackage = new System.Windows.Forms.Label();
+            this.lblHolderCell = new System.Windows.Forms.Label();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
-            this.tabShowAccounts.SuspendLayout();
+            this.tabShowDependants.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).BeginInit();
-            this.Product.SuspendLayout();
+            this.tabAddAccount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
+            this.panel1.SuspendLayout();
             this.Treatments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).BeginInit();
             this.Conditions.SuspendLayout();
@@ -95,8 +94,8 @@
             // userTabCtrl
             // 
             this.userTabCtrl.Controls.Add(this.tabCall);
-            this.userTabCtrl.Controls.Add(this.tabShowAccounts);
-            this.userTabCtrl.Controls.Add(this.Product);
+            this.userTabCtrl.Controls.Add(this.tabShowDependants);
+            this.userTabCtrl.Controls.Add(this.tabAddAccount);
             this.userTabCtrl.Controls.Add(this.Treatments);
             this.userTabCtrl.Controls.Add(this.Conditions);
             this.userTabCtrl.Location = new System.Drawing.Point(0, 1);
@@ -227,175 +226,113 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // tabShowAccounts
+            // tabShowDependants
             // 
-            this.tabShowAccounts.Controls.Add(this.dgvViewAccounts);
-            this.tabShowAccounts.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabShowAccounts.Location = new System.Drawing.Point(4, 22);
-            this.tabShowAccounts.Margin = new System.Windows.Forms.Padding(2);
-            this.tabShowAccounts.Name = "tabShowAccounts";
-            this.tabShowAccounts.Padding = new System.Windows.Forms.Padding(2);
-            this.tabShowAccounts.Size = new System.Drawing.Size(795, 491);
-            this.tabShowAccounts.TabIndex = 1;
-            this.tabShowAccounts.Text = "Accounts";
-            this.tabShowAccounts.UseVisualStyleBackColor = true;
-            this.tabShowAccounts.Click += new System.EventHandler(this.tabShowAccounts_Click);
+            this.tabShowDependants.Controls.Add(this.dgvViewAccounts);
+            this.tabShowDependants.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabShowDependants.Location = new System.Drawing.Point(4, 22);
+            this.tabShowDependants.Margin = new System.Windows.Forms.Padding(2);
+            this.tabShowDependants.Name = "tabShowDependants";
+            this.tabShowDependants.Padding = new System.Windows.Forms.Padding(2);
+            this.tabShowDependants.Size = new System.Drawing.Size(795, 491);
+            this.tabShowDependants.TabIndex = 1;
+            this.tabShowDependants.Text = "Dependants";
+            this.tabShowDependants.UseVisualStyleBackColor = true;
+            this.tabShowDependants.Click += new System.EventHandler(this.tabShowAccounts_Click);
             // 
             // dgvViewAccounts
             // 
             this.dgvViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvViewAccounts.Location = new System.Drawing.Point(77, 121);
+            this.dgvViewAccounts.Location = new System.Drawing.Point(65, 121);
             this.dgvViewAccounts.Name = "dgvViewAccounts";
             this.dgvViewAccounts.Size = new System.Drawing.Size(640, 370);
             this.dgvViewAccounts.TabIndex = 21;
             // 
-            // Product
+            // tabAddAccount
             // 
-            this.Product.Controls.Add(this.btnPSub);
-            this.Product.Controls.Add(this.cmbCover);
-            this.Product.Controls.Add(this.chkPro);
-            this.Product.Controls.Add(this.chkAvail);
-            this.Product.Controls.Add(this.txtPPrice);
-            this.Product.Controls.Add(this.txtPerform);
-            this.Product.Controls.Add(this.txtPName);
-            this.Product.Controls.Add(this.label19);
-            this.Product.Controls.Add(this.label18);
-            this.Product.Controls.Add(this.label17);
-            this.Product.Controls.Add(this.label16);
-            this.Product.Controls.Add(this.label15);
-            this.Product.Controls.Add(this.label14);
-            this.Product.Controls.Add(this.label13);
-            this.Product.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Product.Location = new System.Drawing.Point(4, 22);
-            this.Product.Margin = new System.Windows.Forms.Padding(2);
-            this.Product.Name = "Product";
-            this.Product.Size = new System.Drawing.Size(795, 491);
-            this.Product.TabIndex = 2;
-            this.Product.Text = "Product";
-            this.Product.UseVisualStyleBackColor = true;
+            this.tabAddAccount.Controls.Add(this.dgvAccount);
+            this.tabAddAccount.Controls.Add(this.panel1);
+            this.tabAddAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabAddAccount.Location = new System.Drawing.Point(4, 22);
+            this.tabAddAccount.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAddAccount.Name = "tabAddAccount";
+            this.tabAddAccount.Size = new System.Drawing.Size(795, 491);
+            this.tabAddAccount.TabIndex = 2;
+            this.tabAddAccount.Text = "Accounts";
+            this.tabAddAccount.UseVisualStyleBackColor = true;
             // 
-            // btnPSub
+            // dgvAccount
             // 
-            this.btnPSub.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPSub.Location = new System.Drawing.Point(254, 278);
-            this.btnPSub.Name = "btnPSub";
-            this.btnPSub.Size = new System.Drawing.Size(75, 23);
-            this.btnPSub.TabIndex = 13;
-            this.btnPSub.Text = "Submit";
-            this.btnPSub.UseVisualStyleBackColor = true;
+            this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAccount.Location = new System.Drawing.Point(423, 71);
+            this.dgvAccount.Name = "dgvAccount";
+            this.dgvAccount.Size = new System.Drawing.Size(352, 370);
+            this.dgvAccount.TabIndex = 22;
             // 
-            // cmbCover
+            // panel1
             // 
-            this.cmbCover.FormattingEnabled = true;
-            this.cmbCover.Location = new System.Drawing.Point(306, 203);
-            this.cmbCover.Name = "cmbCover";
-            this.cmbCover.Size = new System.Drawing.Size(121, 23);
-            this.cmbCover.TabIndex = 12;
+            this.panel1.Controls.Add(this.lblHolderCell);
+            this.panel1.Controls.Add(this.lblPackage);
+            this.panel1.Controls.Add(this.lblHolderKey);
+            this.panel1.Controls.Add(this.lblHolderID);
+            this.panel1.Controls.Add(this.btnAddAccount);
+            this.panel1.Controls.Add(this.txtHolderCell);
+            this.panel1.Controls.Add(this.txtHolderKey);
+            this.panel1.Controls.Add(this.cmbPackage);
+            this.panel1.Controls.Add(this.txtHolderID);
+            this.panel1.Location = new System.Drawing.Point(8, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(227, 198);
+            this.panel1.TabIndex = 0;
             // 
-            // chkPro
+            // lblHolderID
             // 
-            this.chkPro.AutoSize = true;
-            this.chkPro.Location = new System.Drawing.Point(306, 233);
-            this.chkPro.Name = "chkPro";
-            this.chkPro.Size = new System.Drawing.Size(75, 19);
-            this.chkPro.TabIndex = 11;
-            this.chkPro.Text = "Available";
-            this.chkPro.UseVisualStyleBackColor = true;
+            this.lblHolderID.AutoSize = true;
+            this.lblHolderID.Location = new System.Drawing.Point(15, 28);
+            this.lblHolderID.Name = "lblHolderID";
+            this.lblHolderID.Size = new System.Drawing.Size(59, 15);
+            this.lblHolderID.TabIndex = 6;
+            this.lblHolderID.Text = "Holder ID";
             // 
-            // chkAvail
+            // btnAddAccount
             // 
-            this.chkAvail.AutoSize = true;
-            this.chkAvail.Location = new System.Drawing.Point(306, 99);
-            this.chkAvail.Name = "chkAvail";
-            this.chkAvail.Size = new System.Drawing.Size(75, 19);
-            this.chkAvail.TabIndex = 10;
-            this.chkAvail.Text = "Available";
-            this.chkAvail.UseVisualStyleBackColor = true;
+            this.btnAddAccount.Location = new System.Drawing.Point(99, 135);
+            this.btnAddAccount.Name = "btnAddAccount";
+            this.btnAddAccount.Size = new System.Drawing.Size(100, 23);
+            this.btnAddAccount.TabIndex = 5;
+            this.btnAddAccount.Text = "Add Account";
+            this.btnAddAccount.UseVisualStyleBackColor = true;
+            this.btnAddAccount.Click += new System.EventHandler(this.btnAddAccount_Click);
             // 
-            // txtPPrice
+            // txtHolderCell
             // 
-            this.txtPPrice.Location = new System.Drawing.Point(306, 172);
-            this.txtPPrice.Name = "txtPPrice";
-            this.txtPPrice.Size = new System.Drawing.Size(100, 21);
-            this.txtPPrice.TabIndex = 9;
+            this.txtHolderCell.Location = new System.Drawing.Point(99, 108);
+            this.txtHolderCell.Name = "txtHolderCell";
+            this.txtHolderCell.Size = new System.Drawing.Size(100, 21);
+            this.txtHolderCell.TabIndex = 4;
             // 
-            // txtPerform
+            // txtHolderKey
             // 
-            this.txtPerform.Location = new System.Drawing.Point(306, 132);
-            this.txtPerform.Name = "txtPerform";
-            this.txtPerform.Size = new System.Drawing.Size(100, 21);
-            this.txtPerform.TabIndex = 8;
+            this.txtHolderKey.Location = new System.Drawing.Point(99, 81);
+            this.txtHolderKey.Name = "txtHolderKey";
+            this.txtHolderKey.Size = new System.Drawing.Size(100, 21);
+            this.txtHolderKey.TabIndex = 3;
             // 
-            // txtPName
+            // cmbPackage
             // 
-            this.txtPName.Location = new System.Drawing.Point(306, 65);
-            this.txtPName.Name = "txtPName";
-            this.txtPName.Size = new System.Drawing.Size(100, 21);
-            this.txtPName.TabIndex = 7;
+            this.cmbPackage.FormattingEnabled = true;
+            this.cmbPackage.Location = new System.Drawing.Point(99, 52);
+            this.cmbPackage.Name = "cmbPackage";
+            this.cmbPackage.Size = new System.Drawing.Size(100, 23);
+            this.cmbPackage.TabIndex = 2;
+            this.cmbPackage.SelectedIndexChanged += new System.EventHandler(this.cmbPackage_SelectedIndexChanged);
             // 
-            // label19
+            // txtHolderID
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(169, 237);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(112, 15);
-            this.label19.TabIndex = 6;
-            this.label19.Text = "Product Promotion:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(169, 203);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(118, 15);
-            this.label18.TabIndex = 5;
-            this.label18.Text = "Product Cover Level:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(169, 172);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(83, 15);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "Product Price:";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(169, 135);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(126, 15);
-            this.label16.TabIndex = 3;
-            this.label16.Text = "Product Performance:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(169, 99);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(111, 15);
-            this.label15.TabIndex = 2;
-            this.label15.Text = "Product Availability:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(169, 65);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(89, 15);
-            this.label14.TabIndex = 1;
-            this.label14.Text = "Product Name:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(240, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(103, 29);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Product";
+            this.txtHolderID.Location = new System.Drawing.Point(99, 25);
+            this.txtHolderID.Name = "txtHolderID";
+            this.txtHolderID.Size = new System.Drawing.Size(100, 21);
+            this.txtHolderID.TabIndex = 1;
             // 
             // Treatments
             // 
@@ -426,6 +363,7 @@
             this.btnSrchTrt.TabIndex = 21;
             this.btnSrchTrt.Text = "Search";
             this.btnSrchTrt.UseVisualStyleBackColor = true;
+            this.btnSrchTrt.Click += new System.EventHandler(this.btnSrchTrt_Click);
             // 
             // dgvTreatments
             // 
@@ -644,6 +582,33 @@
             this.label21.TabIndex = 1;
             this.label21.Text = "label21";
             // 
+            // lblHolderKey
+            // 
+            this.lblHolderKey.AutoSize = true;
+            this.lblHolderKey.Location = new System.Drawing.Point(15, 84);
+            this.lblHolderKey.Name = "lblHolderKey";
+            this.lblHolderKey.Size = new System.Drawing.Size(67, 15);
+            this.lblHolderKey.TabIndex = 7;
+            this.lblHolderKey.Text = "Holder Key";
+            // 
+            // lblPackage
+            // 
+            this.lblPackage.AutoSize = true;
+            this.lblPackage.Location = new System.Drawing.Point(15, 55);
+            this.lblPackage.Name = "lblPackage";
+            this.lblPackage.Size = new System.Drawing.Size(55, 15);
+            this.lblPackage.TabIndex = 8;
+            this.lblPackage.Text = "Package";
+            // 
+            // lblHolderCell
+            // 
+            this.lblHolderCell.AutoSize = true;
+            this.lblHolderCell.Location = new System.Drawing.Point(15, 111);
+            this.lblHolderCell.Name = "lblHolderCell";
+            this.lblHolderCell.Size = new System.Drawing.Size(68, 15);
+            this.lblHolderCell.TabIndex = 9;
+            this.lblHolderCell.Text = "Holder Cell";
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -656,10 +621,12 @@
             this.userTabCtrl.ResumeLayout(false);
             this.tabCall.ResumeLayout(false);
             this.tabCall.PerformLayout();
-            this.tabShowAccounts.ResumeLayout(false);
+            this.tabShowDependants.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).EndInit();
-            this.Product.ResumeLayout(false);
-            this.Product.PerformLayout();
+            this.tabAddAccount.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.Treatments.ResumeLayout(false);
             this.Treatments.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).EndInit();
@@ -674,22 +641,8 @@
 
         private System.Windows.Forms.TabControl userTabCtrl;
         private System.Windows.Forms.TabPage tabCall;
-        private System.Windows.Forms.TabPage tabShowAccounts;
-        private System.Windows.Forms.TabPage Product;
-        private System.Windows.Forms.Button btnPSub;
-        private System.Windows.Forms.ComboBox cmbCover;
-        private System.Windows.Forms.CheckBox chkPro;
-        private System.Windows.Forms.CheckBox chkAvail;
-        private System.Windows.Forms.TextBox txtPPrice;
-        private System.Windows.Forms.TextBox txtPerform;
-        private System.Windows.Forms.TextBox txtPName;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TabPage tabShowDependants;
+        private System.Windows.Forms.TabPage tabAddAccount;
         private System.Windows.Forms.TabPage Treatments;
         private System.Windows.Forms.TextBox txtSrchTrt;
         private System.Windows.Forms.Button btnSrchTrt;
@@ -725,5 +678,16 @@
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.DataGridView dgvClients;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtHolderID;
+        private System.Windows.Forms.ComboBox cmbPackage;
+        private System.Windows.Forms.DataGridView dgvAccount;
+        private System.Windows.Forms.Button btnAddAccount;
+        private System.Windows.Forms.TextBox txtHolderCell;
+        private System.Windows.Forms.TextBox txtHolderKey;
+        private System.Windows.Forms.Label lblHolderID;
+        private System.Windows.Forms.Label lblHolderCell;
+        private System.Windows.Forms.Label lblPackage;
+        private System.Windows.Forms.Label lblHolderKey;
     }
 }

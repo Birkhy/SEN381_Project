@@ -53,5 +53,10 @@ namespace Genisis
         {
 
         }
+
+        private void Treatments_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

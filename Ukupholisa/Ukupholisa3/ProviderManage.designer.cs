@@ -543,6 +543,7 @@
             this.Treatments.TabIndex = 3;
             this.Treatments.Text = "Treatments";
             this.Treatments.UseVisualStyleBackColor = true;
+            this.Treatments.Click += new System.EventHandler(this.Treatments_Click);
             // 
             // txtSrchTrt
             // 

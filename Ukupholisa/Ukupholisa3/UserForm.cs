@@ -10,8 +10,16 @@ using System.Windows.Forms;
 
 namespace Ukupholisa3
 {
+    
     public partial class UserForm : Form
     {
+        int PackageID;
+        string PackageName;
+        Int32 AccountID;
+        int HolderKey;
+        string HolderCell;
+        string HolderID;
+
         DataHandler userHandle = new DataHandler();
         DataHandler test = new DataHandler();
         public UserForm()
@@ -29,7 +37,7 @@ namespace Ukupholisa3
                 if (userHandle.checkAccount(holderID) && userHandle.checkHolderKey(holderKey,holderID) && userHandle.checkHolderPhone(holderPhone,holderID))
                 {
                     MessageBox.Show("Account Exists");
-                    userTabCtrl.SelectTab(tabShowAccounts);
+                    userTabCtrl.SelectTab(tabShowDependants);
                     dgvViewAccounts.DataSource = userHandle.ViewAccountCall(holderID);
                     
                 }
@@ -48,12 +56,50 @@ namespace Ukupholisa3
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-
+            cmbPackage.DataSource = userHandle.getPackages();
         }
 
         private void tabShowAccounts_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PackageName = cmbPackage.Text;
+            dgvAccount.DataSource = userHandle.ViewPackageTreatments(PackageName);
+        }
+
+        private void btnSrchTrt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                dgvTreatments.DataSource = userHandle.SearchTreatment(txtSrchTrt.Text);
+                dgvTreatments.AutoResizeColumns();
+                //MessageBox.Show("Handler supposed to work");
+                //Source.DataSource = //Handle.GetClient();
+
+            }
+            catch (Exception)
+            {
+                //e.GetBaseException();
+                MessageBox.Show("Something went wrong trying to view Treatments.");
+            }
+        }
+
+        private void btnAddAccount_Click(object sender, EventArgs e)
+        {
+            AccountID = userHandle.getLastID() + 1;
+            PackageID = userHandle.setPackageID(PackageName);
+            HolderKey = int.Parse(txtHKey.Text);
+            HolderID = txtHID.Text;
+            HolderCell = txtHolderCell.Text;
+            //MessageBox.Show(PackageID.ToString());
+            Accounts newAccount = new Accounts(AccountID, HolderKey, HolderID, HolderCell, PackageID);
+            userHandle.AddAccount(newAccount);
+            
+            //MessageBox.Show(AccountID.ToString());
         }
     }
 }

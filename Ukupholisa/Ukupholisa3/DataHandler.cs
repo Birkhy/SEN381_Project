@@ -1,5 +1,6 @@
 ﻿using Genisis;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Utilities.Encoders;
 using System;
 using System.Collections;
@@ -125,30 +126,57 @@ namespace Ukupholisa3
 
 
         }
-
-        public string AddClient(string CID, string SName, string SSName, DateTime DOB, string Sex)
+        //This method gets the last ID in the Account table in order to add new ones.
+        public Int32 getLastID()
         {
-            SqlConnection connect = new SqlConnection(conn);
-            if (CID != "" && SName != "" && SSName != "" && Sex != "")
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                SqlCommand sql_cmnd = new SqlCommand("addClient", connect);
+                MySqlCommand selectlastID = new MySqlCommand("getLastAccountID", connect);
+                selectlastID.CommandType = CommandType.StoredProcedure;
+                selectlastID.Parameters.Add("lastAccountID", MySqlDbType.Int32);
+                selectlastID.Parameters["lastAccountID"].Direction = ParameterDirection.Output;
+
+                selectlastID.ExecuteNonQuery();
+
+                Int32 lastID = (Int32)selectlastID.Parameters["lastAccountID"].Value;
+
+
+
+
+
+                connect.Close();
+                
+                return lastID;
+
+            }
+            return 0;
+        }
+
+        public string AddAccount(int AccountID, int HolderKey, string HolderID, string HolderCell, int PackageID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (HolderKey.ToString().Length == 5 && HolderID != "" && HolderID.Length == 13 && HolderCell.ToString().Length == 10)
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("ddAccount", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@ID", SqlDbType.NVarChar).Value = CID;
-                sql_cmnd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = SName;
-                sql_cmnd.Parameters.AddWithValue("@SURNAME", SqlDbType.NVarChar).Value = SSName;
-                sql_cmnd.Parameters.AddWithValue("@DOB", SqlDbType.Date).Value = DOB;
-                sql_cmnd.Parameters.AddWithValue("@SEX", SqlDbType.NVarChar).Value = Sex;
+                sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
+                sql_cmnd.Parameters.AddWithValue("@HolderKey", HolderKey);
+                sql_cmnd.Parameters.AddWithValue("@HolderID", HolderID);
+                sql_cmnd.Parameters.AddWithValue("@HolderCell", HolderCell);
+                sql_cmnd.Parameters.AddWithValue("@PackageID", PackageID);
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
                     connect.Close();
-                    return "Client with ID " + CID + " was added.";
+                    return "Client with ID " + HolderID + " was added.";
                 }
                 else
                 {
                     connect.Close();
-                    return "Client with ID " + CID + " failed to be added.";
+                    return "Client with ID " + HolderID + " failed to be added.";
                 }
             }
             else
@@ -363,6 +391,86 @@ namespace Ukupholisa3
                 connect.Close();
                 return false;
             }
+        }
+        //Method returns List to populate combobox associated with a package.
+        public List<string> getPackages()
+        {
+            List<string> AllPackages = new List<string>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("SELECT Package_Name FROM product", connect);
+                //command.CommandType = CommandType.StoredProcedure;
+
+
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        AllPackages.Add(reader[0].ToString());
+                    }
+                }
+            }
+            connect.Close();
+            return AllPackages;
+        }
+
+        public int setPackageID(string PackageName)
+        {
+            //List<string> AllPackages = new List<string>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            int PackageID =0;
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand spi = new MySqlCommand("setPackageID", connect);
+                spi.CommandType = CommandType.StoredProcedure;
+                spi.Parameters.AddWithValue("@PackageName", PackageName);
+
+
+
+                using (var reader = spi.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PackageID = int.Parse(reader[0].ToString());
+                    }
+                    
+                }
+            }
+            connect.Close();
+            return PackageID;
+        }
+
+        //Method returns datatable to view treatments associated with a package.
+        public DataTable ViewPackageTreatments(string PackageName)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand vpt = new MySqlCommand("ViewPackageTreatments", connect);
+                vpt.CommandType = CommandType.StoredProcedure;
+                vpt.Parameters.AddWithValue("@PackageName", PackageName);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                //MessageBox.Show("Actually returns the datatable");
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+
+
         }
 
 
