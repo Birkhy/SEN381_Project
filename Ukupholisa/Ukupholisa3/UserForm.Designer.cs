@@ -44,7 +44,10 @@
             this.dgvViewAccounts = new System.Windows.Forms.DataGridView();
             this.tabAddAccount = new System.Windows.Forms.TabPage();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlAccountAdd = new System.Windows.Forms.Panel();
+            this.lblHolderCell = new System.Windows.Forms.Label();
+            this.lblPackage = new System.Windows.Forms.Label();
+            this.lblHolderKey = new System.Windows.Forms.Label();
             this.lblHolderID = new System.Windows.Forms.Label();
             this.btnAddAccount = new System.Windows.Forms.Button();
             this.txtHolderCell = new System.Windows.Forms.TextBox();
@@ -75,20 +78,32 @@
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.lblHolderKey = new System.Windows.Forms.Label();
-            this.lblPackage = new System.Windows.Forms.Label();
-            this.lblHolderCell = new System.Windows.Forms.Label();
+            this.pnlDependantAdd = new System.Windows.Forms.Panel();
+            this.lblDependantSurname = new System.Windows.Forms.Label();
+            this.lblDependantID = new System.Windows.Forms.Label();
+            this.lblDependantName = new System.Windows.Forms.Label();
+            this.lblAccountID = new System.Windows.Forms.Label();
+            this.btnAddDependant = new System.Windows.Forms.Button();
+            this.txtDepSur = new System.Windows.Forms.TextBox();
+            this.txtDependantName = new System.Windows.Forms.TextBox();
+            this.txtAccountID = new System.Windows.Forms.TextBox();
+            this.txtDependantID = new System.Windows.Forms.TextBox();
+            this.lblDOB = new System.Windows.Forms.Label();
+            this.dtpDOB = new System.Windows.Forms.DateTimePicker();
+            this.lblSex = new System.Windows.Forms.Label();
+            this.cmbSex = new System.Windows.Forms.ComboBox();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
             this.tabShowDependants.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).BeginInit();
             this.tabAddAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnlAccountAdd.SuspendLayout();
             this.Treatments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).BeginInit();
             this.Conditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
+            this.pnlDependantAdd.SuspendLayout();
             this.SuspendLayout();
             // 
             // userTabCtrl
@@ -104,6 +119,7 @@
             this.userTabCtrl.SelectedIndex = 0;
             this.userTabCtrl.Size = new System.Drawing.Size(803, 517);
             this.userTabCtrl.TabIndex = 2;
+            this.userTabCtrl.Click += new System.EventHandler(this.tabAddAccount_Click);
             // 
             // tabCall
             // 
@@ -243,15 +259,16 @@
             // dgvViewAccounts
             // 
             this.dgvViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvViewAccounts.Location = new System.Drawing.Point(65, 121);
+            this.dgvViewAccounts.Location = new System.Drawing.Point(8, 5);
             this.dgvViewAccounts.Name = "dgvViewAccounts";
             this.dgvViewAccounts.Size = new System.Drawing.Size(640, 370);
             this.dgvViewAccounts.TabIndex = 21;
             // 
             // tabAddAccount
             // 
+            this.tabAddAccount.Controls.Add(this.pnlDependantAdd);
             this.tabAddAccount.Controls.Add(this.dgvAccount);
-            this.tabAddAccount.Controls.Add(this.panel1);
+            this.tabAddAccount.Controls.Add(this.pnlAccountAdd);
             this.tabAddAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabAddAccount.Location = new System.Drawing.Point(4, 22);
             this.tabAddAccount.Margin = new System.Windows.Forms.Padding(2);
@@ -264,26 +281,53 @@
             // dgvAccount
             // 
             this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAccount.Location = new System.Drawing.Point(423, 71);
+            this.dgvAccount.Location = new System.Drawing.Point(428, 19);
             this.dgvAccount.Name = "dgvAccount";
             this.dgvAccount.Size = new System.Drawing.Size(352, 370);
             this.dgvAccount.TabIndex = 22;
             // 
-            // panel1
+            // pnlAccountAdd
             // 
-            this.panel1.Controls.Add(this.lblHolderCell);
-            this.panel1.Controls.Add(this.lblPackage);
-            this.panel1.Controls.Add(this.lblHolderKey);
-            this.panel1.Controls.Add(this.lblHolderID);
-            this.panel1.Controls.Add(this.btnAddAccount);
-            this.panel1.Controls.Add(this.txtHolderCell);
-            this.panel1.Controls.Add(this.txtHolderKey);
-            this.panel1.Controls.Add(this.cmbPackage);
-            this.panel1.Controls.Add(this.txtHolderID);
-            this.panel1.Location = new System.Drawing.Point(8, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(227, 198);
-            this.panel1.TabIndex = 0;
+            this.pnlAccountAdd.Controls.Add(this.lblHolderCell);
+            this.pnlAccountAdd.Controls.Add(this.lblPackage);
+            this.pnlAccountAdd.Controls.Add(this.lblHolderKey);
+            this.pnlAccountAdd.Controls.Add(this.lblHolderID);
+            this.pnlAccountAdd.Controls.Add(this.btnAddAccount);
+            this.pnlAccountAdd.Controls.Add(this.txtHolderCell);
+            this.pnlAccountAdd.Controls.Add(this.txtHolderKey);
+            this.pnlAccountAdd.Controls.Add(this.cmbPackage);
+            this.pnlAccountAdd.Controls.Add(this.txtHolderID);
+            this.pnlAccountAdd.Location = new System.Drawing.Point(8, 19);
+            this.pnlAccountAdd.Name = "pnlAccountAdd";
+            this.pnlAccountAdd.Size = new System.Drawing.Size(227, 198);
+            this.pnlAccountAdd.TabIndex = 0;
+            // 
+            // lblHolderCell
+            // 
+            this.lblHolderCell.AutoSize = true;
+            this.lblHolderCell.Location = new System.Drawing.Point(15, 111);
+            this.lblHolderCell.Name = "lblHolderCell";
+            this.lblHolderCell.Size = new System.Drawing.Size(68, 15);
+            this.lblHolderCell.TabIndex = 9;
+            this.lblHolderCell.Text = "Holder Cell";
+            // 
+            // lblPackage
+            // 
+            this.lblPackage.AutoSize = true;
+            this.lblPackage.Location = new System.Drawing.Point(15, 55);
+            this.lblPackage.Name = "lblPackage";
+            this.lblPackage.Size = new System.Drawing.Size(55, 15);
+            this.lblPackage.TabIndex = 8;
+            this.lblPackage.Text = "Package";
+            // 
+            // lblHolderKey
+            // 
+            this.lblHolderKey.AutoSize = true;
+            this.lblHolderKey.Location = new System.Drawing.Point(15, 84);
+            this.lblHolderKey.Name = "lblHolderKey";
+            this.lblHolderKey.Size = new System.Drawing.Size(67, 15);
+            this.lblHolderKey.TabIndex = 7;
+            this.lblHolderKey.Text = "Holder Key";
             // 
             // lblHolderID
             // 
@@ -582,32 +626,135 @@
             this.label21.TabIndex = 1;
             this.label21.Text = "label21";
             // 
-            // lblHolderKey
+            // pnlDependantAdd
             // 
-            this.lblHolderKey.AutoSize = true;
-            this.lblHolderKey.Location = new System.Drawing.Point(15, 84);
-            this.lblHolderKey.Name = "lblHolderKey";
-            this.lblHolderKey.Size = new System.Drawing.Size(67, 15);
-            this.lblHolderKey.TabIndex = 7;
-            this.lblHolderKey.Text = "Holder Key";
+            this.pnlDependantAdd.Controls.Add(this.cmbSex);
+            this.pnlDependantAdd.Controls.Add(this.lblSex);
+            this.pnlDependantAdd.Controls.Add(this.dtpDOB);
+            this.pnlDependantAdd.Controls.Add(this.lblDOB);
+            this.pnlDependantAdd.Controls.Add(this.txtDependantID);
+            this.pnlDependantAdd.Controls.Add(this.lblDependantSurname);
+            this.pnlDependantAdd.Controls.Add(this.lblDependantID);
+            this.pnlDependantAdd.Controls.Add(this.lblDependantName);
+            this.pnlDependantAdd.Controls.Add(this.lblAccountID);
+            this.pnlDependantAdd.Controls.Add(this.btnAddDependant);
+            this.pnlDependantAdd.Controls.Add(this.txtDepSur);
+            this.pnlDependantAdd.Controls.Add(this.txtDependantName);
+            this.pnlDependantAdd.Controls.Add(this.txtAccountID);
+            this.pnlDependantAdd.Location = new System.Drawing.Point(8, 238);
+            this.pnlDependantAdd.Name = "pnlDependantAdd";
+            this.pnlDependantAdd.Size = new System.Drawing.Size(261, 245);
+            this.pnlDependantAdd.TabIndex = 23;
             // 
-            // lblPackage
+            // lblDependantSurname
             // 
-            this.lblPackage.AutoSize = true;
-            this.lblPackage.Location = new System.Drawing.Point(15, 55);
-            this.lblPackage.Name = "lblPackage";
-            this.lblPackage.Size = new System.Drawing.Size(55, 15);
-            this.lblPackage.TabIndex = 8;
-            this.lblPackage.Text = "Package";
+            this.lblDependantSurname.AutoSize = true;
+            this.lblDependantSurname.Location = new System.Drawing.Point(15, 111);
+            this.lblDependantSurname.Name = "lblDependantSurname";
+            this.lblDependantSurname.Size = new System.Drawing.Size(122, 15);
+            this.lblDependantSurname.TabIndex = 9;
+            this.lblDependantSurname.Text = "Dependant Surname";
             // 
-            // lblHolderCell
+            // lblDependantID
             // 
-            this.lblHolderCell.AutoSize = true;
-            this.lblHolderCell.Location = new System.Drawing.Point(15, 111);
-            this.lblHolderCell.Name = "lblHolderCell";
-            this.lblHolderCell.Size = new System.Drawing.Size(68, 15);
-            this.lblHolderCell.TabIndex = 9;
-            this.lblHolderCell.Text = "Holder Cell";
+            this.lblDependantID.AutoSize = true;
+            this.lblDependantID.Location = new System.Drawing.Point(15, 55);
+            this.lblDependantID.Name = "lblDependantID";
+            this.lblDependantID.Size = new System.Drawing.Size(83, 15);
+            this.lblDependantID.TabIndex = 8;
+            this.lblDependantID.Text = "Dependant ID";
+            // 
+            // lblDependantName
+            // 
+            this.lblDependantName.AutoSize = true;
+            this.lblDependantName.Location = new System.Drawing.Point(15, 84);
+            this.lblDependantName.Name = "lblDependantName";
+            this.lblDependantName.Size = new System.Drawing.Size(105, 15);
+            this.lblDependantName.TabIndex = 7;
+            this.lblDependantName.Text = "Dependant Name";
+            // 
+            // lblAccountID
+            // 
+            this.lblAccountID.AutoSize = true;
+            this.lblAccountID.Location = new System.Drawing.Point(15, 28);
+            this.lblAccountID.Name = "lblAccountID";
+            this.lblAccountID.Size = new System.Drawing.Size(65, 15);
+            this.lblAccountID.TabIndex = 6;
+            this.lblAccountID.Text = "Account ID";
+            // 
+            // btnAddDependant
+            // 
+            this.btnAddDependant.Location = new System.Drawing.Point(87, 205);
+            this.btnAddDependant.Name = "btnAddDependant";
+            this.btnAddDependant.Size = new System.Drawing.Size(100, 23);
+            this.btnAddDependant.TabIndex = 5;
+            this.btnAddDependant.Text = "Add Dependant";
+            this.btnAddDependant.UseVisualStyleBackColor = true;
+            this.btnAddDependant.Click += new System.EventHandler(this.btnAddDependant_Click);
+            // 
+            // txtDepSur
+            // 
+            this.txtDepSur.Location = new System.Drawing.Point(143, 105);
+            this.txtDepSur.Name = "txtDepSur";
+            this.txtDepSur.Size = new System.Drawing.Size(100, 21);
+            this.txtDepSur.TabIndex = 4;
+            // 
+            // txtDependantName
+            // 
+            this.txtDependantName.Location = new System.Drawing.Point(143, 81);
+            this.txtDependantName.Name = "txtDependantName";
+            this.txtDependantName.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantName.TabIndex = 3;
+            // 
+            // txtAccountID
+            // 
+            this.txtAccountID.Location = new System.Drawing.Point(143, 25);
+            this.txtAccountID.Name = "txtAccountID";
+            this.txtAccountID.Size = new System.Drawing.Size(100, 21);
+            this.txtAccountID.TabIndex = 1;
+            // 
+            // txtDependantID
+            // 
+            this.txtDependantID.Location = new System.Drawing.Point(143, 52);
+            this.txtDependantID.Name = "txtDependantID";
+            this.txtDependantID.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantID.TabIndex = 10;
+            // 
+            // lblDOB
+            // 
+            this.lblDOB.AutoSize = true;
+            this.lblDOB.Location = new System.Drawing.Point(15, 136);
+            this.lblDOB.Name = "lblDOB";
+            this.lblDOB.Size = new System.Drawing.Size(97, 15);
+            this.lblDOB.TabIndex = 11;
+            this.lblDOB.Text = "Dependant DOB";
+            // 
+            // dtpDOB
+            // 
+            this.dtpDOB.Location = new System.Drawing.Point(143, 136);
+            this.dtpDOB.Name = "dtpDOB";
+            this.dtpDOB.Size = new System.Drawing.Size(115, 21);
+            this.dtpDOB.TabIndex = 12;
+            // 
+            // lblSex
+            // 
+            this.lblSex.AutoSize = true;
+            this.lblSex.Location = new System.Drawing.Point(15, 168);
+            this.lblSex.Name = "lblSex";
+            this.lblSex.Size = new System.Drawing.Size(92, 15);
+            this.lblSex.TabIndex = 13;
+            this.lblSex.Text = "Dependant Sex";
+            // 
+            // cmbSex
+            // 
+            this.cmbSex.FormattingEnabled = true;
+            this.cmbSex.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cmbSex.Location = new System.Drawing.Point(143, 165);
+            this.cmbSex.Name = "cmbSex";
+            this.cmbSex.Size = new System.Drawing.Size(100, 23);
+            this.cmbSex.TabIndex = 14;
             // 
             // UserForm
             // 
@@ -625,14 +772,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).EndInit();
             this.tabAddAccount.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnlAccountAdd.ResumeLayout(false);
+            this.pnlAccountAdd.PerformLayout();
             this.Treatments.ResumeLayout(false);
             this.Treatments.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).EndInit();
             this.Conditions.ResumeLayout(false);
             this.Conditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
+            this.pnlDependantAdd.ResumeLayout(false);
+            this.pnlDependantAdd.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -678,7 +827,7 @@
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.DataGridView dgvClients;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlAccountAdd;
         private System.Windows.Forms.TextBox txtHolderID;
         private System.Windows.Forms.ComboBox cmbPackage;
         private System.Windows.Forms.DataGridView dgvAccount;
@@ -689,5 +838,19 @@
         private System.Windows.Forms.Label lblHolderCell;
         private System.Windows.Forms.Label lblPackage;
         private System.Windows.Forms.Label lblHolderKey;
+        private System.Windows.Forms.Panel pnlDependantAdd;
+        private System.Windows.Forms.DateTimePicker dtpDOB;
+        private System.Windows.Forms.Label lblDOB;
+        private System.Windows.Forms.TextBox txtDependantID;
+        private System.Windows.Forms.Label lblDependantSurname;
+        private System.Windows.Forms.Label lblDependantID;
+        private System.Windows.Forms.Label lblDependantName;
+        private System.Windows.Forms.Label lblAccountID;
+        private System.Windows.Forms.Button btnAddDependant;
+        private System.Windows.Forms.TextBox txtDepSur;
+        private System.Windows.Forms.TextBox txtDependantName;
+        private System.Windows.Forms.TextBox txtAccountID;
+        private System.Windows.Forms.ComboBox cmbSex;
+        private System.Windows.Forms.Label lblSex;
     }
 }

@@ -7,20 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ukupholisa3;
 
 namespace Ukupholisa3
 {
-    static class glbvar
-    {
-        public static int PackageID;
-        public static string PackageName;
-        public static Int32 AccountID;
-        public static string HolderKey;
-        public static string HolderCell;
-        public static string HolderID;
-
-    }
-
     public partial class UserForm : Form
     {
         int PackageID;
@@ -29,11 +19,17 @@ namespace Ukupholisa3
         string HolderKey;
         string HolderCell;
         string HolderID;
+        string DependantID;
+        string DependantName;
+        string DependantSurname;
+        DateTime DOB;
+        string DependantSex;
 
         DataHandler userHandle = new DataHandler();
         public UserForm()
         {
             InitializeComponent();
+            //pnlDependantAdd.Visible = false;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -99,13 +95,6 @@ namespace Ukupholisa3
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            //int PackageID;
-            //string PackageName;
-            //Int32 AccountID;
-            //string HolderKey;
-            //string HolderCell;
-            //string HolderID;
-
             AccountID = userHandle.getLastID() + 1;
             PackageID = userHandle.setPackageID(PackageName);
             HolderKey = txtHolderKey.Text;
@@ -113,17 +102,49 @@ namespace Ukupholisa3
             HolderCell = txtHolderCell.Text;
             try
             {
-                userHandle.AddAccount(AccountID, HolderKey, HolderID, HolderCell, PackageID);
+                if (userHandle.AddAccount(AccountID, HolderKey, HolderID, HolderCell, PackageID))
+                {
+                    pnlAccountAdd.Visible = false;
+                    pnlDependantAdd.Visible = true;
+                    txtAccountID.Text = AccountID.ToString();
+                    txtDependantID.Text = HolderID;
+                }
+                ;
+
             }
             catch (Exception)
             {
                 MessageBox.Show("something went wrong");
+            }
+        }
 
+        private void tabAddAccount_Click(object sender, EventArgs e)
+        {
+            pnlDependantAdd.Visible = false;
+        }
+
+        private void btnAddDependant_Click(object sender, EventArgs e)
+        {
+            AccountID = int.Parse(txtAccountID.Text);
+            DependantID = txtDependantID.Text;
+            DependantName = txtDependantName.Text;
+            DependantSurname = txtDepSur.Text;
+            DOB = dtkDOB.Value;
+            DependantSex = cmbSex.Text;
+
+            try
+            {
+                if (userHandle.AddDependant(DependantID, AccountID, DependantName, DependantSurname, DOB, DependantSex))
+                {
+                    MessageBox.Show("mwahahahaha");
+                }
+                ;
 
             }
-            //userHandle.AddAccount(AccountID,HolderKey,HolderID,HolderCell,PackageID);
-
-            //MessageBox.Show(AccountID.ToString());
+            catch (Exception)
+            {
+                MessageBox.Show("something went wrong");
+            }
         }
     }
 }

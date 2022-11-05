@@ -153,8 +153,8 @@ namespace Ukupholisa3
             }
             return 0;
         }
-
-        public void AddAccount(int AccountID, string HolderKey, string HolderID, string HolderCell, int PackageID)
+        //Adds account to database and returns a bool.
+        public bool AddAccount(int AccountID, string HolderKey, string HolderID, string HolderCell, int PackageID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (HolderKey != "" && HolderID != "" && HolderCell != "")
@@ -172,17 +172,56 @@ namespace Ukupholisa3
                 {
                     connect.Close();
                     MessageBox.Show("Client with ID " + HolderID + " was added.");
+                    return true;
                 }
                 else
                 {
                     connect.Close();
                     MessageBox.Show("Client with ID " + HolderID + " failed to be added.");
+                    return false;
                 }
             }
             else
             {
                 MessageBox.Show("Please enter all required data");
                 connect.Close();
+                return false;
+            }
+        }
+
+        public bool AddDependant(string DependantID, int AccountID, string DependantName, string DependantSurname, DateTime DOB, string Sex)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (DependantID != "" && DependantName != "" && DependantSurname != "" && Sex != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("AddDependant", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
+                sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
+                sql_cmnd.Parameters.AddWithValue("@DependantName", DependantName);
+                sql_cmnd.Parameters.AddWithValue("@DependantSurname", DependantSurname);
+                sql_cmnd.Parameters.AddWithValue("@DOB", DOB);
+                sql_cmnd.Parameters.AddWithValue("@Sex", Sex);
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    MessageBox.Show("Client with ID " + DependantID + " was added.");
+                    return true;
+                }
+                else
+                {
+                    connect.Close();
+                    MessageBox.Show("Client with ID " + DependantID + " failed to be added.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all required data");
+                connect.Close();
+                return false;
             }
         }
 
