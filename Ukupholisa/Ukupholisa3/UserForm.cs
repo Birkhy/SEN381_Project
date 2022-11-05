@@ -10,18 +10,27 @@ using System.Windows.Forms;
 
 namespace Ukupholisa3
 {
-    
+    static class glbvar
+    {
+        public static int PackageID;
+        public static string PackageName;
+        public static Int32 AccountID;
+        public static string HolderKey;
+        public static string HolderCell;
+        public static string HolderID;
+
+    }
+
     public partial class UserForm : Form
     {
         int PackageID;
         string PackageName;
         Int32 AccountID;
-        int HolderKey;
+        string HolderKey;
         string HolderCell;
         string HolderID;
 
         DataHandler userHandle = new DataHandler();
-        DataHandler test = new DataHandler();
         public UserForm()
         {
             InitializeComponent();
@@ -34,12 +43,12 @@ namespace Ukupholisa3
             string holderPhone = txtHPone.Text;
             try
             {
-                if (userHandle.checkAccount(holderID) && userHandle.checkHolderKey(holderKey,holderID) && userHandle.checkHolderPhone(holderPhone,holderID))
+                if (userHandle.checkAccount(holderID) && userHandle.checkHolderKey(holderKey, holderID) && userHandle.checkHolderPhone(holderPhone, holderID))
                 {
                     MessageBox.Show("Account Exists");
                     userTabCtrl.SelectTab(tabShowDependants);
                     dgvViewAccounts.DataSource = userHandle.ViewAccountCall(holderID);
-                    
+
                 }
                 else
                 {
@@ -90,15 +99,30 @@ namespace Ukupholisa3
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
+            //int PackageID;
+            //string PackageName;
+            //Int32 AccountID;
+            //string HolderKey;
+            //string HolderCell;
+            //string HolderID;
+
             AccountID = userHandle.getLastID() + 1;
             PackageID = userHandle.setPackageID(PackageName);
-            HolderKey = int.Parse(txtHKey.Text);
-            HolderID = txtHID.Text;
+            HolderKey = txtHolderKey.Text;
+            HolderID = txtHolderID.Text;
             HolderCell = txtHolderCell.Text;
-            //MessageBox.Show(PackageID.ToString());
-            Accounts newAccount = new Accounts(AccountID, HolderKey, HolderID, HolderCell, PackageID);
-            userHandle.AddAccount(newAccount);
-            
+            try
+            {
+                userHandle.AddAccount(AccountID, HolderKey, HolderID, HolderCell, PackageID);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("something went wrong");
+
+
+            }
+            //userHandle.AddAccount(AccountID,HolderKey,HolderID,HolderCell,PackageID);
+
             //MessageBox.Show(AccountID.ToString());
         }
     }

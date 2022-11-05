@@ -32,7 +32,7 @@ namespace Ukupholisa3
             sql_cmnd.Parameters.AddWithValue("@UPassword", Password);
             connect.Open();
             Int16 Row = Convert.ToInt16(sql_cmnd.ExecuteScalar());
-            if(Row > 0)
+            if (Row > 0)
             {
                 connect.Close();
                 return true;
@@ -147,20 +147,20 @@ namespace Ukupholisa3
 
 
                 connect.Close();
-                
+
                 return lastID;
 
             }
             return 0;
         }
 
-        public string AddAccount(int AccountID, int HolderKey, string HolderID, string HolderCell, int PackageID)
+        public void AddAccount(int AccountID, string HolderKey, string HolderID, string HolderCell, int PackageID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (HolderKey.ToString().Length == 5 && HolderID != "" && HolderID.Length == 13 && HolderCell.ToString().Length == 10)
+            if (HolderKey != "" && HolderID != "" && HolderCell != "")
             {
                 connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("ddAccount", connect);
+                MySqlCommand sql_cmnd = new MySqlCommand("AddAccount", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
                 sql_cmnd.Parameters.AddWithValue("@HolderKey", HolderKey);
@@ -171,18 +171,18 @@ namespace Ukupholisa3
                 if (Row > 0)
                 {
                     connect.Close();
-                    return "Client with ID " + HolderID + " was added.";
+                    MessageBox.Show("Client with ID " + HolderID + " was added.");
                 }
                 else
                 {
                     connect.Close();
-                    return "Client with ID " + HolderID + " failed to be added.";
+                    MessageBox.Show("Client with ID " + HolderID + " failed to be added.");
                 }
             }
             else
             {
+                MessageBox.Show("Please enter all required data");
                 connect.Close();
-                return "Please enter all the required data.";
             }
         }
 
@@ -421,7 +421,7 @@ namespace Ukupholisa3
         {
             //List<string> AllPackages = new List<string>();
             MySqlConnection connect = new MySqlConnection(conn);
-            int PackageID =0;
+            int PackageID = 0;
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
@@ -437,7 +437,7 @@ namespace Ukupholisa3
                     {
                         PackageID = int.Parse(reader[0].ToString());
                     }
-                    
+
                 }
             }
             connect.Close();
