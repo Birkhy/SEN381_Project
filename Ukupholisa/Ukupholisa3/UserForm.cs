@@ -24,12 +24,13 @@ namespace Ukupholisa3
         string DependantSurname;
         DateTime DOB;
         string DependantSex;
+        int ConditionID;
+        string VCondition;
 
         DataHandler userHandle = new DataHandler();
         public UserForm()
         {
             InitializeComponent();
-            //pnlDependantAdd.Visible = false;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -62,11 +63,7 @@ namespace Ukupholisa3
         private void UserForm_Load(object sender, EventArgs e)
         {
             cmbPackage.DataSource = userHandle.getPackages();
-        }
-
-        private void tabShowAccounts_Click(object sender, EventArgs e)
-        {
-
+            cmbDepCondition.DataSource = userHandle.getConditions();
         }
 
         private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
@@ -104,6 +101,8 @@ namespace Ukupholisa3
             {
                 if (userHandle.AddAccount(AccountID, HolderKey, HolderID, HolderCell, PackageID))
                 {
+                    dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                    dgvAccount.AutoResizeColumns();
                     pnlAccountAdd.Visible = false;
                     pnlDependantAdd.Visible = true;
                     txtAccountID.Text = AccountID.ToString();
@@ -120,7 +119,8 @@ namespace Ukupholisa3
 
         private void tabAddAccount_Click(object sender, EventArgs e)
         {
-            pnlDependantAdd.Visible = false;
+            // pnlDependantAdd.Visible = false;
+            // pnlAddConditionDep.Visible = false;
         }
 
         private void btnAddDependant_Click(object sender, EventArgs e)
@@ -129,14 +129,25 @@ namespace Ukupholisa3
             DependantID = txtDependantID.Text;
             DependantName = txtDependantName.Text;
             DependantSurname = txtDepSur.Text;
-            DOB = dtkDOB.Value;
+            DOB = dtpDOB.Value;
             DependantSex = cmbSex.Text;
 
             try
             {
                 if (userHandle.AddDependant(DependantID, AccountID, DependantName, DependantSurname, DOB, DependantSex))
                 {
-                    MessageBox.Show("mwahahahaha");
+                    dgvAccount.DataSource = userHandle.ViewDependentsByAccount(AccountID);
+                    dgvAccount.AutoResizeColumns();
+                    txtDependantID.Clear();
+                    txtDependantName.Clear();
+                    txtDepSur.Clear();
+                    dtpDOB.ResetText();
+                    cmbSex.ResetText();
+
+                    pnlAddConditionDep.Visible = true;
+                    pnlDependantAdd.Visible = false;
+
+                    txtDependantID2.Text = DependantID.ToString();
                 }
                 ;
 
@@ -145,6 +156,26 @@ namespace Ukupholisa3
             {
                 MessageBox.Show("something went wrong");
             }
+        }
+
+        private void btnDone2_Click(object sender, EventArgs e)
+        {
+            pnlAddConditionDep.Visible = false;
+            pnlDependantAdd.Visible = true;
+        }
+
+        private void btnDone1_Click(object sender, EventArgs e)
+        {
+            pnlAccountAdd.Visible = true;
+            pnlDependantAdd.Visible = false;
+        }
+
+        private void btnAddDepCondition_Click(object sender, EventArgs e)
+        {
+            VCondition = cmbDepCondition.Text;
+            ConditionID = userHandle.setConditionID(VCondition);
+            DependantID = txtDependantID2.Text;
+            userHandle.AddDependantCondition(DependantID, ConditionID);
         }
     }
 }

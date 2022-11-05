@@ -1,4 +1,6 @@
-﻿namespace Ukupholisa3
+﻿using System;
+
+namespace Ukupholisa3
 {
     partial class UserForm
     {
@@ -43,6 +45,20 @@
             this.tabShowDependants = new System.Windows.Forms.TabPage();
             this.dgvViewAccounts = new System.Windows.Forms.DataGridView();
             this.tabAddAccount = new System.Windows.Forms.TabPage();
+            this.pnlDependantAdd = new System.Windows.Forms.Panel();
+            this.cmbSex = new System.Windows.Forms.ComboBox();
+            this.lblSex = new System.Windows.Forms.Label();
+            this.dtpDOB = new System.Windows.Forms.DateTimePicker();
+            this.lblDOB = new System.Windows.Forms.Label();
+            this.txtDependantID = new System.Windows.Forms.TextBox();
+            this.lblDependantSurname = new System.Windows.Forms.Label();
+            this.lblDependantID = new System.Windows.Forms.Label();
+            this.lblDependantName = new System.Windows.Forms.Label();
+            this.lblAccountID = new System.Windows.Forms.Label();
+            this.btnAddDependant = new System.Windows.Forms.Button();
+            this.txtDepSur = new System.Windows.Forms.TextBox();
+            this.txtDependantName = new System.Windows.Forms.TextBox();
+            this.txtAccountID = new System.Windows.Forms.TextBox();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
             this.pnlAccountAdd = new System.Windows.Forms.Panel();
             this.lblHolderCell = new System.Windows.Forms.Label();
@@ -78,32 +94,27 @@
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.pnlDependantAdd = new System.Windows.Forms.Panel();
-            this.lblDependantSurname = new System.Windows.Forms.Label();
-            this.lblDependantID = new System.Windows.Forms.Label();
-            this.lblDependantName = new System.Windows.Forms.Label();
-            this.lblAccountID = new System.Windows.Forms.Label();
-            this.btnAddDependant = new System.Windows.Forms.Button();
-            this.txtDepSur = new System.Windows.Forms.TextBox();
-            this.txtDependantName = new System.Windows.Forms.TextBox();
-            this.txtAccountID = new System.Windows.Forms.TextBox();
-            this.txtDependantID = new System.Windows.Forms.TextBox();
-            this.lblDOB = new System.Windows.Forms.Label();
-            this.dtpDOB = new System.Windows.Forms.DateTimePicker();
-            this.lblSex = new System.Windows.Forms.Label();
-            this.cmbSex = new System.Windows.Forms.ComboBox();
+            this.pnlAddConditionDep = new System.Windows.Forms.Panel();
+            this.cmbDepCondition = new System.Windows.Forms.ComboBox();
+            this.lblConditionDep = new System.Windows.Forms.Label();
+            this.txtDependantID2 = new System.Windows.Forms.TextBox();
+            this.lblDependantID2 = new System.Windows.Forms.Label();
+            this.btnAddDepCondition = new System.Windows.Forms.Button();
+            this.btnDone2 = new System.Windows.Forms.Button();
+            this.btnDone1 = new System.Windows.Forms.Button();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
             this.tabShowDependants.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).BeginInit();
             this.tabAddAccount.SuspendLayout();
+            this.pnlDependantAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
             this.pnlAccountAdd.SuspendLayout();
             this.Treatments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).BeginInit();
             this.Conditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
-            this.pnlDependantAdd.SuspendLayout();
+            this.pnlAddConditionDep.SuspendLayout();
             this.SuspendLayout();
             // 
             // userTabCtrl
@@ -266,6 +277,7 @@
             // 
             // tabAddAccount
             // 
+            this.tabAddAccount.Controls.Add(this.pnlAddConditionDep);
             this.tabAddAccount.Controls.Add(this.pnlDependantAdd);
             this.tabAddAccount.Controls.Add(this.dgvAccount);
             this.tabAddAccount.Controls.Add(this.pnlAccountAdd);
@@ -278,12 +290,143 @@
             this.tabAddAccount.Text = "Accounts";
             this.tabAddAccount.UseVisualStyleBackColor = true;
             // 
+            // pnlDependantAdd
+            // 
+            this.pnlDependantAdd.Controls.Add(this.btnDone1);
+            this.pnlDependantAdd.Controls.Add(this.cmbSex);
+            this.pnlDependantAdd.Controls.Add(this.lblSex);
+            this.pnlDependantAdd.Controls.Add(this.dtpDOB);
+            this.pnlDependantAdd.Controls.Add(this.lblDOB);
+            this.pnlDependantAdd.Controls.Add(this.txtDependantID);
+            this.pnlDependantAdd.Controls.Add(this.lblDependantSurname);
+            this.pnlDependantAdd.Controls.Add(this.lblDependantID);
+            this.pnlDependantAdd.Controls.Add(this.lblDependantName);
+            this.pnlDependantAdd.Controls.Add(this.lblAccountID);
+            this.pnlDependantAdd.Controls.Add(this.btnAddDependant);
+            this.pnlDependantAdd.Controls.Add(this.txtDepSur);
+            this.pnlDependantAdd.Controls.Add(this.txtDependantName);
+            this.pnlDependantAdd.Controls.Add(this.txtAccountID);
+            this.pnlDependantAdd.Location = new System.Drawing.Point(8, 238);
+            this.pnlDependantAdd.Name = "pnlDependantAdd";
+            this.pnlDependantAdd.Size = new System.Drawing.Size(261, 245);
+            this.pnlDependantAdd.TabIndex = 23;
+            // 
+            // cmbSex
+            // 
+            this.cmbSex.FormattingEnabled = true;
+            this.cmbSex.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cmbSex.Location = new System.Drawing.Point(143, 165);
+            this.cmbSex.Name = "cmbSex";
+            this.cmbSex.Size = new System.Drawing.Size(100, 23);
+            this.cmbSex.TabIndex = 14;
+            // 
+            // lblSex
+            // 
+            this.lblSex.AutoSize = true;
+            this.lblSex.Location = new System.Drawing.Point(15, 168);
+            this.lblSex.Name = "lblSex";
+            this.lblSex.Size = new System.Drawing.Size(92, 15);
+            this.lblSex.TabIndex = 13;
+            this.lblSex.Text = "Dependant Sex";
+            // 
+            // dtpDOB
+            // 
+            this.dtpDOB.Location = new System.Drawing.Point(143, 136);
+            this.dtpDOB.Name = "dtpDOB";
+            this.dtpDOB.Size = new System.Drawing.Size(115, 21);
+            this.dtpDOB.TabIndex = 12;
+            // 
+            // lblDOB
+            // 
+            this.lblDOB.AutoSize = true;
+            this.lblDOB.Location = new System.Drawing.Point(15, 136);
+            this.lblDOB.Name = "lblDOB";
+            this.lblDOB.Size = new System.Drawing.Size(97, 15);
+            this.lblDOB.TabIndex = 11;
+            this.lblDOB.Text = "Dependant DOB";
+            // 
+            // txtDependantID
+            // 
+            this.txtDependantID.Location = new System.Drawing.Point(143, 52);
+            this.txtDependantID.Name = "txtDependantID";
+            this.txtDependantID.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantID.TabIndex = 10;
+            // 
+            // lblDependantSurname
+            // 
+            this.lblDependantSurname.AutoSize = true;
+            this.lblDependantSurname.Location = new System.Drawing.Point(15, 111);
+            this.lblDependantSurname.Name = "lblDependantSurname";
+            this.lblDependantSurname.Size = new System.Drawing.Size(122, 15);
+            this.lblDependantSurname.TabIndex = 9;
+            this.lblDependantSurname.Text = "Dependant Surname";
+            // 
+            // lblDependantID
+            // 
+            this.lblDependantID.AutoSize = true;
+            this.lblDependantID.Location = new System.Drawing.Point(15, 55);
+            this.lblDependantID.Name = "lblDependantID";
+            this.lblDependantID.Size = new System.Drawing.Size(83, 15);
+            this.lblDependantID.TabIndex = 8;
+            this.lblDependantID.Text = "Dependant ID";
+            // 
+            // lblDependantName
+            // 
+            this.lblDependantName.AutoSize = true;
+            this.lblDependantName.Location = new System.Drawing.Point(15, 84);
+            this.lblDependantName.Name = "lblDependantName";
+            this.lblDependantName.Size = new System.Drawing.Size(105, 15);
+            this.lblDependantName.TabIndex = 7;
+            this.lblDependantName.Text = "Dependant Name";
+            // 
+            // lblAccountID
+            // 
+            this.lblAccountID.AutoSize = true;
+            this.lblAccountID.Location = new System.Drawing.Point(15, 28);
+            this.lblAccountID.Name = "lblAccountID";
+            this.lblAccountID.Size = new System.Drawing.Size(65, 15);
+            this.lblAccountID.TabIndex = 6;
+            this.lblAccountID.Text = "Account ID";
+            // 
+            // btnAddDependant
+            // 
+            this.btnAddDependant.Location = new System.Drawing.Point(12, 201);
+            this.btnAddDependant.Name = "btnAddDependant";
+            this.btnAddDependant.Size = new System.Drawing.Size(100, 23);
+            this.btnAddDependant.TabIndex = 5;
+            this.btnAddDependant.Text = "Add Dependant";
+            this.btnAddDependant.UseVisualStyleBackColor = true;
+            this.btnAddDependant.Click += new System.EventHandler(this.btnAddDependant_Click);
+            // 
+            // txtDepSur
+            // 
+            this.txtDepSur.Location = new System.Drawing.Point(143, 105);
+            this.txtDepSur.Name = "txtDepSur";
+            this.txtDepSur.Size = new System.Drawing.Size(100, 21);
+            this.txtDepSur.TabIndex = 4;
+            // 
+            // txtDependantName
+            // 
+            this.txtDependantName.Location = new System.Drawing.Point(143, 81);
+            this.txtDependantName.Name = "txtDependantName";
+            this.txtDependantName.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantName.TabIndex = 3;
+            // 
+            // txtAccountID
+            // 
+            this.txtAccountID.Location = new System.Drawing.Point(143, 25);
+            this.txtAccountID.Name = "txtAccountID";
+            this.txtAccountID.Size = new System.Drawing.Size(100, 21);
+            this.txtAccountID.TabIndex = 1;
+            // 
             // dgvAccount
             // 
             this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAccount.Location = new System.Drawing.Point(428, 19);
+            this.dgvAccount.Location = new System.Drawing.Point(293, 263);
             this.dgvAccount.Name = "dgvAccount";
-            this.dgvAccount.Size = new System.Drawing.Size(352, 370);
+            this.dgvAccount.Size = new System.Drawing.Size(479, 220);
             this.dgvAccount.TabIndex = 22;
             // 
             // pnlAccountAdd
@@ -626,135 +769,84 @@
             this.label21.TabIndex = 1;
             this.label21.Text = "label21";
             // 
-            // pnlDependantAdd
+            // pnlAddConditionDep
             // 
-            this.pnlDependantAdd.Controls.Add(this.cmbSex);
-            this.pnlDependantAdd.Controls.Add(this.lblSex);
-            this.pnlDependantAdd.Controls.Add(this.dtpDOB);
-            this.pnlDependantAdd.Controls.Add(this.lblDOB);
-            this.pnlDependantAdd.Controls.Add(this.txtDependantID);
-            this.pnlDependantAdd.Controls.Add(this.lblDependantSurname);
-            this.pnlDependantAdd.Controls.Add(this.lblDependantID);
-            this.pnlDependantAdd.Controls.Add(this.lblDependantName);
-            this.pnlDependantAdd.Controls.Add(this.lblAccountID);
-            this.pnlDependantAdd.Controls.Add(this.btnAddDependant);
-            this.pnlDependantAdd.Controls.Add(this.txtDepSur);
-            this.pnlDependantAdd.Controls.Add(this.txtDependantName);
-            this.pnlDependantAdd.Controls.Add(this.txtAccountID);
-            this.pnlDependantAdd.Location = new System.Drawing.Point(8, 238);
-            this.pnlDependantAdd.Name = "pnlDependantAdd";
-            this.pnlDependantAdd.Size = new System.Drawing.Size(261, 245);
-            this.pnlDependantAdd.TabIndex = 23;
+            this.pnlAddConditionDep.Controls.Add(this.btnDone2);
+            this.pnlAddConditionDep.Controls.Add(this.cmbDepCondition);
+            this.pnlAddConditionDep.Controls.Add(this.lblConditionDep);
+            this.pnlAddConditionDep.Controls.Add(this.txtDependantID2);
+            this.pnlAddConditionDep.Controls.Add(this.lblDependantID2);
+            this.pnlAddConditionDep.Controls.Add(this.btnAddDepCondition);
+            this.pnlAddConditionDep.Location = new System.Drawing.Point(275, 3);
+            this.pnlAddConditionDep.Name = "pnlAddConditionDep";
+            this.pnlAddConditionDep.Size = new System.Drawing.Size(261, 245);
+            this.pnlAddConditionDep.TabIndex = 24;
             // 
-            // lblDependantSurname
+            // cmbDepCondition
             // 
-            this.lblDependantSurname.AutoSize = true;
-            this.lblDependantSurname.Location = new System.Drawing.Point(15, 111);
-            this.lblDependantSurname.Name = "lblDependantSurname";
-            this.lblDependantSurname.Size = new System.Drawing.Size(122, 15);
-            this.lblDependantSurname.TabIndex = 9;
-            this.lblDependantSurname.Text = "Dependant Surname";
-            // 
-            // lblDependantID
-            // 
-            this.lblDependantID.AutoSize = true;
-            this.lblDependantID.Location = new System.Drawing.Point(15, 55);
-            this.lblDependantID.Name = "lblDependantID";
-            this.lblDependantID.Size = new System.Drawing.Size(83, 15);
-            this.lblDependantID.TabIndex = 8;
-            this.lblDependantID.Text = "Dependant ID";
-            // 
-            // lblDependantName
-            // 
-            this.lblDependantName.AutoSize = true;
-            this.lblDependantName.Location = new System.Drawing.Point(15, 84);
-            this.lblDependantName.Name = "lblDependantName";
-            this.lblDependantName.Size = new System.Drawing.Size(105, 15);
-            this.lblDependantName.TabIndex = 7;
-            this.lblDependantName.Text = "Dependant Name";
-            // 
-            // lblAccountID
-            // 
-            this.lblAccountID.AutoSize = true;
-            this.lblAccountID.Location = new System.Drawing.Point(15, 28);
-            this.lblAccountID.Name = "lblAccountID";
-            this.lblAccountID.Size = new System.Drawing.Size(65, 15);
-            this.lblAccountID.TabIndex = 6;
-            this.lblAccountID.Text = "Account ID";
-            // 
-            // btnAddDependant
-            // 
-            this.btnAddDependant.Location = new System.Drawing.Point(87, 205);
-            this.btnAddDependant.Name = "btnAddDependant";
-            this.btnAddDependant.Size = new System.Drawing.Size(100, 23);
-            this.btnAddDependant.TabIndex = 5;
-            this.btnAddDependant.Text = "Add Dependant";
-            this.btnAddDependant.UseVisualStyleBackColor = true;
-            this.btnAddDependant.Click += new System.EventHandler(this.btnAddDependant_Click);
-            // 
-            // txtDepSur
-            // 
-            this.txtDepSur.Location = new System.Drawing.Point(143, 105);
-            this.txtDepSur.Name = "txtDepSur";
-            this.txtDepSur.Size = new System.Drawing.Size(100, 21);
-            this.txtDepSur.TabIndex = 4;
-            // 
-            // txtDependantName
-            // 
-            this.txtDependantName.Location = new System.Drawing.Point(143, 81);
-            this.txtDependantName.Name = "txtDependantName";
-            this.txtDependantName.Size = new System.Drawing.Size(100, 21);
-            this.txtDependantName.TabIndex = 3;
-            // 
-            // txtAccountID
-            // 
-            this.txtAccountID.Location = new System.Drawing.Point(143, 25);
-            this.txtAccountID.Name = "txtAccountID";
-            this.txtAccountID.Size = new System.Drawing.Size(100, 21);
-            this.txtAccountID.TabIndex = 1;
-            // 
-            // txtDependantID
-            // 
-            this.txtDependantID.Location = new System.Drawing.Point(143, 52);
-            this.txtDependantID.Name = "txtDependantID";
-            this.txtDependantID.Size = new System.Drawing.Size(100, 21);
-            this.txtDependantID.TabIndex = 10;
-            // 
-            // lblDOB
-            // 
-            this.lblDOB.AutoSize = true;
-            this.lblDOB.Location = new System.Drawing.Point(15, 136);
-            this.lblDOB.Name = "lblDOB";
-            this.lblDOB.Size = new System.Drawing.Size(97, 15);
-            this.lblDOB.TabIndex = 11;
-            this.lblDOB.Text = "Dependant DOB";
-            // 
-            // dtpDOB
-            // 
-            this.dtpDOB.Location = new System.Drawing.Point(143, 136);
-            this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(115, 21);
-            this.dtpDOB.TabIndex = 12;
-            // 
-            // lblSex
-            // 
-            this.lblSex.AutoSize = true;
-            this.lblSex.Location = new System.Drawing.Point(15, 168);
-            this.lblSex.Name = "lblSex";
-            this.lblSex.Size = new System.Drawing.Size(92, 15);
-            this.lblSex.TabIndex = 13;
-            this.lblSex.Text = "Dependant Sex";
-            // 
-            // cmbSex
-            // 
-            this.cmbSex.FormattingEnabled = true;
-            this.cmbSex.Items.AddRange(new object[] {
+            this.cmbDepCondition.FormattingEnabled = true;
+            this.cmbDepCondition.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbSex.Location = new System.Drawing.Point(143, 165);
-            this.cmbSex.Name = "cmbSex";
-            this.cmbSex.Size = new System.Drawing.Size(100, 23);
-            this.cmbSex.TabIndex = 14;
+            this.cmbDepCondition.Location = new System.Drawing.Point(143, 53);
+            this.cmbDepCondition.Name = "cmbDepCondition";
+            this.cmbDepCondition.Size = new System.Drawing.Size(100, 23);
+            this.cmbDepCondition.TabIndex = 14;
+            // 
+            // lblConditionDep
+            // 
+            this.lblConditionDep.AutoSize = true;
+            this.lblConditionDep.Location = new System.Drawing.Point(15, 56);
+            this.lblConditionDep.Name = "lblConditionDep";
+            this.lblConditionDep.Size = new System.Drawing.Size(59, 15);
+            this.lblConditionDep.TabIndex = 11;
+            this.lblConditionDep.Text = "Condition";
+            // 
+            // txtDependantID2
+            // 
+            this.txtDependantID2.Location = new System.Drawing.Point(143, 23);
+            this.txtDependantID2.Name = "txtDependantID2";
+            this.txtDependantID2.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantID2.TabIndex = 10;
+            // 
+            // lblDependantID2
+            // 
+            this.lblDependantID2.AutoSize = true;
+            this.lblDependantID2.Location = new System.Drawing.Point(15, 26);
+            this.lblDependantID2.Name = "lblDependantID2";
+            this.lblDependantID2.Size = new System.Drawing.Size(83, 15);
+            this.lblDependantID2.TabIndex = 8;
+            this.lblDependantID2.Text = "Dependant ID";
+            // 
+            // btnAddDepCondition
+            // 
+            this.btnAddDepCondition.Location = new System.Drawing.Point(75, 151);
+            this.btnAddDepCondition.Name = "btnAddDepCondition";
+            this.btnAddDepCondition.Size = new System.Drawing.Size(100, 23);
+            this.btnAddDepCondition.TabIndex = 5;
+            this.btnAddDepCondition.Text = "Add Condition";
+            this.btnAddDepCondition.UseVisualStyleBackColor = true;
+            this.btnAddDepCondition.Click += new System.EventHandler(this.btnAddDepCondition_Click);
+            // 
+            // btnDone2
+            // 
+            this.btnDone2.Location = new System.Drawing.Point(75, 191);
+            this.btnDone2.Name = "btnDone2";
+            this.btnDone2.Size = new System.Drawing.Size(100, 23);
+            this.btnDone2.TabIndex = 15;
+            this.btnDone2.Text = "Done";
+            this.btnDone2.UseVisualStyleBackColor = true;
+            this.btnDone2.Click += new System.EventHandler(this.btnDone2_Click);
+            // 
+            // btnDone1
+            // 
+            this.btnDone1.Location = new System.Drawing.Point(143, 201);
+            this.btnDone1.Name = "btnDone1";
+            this.btnDone1.Size = new System.Drawing.Size(100, 23);
+            this.btnDone1.TabIndex = 16;
+            this.btnDone1.Text = "Done";
+            this.btnDone1.UseVisualStyleBackColor = true;
+            this.btnDone1.Click += new System.EventHandler(this.btnDone1_Click);
             // 
             // UserForm
             // 
@@ -771,6 +863,8 @@
             this.tabShowDependants.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).EndInit();
             this.tabAddAccount.ResumeLayout(false);
+            this.pnlDependantAdd.ResumeLayout(false);
+            this.pnlDependantAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
             this.pnlAccountAdd.ResumeLayout(false);
             this.pnlAccountAdd.PerformLayout();
@@ -780,10 +874,15 @@
             this.Conditions.ResumeLayout(false);
             this.Conditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
-            this.pnlDependantAdd.ResumeLayout(false);
-            this.pnlDependantAdd.PerformLayout();
+            this.pnlAddConditionDep.ResumeLayout(false);
+            this.pnlAddConditionDep.PerformLayout();
             this.ResumeLayout(false);
 
+        }
+
+        private void tabShowAccounts_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -852,5 +951,13 @@
         private System.Windows.Forms.TextBox txtAccountID;
         private System.Windows.Forms.ComboBox cmbSex;
         private System.Windows.Forms.Label lblSex;
+        private System.Windows.Forms.Panel pnlAddConditionDep;
+        private System.Windows.Forms.Button btnDone2;
+        private System.Windows.Forms.ComboBox cmbDepCondition;
+        private System.Windows.Forms.Label lblConditionDep;
+        private System.Windows.Forms.TextBox txtDependantID2;
+        private System.Windows.Forms.Label lblDependantID2;
+        private System.Windows.Forms.Button btnAddDepCondition;
+        private System.Windows.Forms.Button btnDone1;
     }
 }

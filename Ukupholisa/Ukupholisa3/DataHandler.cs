@@ -189,6 +189,7 @@ namespace Ukupholisa3
             }
         }
 
+        //Adds dependant to the database
         public bool AddDependant(string DependantID, int AccountID, string DependantName, string DependantSurname, DateTime DOB, string Sex)
         {
             MySqlConnection connect = new MySqlConnection(conn);
@@ -214,6 +215,39 @@ namespace Ukupholisa3
                 {
                     connect.Close();
                     MessageBox.Show("Client with ID " + DependantID + " failed to be added.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all required data");
+                connect.Close();
+                return false;
+            }
+        }
+
+        public bool AddDependantCondition(string DependantID,int ConditionID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (DependantID != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("AddDependantCondition", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
+                sql_cmnd.Parameters.AddWithValue("@ConditionID", ConditionID);
+                
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    MessageBox.Show("Condition with ID " + ConditionID + " was added.");
+                    return true;
+                }
+                else
+                {
+                    connect.Close();
+                    MessageBox.Show("Condition with ID " + ConditionID + " failed to be added.");
                     return false;
                 }
             }
@@ -319,6 +353,62 @@ namespace Ukupholisa3
 
                 connect.Close();
                 MessageBox.Show("Actually returns the datatable");
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+
+
+        }
+        //Method returns datatable with account details.
+        public DataTable ViewAccount(string HolderID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("ViewAccount", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@HolderID", HolderID);
+                MySqlDataAdapter sda = new MySqlDataAdapter(command);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                //MessageBox.Show("Actually returns the datatable");
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+
+
+        }
+
+        public DataTable ViewDependentsByAccount(int AccountID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("ViewDependentsByAccount", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@AccountID", AccountID);
+                MySqlDataAdapter sda = new MySqlDataAdapter(command);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                //MessageBox.Show("Actually returns the datatable");
                 return dt;
 
             }
@@ -440,10 +530,7 @@ namespace Ukupholisa3
             {
                 connect.Open();
                 MySqlCommand command = new MySqlCommand("SELECT Package_Name FROM product", connect);
-                //command.CommandType = CommandType.StoredProcedure;
-
-
-
+  
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -456,9 +543,31 @@ namespace Ukupholisa3
             return AllPackages;
         }
 
+        //Method returns List to populate combobox associated with conditions.
+        public List<string> getConditions()
+        {
+            List<string> AllConditions = new List<string>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("SELECT conditions.Condition FROM conditions", connect);
+     
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        AllConditions.Add(reader[0].ToString());
+                    }
+                }
+            }
+            connect.Close();
+            return AllConditions;
+        }
+
+        // sets package id according to package name
         public int setPackageID(string PackageName)
         {
-            //List<string> AllPackages = new List<string>();
             MySqlConnection connect = new MySqlConnection(conn);
             int PackageID = 0;
             if (connect.State != ConnectionState.Open)
@@ -467,6 +576,33 @@ namespace Ukupholisa3
                 MySqlCommand spi = new MySqlCommand("setPackageID", connect);
                 spi.CommandType = CommandType.StoredProcedure;
                 spi.Parameters.AddWithValue("@PackageName", PackageName);
+
+
+
+                using (var reader = spi.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PackageID = int.Parse(reader[0].ToString());
+                    }
+
+                }
+            }
+            connect.Close();
+            return PackageID;
+        }
+
+        // sets condition id according to condition name
+        public int setConditionID(string Condition)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            int PackageID = 0;
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand spi = new MySqlCommand("setConditionID", connect);
+                spi.CommandType = CommandType.StoredProcedure;
+                spi.Parameters.AddWithValue("@VCondition", Condition);
 
 
 
