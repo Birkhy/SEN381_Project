@@ -226,7 +226,7 @@ namespace Ukupholisa3
             }
         }
 
-        public bool AddDependantCondition(string DependantID,int ConditionID)
+        public bool AddDependantCondition(string DependantID, int ConditionID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (DependantID != "")
@@ -236,7 +236,7 @@ namespace Ukupholisa3
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
                 sql_cmnd.Parameters.AddWithValue("@ConditionID", ConditionID);
-                
+
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -530,7 +530,7 @@ namespace Ukupholisa3
             {
                 connect.Open();
                 MySqlCommand command = new MySqlCommand("SELECT Package_Name FROM product", connect);
-  
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -552,7 +552,7 @@ namespace Ukupholisa3
             {
                 connect.Open();
                 MySqlCommand command = new MySqlCommand("SELECT conditions.Condition FROM conditions", connect);
-     
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -635,7 +635,6 @@ namespace Ukupholisa3
                 sda.Fill(dt);
 
                 connect.Close();
-                //MessageBox.Show("Actually returns the datatable");
                 return dt;
 
             }
@@ -648,6 +647,414 @@ namespace Ukupholisa3
 
         }
 
+        //The getProduct function gets the products from the database and will be used to display the data in the PRoduct DataGridView.
+        public List<Product> getProduct()
+        {
+            List<Product> allProducts = new List<Product>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("getProduct", connect);
+                command.CommandType = CommandType.StoredProcedure;
 
+
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        allProducts.Add(new Product(reader[0].ToString(), double.Parse(reader[1].ToString()), int.Parse(reader[2].ToString()), int.Parse(reader[3].ToString()), int.Parse(reader[4].ToString()), int.Parse(reader[4].ToString())));
+                    }
+                }
+            }
+            connect.Close();
+            return allProducts;
+        }
+
+        //The updateProduct function will be used to update the products in the database.
+        public string updateProduct(string Name, double Price, int Availability, double Preformance, int coverLevel, int Promotion)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+
+            if (Preformance >= 0 || Preformance <= 100)
+            {
+                if (Name != "" && Price >= 0 && coverLevel >= 0)
+                {
+                    connect.Open();
+                    MySqlCommand sql_cmnd = new MySqlCommand("updateProducts", connect);
+                    sql_cmnd.CommandType = CommandType.StoredProcedure;
+                    sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
+                    sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Decimal).Value = Price;
+                    sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.Binary).Value = Availability;
+                    sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.Int).Value = Preformance;
+                    sql_cmnd.Parameters.AddWithValue("@CLevel", SqlDbType.Int).Value = coverLevel;
+                    sql_cmnd.Parameters.AddWithValue("@PPromotion", SqlDbType.Binary).Value = Promotion;
+
+                    int Row = sql_cmnd.ExecuteNonQuery();
+
+                    if (Row > 0)
+                    {
+                        connect.Close();
+                        return $"Product with name {Name} was updated";
+                    }
+                    else
+                    {
+                        connect.Close();
+                        return $"Product with name {Name} was not updated";
+                    }
+                }
+                else
+                {
+                    connect.Close();
+                    return "Please enter all the needed data for the record to be updated.";
+                }
+            }
+            else
+            {
+                return "Please make sure you enter a valid precentage for the preformance of the product.";
+            }
+        }
+
+        //The addProduct function will be used to add a new product into the Database.
+        public string addProduct(string Name, double Price, int Availability, double Preformance, int coverLevel, int Promotion)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+
+            if (Preformance >= 0 || Preformance <= 100)
+            {
+                if (Name != "" && Price >= 0 && coverLevel >= 0)
+                {
+                    connect.Open();
+                    MySqlCommand sql_cmnd = new MySqlCommand("insertProduct", connect);
+                    sql_cmnd.CommandType = CommandType.StoredProcedure;
+                    sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
+                    sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Decimal).Value = Price;
+                    sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.Binary).Value = Availability;
+                    sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.Int).Value = Preformance;
+                    sql_cmnd.Parameters.AddWithValue("@CLevel", SqlDbType.Int).Value = coverLevel;
+                    sql_cmnd.Parameters.AddWithValue("@PPromotion", SqlDbType.Binary).Value = Promotion;
+                    int Row = sql_cmnd.ExecuteNonQuery();
+                    if (Row > 0)
+                    {
+                        connect.Close();
+                        return "Product with the name " + Name + " was added to the database.";
+                    }
+                    else
+                    {
+                        connect.Close();
+                        return $"Product with name {Name} does not exist.";
+                    }
+                }
+                else
+                {
+                    connect.Close();
+                    return "Please enter all required data to update the product";
+                }
+            }
+            else
+            {
+                return "Please make sure you enter a valid precentage for the preformance of the product.";
+            }
+        }
+
+        //The deleteProduct function will be used to delete a product out of the database using the ProductName.
+        public string deleteProduct(string Name)
+        {
+            SqlConnection connect = new SqlConnection(conn);
+            connect.Open();
+
+            if (Name != "")
+            {
+                SqlCommand command = new SqlCommand("deleteProduct", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
+
+                int Row = command.ExecuteNonQuery();
+                if (Row >= 0)
+                {
+                    connect.Close();
+                    return "Deleted details of Product with the Name: " + Name + ".";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"Product with name {Name} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter the Product Name you want to delete.";
+            }
+        }
+
+        //The getProviderS function gets the Provider from the database and will be used to display the data in the Provider DataGridView.
+        public List<Provider> getProvider()
+        {
+            List<Provider> allProviders = new List<Provider>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("getProvider", connect);
+                command.CommandType = CommandType.StoredProcedure;
+
+
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        allProviders.Add(new Provider(reader[0].ToString(), int.Parse(reader[1].ToString()), reader[2].ToString(), reader[3].ToString()));
+                    }
+                }
+            }
+            connect.Close();
+            return allProviders;
+        }
+
+        //updateProvider will be used to update the specified Provider in the database.
+        public string updateProvider(string PName, int Status, string Agreement, string Contact)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (PName != "" && Agreement != "" && Contact != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("updateProduct", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = PName;
+                sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Binary).Value = Status;
+                sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.NVarChar).Value = Agreement;
+                sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.NVarChar).Value = Contact;
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    return "Provider with the name " + PName + " was updated in the database.";
+                }
+                else
+                {
+                    connect.Close();
+                    return "Provider with the name " + PName + " was not updated in the database.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter all required data to update the Provider";
+            }
+        }
+
+        //addProvider will be able to add a new provider to the database.
+        public string addProvider(string PName, int Status, string Agreement, string Contact)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (PName != "" && Agreement != "" && Contact != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("insertProduct", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = PName;
+                sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Binary).Value = Status;
+                sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.NVarChar).Value = Agreement;
+                sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.NVarChar).Value = Contact;
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    return "Provider with the name " + PName + " was added to the database.";
+                }
+                else
+                {
+                    connect.Close();
+                    return "Provider with the name " + PName + " was not added to the database.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter all required data to update the Provider";
+            }
+        }
+
+        //The deleteProduct function will be used to delete a product out of the database using the ProductName.
+        public string deleteProvider(string Name)
+        {
+            SqlConnection connect = new SqlConnection(conn);
+            connect.Open();
+
+            if (Name != "")
+            {
+                SqlCommand command = new SqlCommand("deleteProvider", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
+
+                int Row = command.ExecuteNonQuery();
+                if (Row >= 0)
+                {
+                    connect.Close();
+                    return "Deleted details of Provider with the Name: " + Name + ".";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"Provider with name {Name} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter the Product Name you want to delete.";
+            }
+        }
+
+        //The getProviderS function gets the Provider from the database and will be used to display the data in the Provider DataGridView.
+        public List<Staff> getUser()
+        {
+            List<Staff> allStaff = new List<Staff>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("getUsers", connect);
+                command.CommandType = CommandType.StoredProcedure;
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        allStaff.Add(new Staff(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), int.Parse(reader[6].ToString())));
+                    }
+                }
+            }
+            connect.Close();
+            return allStaff;
+        }
+
+        //updateProvider will be used to update the specified Provider in the database.
+        public string updateUser(string name, string surname, string contact, string ID, string username, string password, int clearance)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (name != "" && surname != "" && contact != "" && ID != "" && username != "" && password != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("updateUser", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = name;
+                sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.NVarChar).Value = surname;
+                sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.NVarChar).Value = contact;
+                sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.NVarChar).Value = username;
+                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = password;
+                sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Binary).Value = clearance;
+                sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.NVarChar).Value = ID;
+
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    return "User with the ID " + ID + " was updated in the database.";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"The User with the ID {ID} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter all required data to update the specified User.";
+            }
+        }
+
+        //addUser will be able to add a new User to the database.
+        public string addUser(string name, string surname, string contact, string ID, string username, string password, int clearance)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (name != "" && surname != "" && contact != "" && ID != "" && username != "" && password != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("inserUser", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = name;
+                sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.NVarChar).Value = surname;
+                sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.NVarChar).Value = contact;
+                sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.NVarChar).Value = username;
+                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = password;
+                sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Bit).Value = clearance;
+                sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.NVarChar).Value = ID;
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    return "User with the ID " + ID + " was added to the database.";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"The User with the ID {ID} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter all required data to insert the specified User.";
+            }
+        }
+
+        //The deleteUser function will be used to delete a User out of the database using the EmployeeID.
+        public string deleteUser(string ID)
+        {
+            SqlConnection connect = new SqlConnection(conn);
+            connect.Open();
+
+            if (ID != "")
+            {
+                SqlCommand command = new SqlCommand("deleteUser", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = ID;
+
+                int Row = command.ExecuteNonQuery();
+                if (Row >= 0)
+                {
+                    connect.Close();
+                    return "Deleted details of Provider with the ID: " + ID + ".";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"User with ID {ID} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter the User ID you want to delete.";
+            }
+        }
+
+        //getTreatments will be used to display all the Treatments before search.
+        public DataTable getTreatments()
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand vpt = new MySqlCommand("Select * From Treatments", connect);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                return dt;
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+        }
     }
 }

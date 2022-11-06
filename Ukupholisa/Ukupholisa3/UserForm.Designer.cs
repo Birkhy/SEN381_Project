@@ -130,7 +130,7 @@ namespace Ukupholisa3
             this.userTabCtrl.SelectedIndex = 0;
             this.userTabCtrl.Size = new System.Drawing.Size(803, 517);
             this.userTabCtrl.TabIndex = 2;
-            this.userTabCtrl.Click += new System.EventHandler(this.tabAddAccount_Click);
+            //this.userTabCtrl.Click += new System.EventHandler(this.tabAddAccount_Click);
             // 
             // tabCall
             // 
@@ -265,7 +265,7 @@ namespace Ukupholisa3
             this.tabShowDependants.TabIndex = 1;
             this.tabShowDependants.Text = "Dependants";
             this.tabShowDependants.UseVisualStyleBackColor = true;
-            this.tabShowDependants.Click += new System.EventHandler(this.tabShowAccounts_Click);
+            //this.tabShowDependants.Click += new System.EventHandler(this.tabShowAccounts_Click);
             // 
             // dgvViewAccounts
             // 
@@ -398,7 +398,7 @@ namespace Ukupholisa3
             this.btnAddDependant.TabIndex = 5;
             this.btnAddDependant.Text = "Add Dependant";
             this.btnAddDependant.UseVisualStyleBackColor = true;
-            this.btnAddDependant.Click += new System.EventHandler(this.btnAddDependant_Click);
+            //this.btnAddDependant.Click += new System.EventHandler(this.btnAddDependant_Click);
             // 
             // txtDepSur
             // 
@@ -826,7 +826,7 @@ namespace Ukupholisa3
             this.btnAddDepCondition.TabIndex = 5;
             this.btnAddDepCondition.Text = "Add Condition";
             this.btnAddDepCondition.UseVisualStyleBackColor = true;
-            this.btnAddDepCondition.Click += new System.EventHandler(this.btnAddDepCondition_Click);
+            //this.btnAddDepCondition.Click += new System.EventHandler(this.btnAddDepCondition_Click);
             // 
             // btnDone2
             // 
@@ -836,7 +836,7 @@ namespace Ukupholisa3
             this.btnDone2.TabIndex = 15;
             this.btnDone2.Text = "Done";
             this.btnDone2.UseVisualStyleBackColor = true;
-            this.btnDone2.Click += new System.EventHandler(this.btnDone2_Click);
+            //this.btnDone2.Click += new System.EventHandler(this.btnDone2_Click);
             // 
             // btnDone1
             // 
@@ -846,7 +846,7 @@ namespace Ukupholisa3
             this.btnDone1.TabIndex = 16;
             this.btnDone1.Text = "Done";
             this.btnDone1.UseVisualStyleBackColor = true;
-            this.btnDone1.Click += new System.EventHandler(this.btnDone1_Click);
+            //this.btnDone1.Click += new System.EventHandler(this.btnDone1_Click);
             // 
             // UserForm
             // 

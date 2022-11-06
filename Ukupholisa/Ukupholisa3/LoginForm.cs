@@ -57,7 +57,7 @@ namespace Genisis
             {
                 if (handler.CheckAdminLog(txtUserName.Text.Trim(), txtPass.Text))
                 {
-                    ProviderManage nf = new ProviderManage();
+                    AdminForm nf = new AdminForm();
                     nf.Show();
                     this.Hide();
                 }

@@ -130,6 +130,7 @@
     <Compile Include="ProviderManage.designer.cs">
       <DependentUpon>ProviderManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Staff.cs" />
     <Compile Include="UserForm.cs">
       <SubType>Form</SubType>
     </Compile>

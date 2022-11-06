@@ -1,6 +1,6 @@
 ﻿namespace Genisis
 {
-    partial class ProviderManage
+    partial class AdminForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Provider = new System.Windows.Forms.TabPage();
+            this.btnProExit = new System.Windows.Forms.Button();
+            this.btnProDel = new System.Windows.Forms.Button();
+            this.btnProIn = new System.Windows.Forms.Button();
+            this.dgvPro = new System.Windows.Forms.DataGridView();
             this.btnProUp = new System.Windows.Forms.Button();
             this.lbTreatments = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -43,19 +47,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Users = new System.Windows.Forms.TabPage();
+            this.btnUExit = new System.Windows.Forms.Button();
+            this.btnUDel = new System.Windows.Forms.Button();
+            this.btnUIn = new System.Windows.Forms.Button();
+            this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.btnUUp = new System.Windows.Forms.Button();
-            this.cmbPos = new System.Windows.Forms.ComboBox();
             this.txtUContact = new System.Windows.Forms.TextBox();
             this.txtUID = new System.Windows.Forms.TextBox();
             this.txtuSur = new System.Windows.Forms.TextBox();
             this.txtUName = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Product = new System.Windows.Forms.TabPage();
+            this.btnProdUp = new System.Windows.Forms.Button();
+            this.btnProdExit = new System.Windows.Forms.Button();
+            this.btnProdDel = new System.Windows.Forms.Button();
+            this.btnProdIn = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cmbCover = new System.Windows.Forms.ComboBox();
             this.chkPro = new System.Windows.Forms.CheckBox();
             this.chkAvail = new System.Windows.Forms.CheckBox();
@@ -70,32 +81,26 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.Treatments = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.txtSrchTrt = new System.Windows.Forms.TextBox();
             this.btnSrchTrt = new System.Windows.Forms.Button();
             this.dgvTreatments = new System.Windows.Forms.DataGridView();
-            this.Conditions = new System.Windows.Forms.TabPage();
-            this.dgvPro = new System.Windows.Forms.DataGridView();
-            this.btnProIn = new System.Windows.Forms.Button();
-            this.btnProDel = new System.Windows.Forms.Button();
-            this.btnProExit = new System.Windows.Forms.Button();
-            this.btnUExit = new System.Windows.Forms.Button();
-            this.btnUDel = new System.Windows.Forms.Button();
-            this.btnUIn = new System.Windows.Forms.Button();
-            this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.btnProdExit = new System.Windows.Forms.Button();
-            this.btnProdDel = new System.Windows.Forms.Button();
-            this.btnProdIn = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnProdUp = new System.Windows.Forms.Button();
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.txtUPass = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.cbAdmin = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.Provider.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
             this.Users.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.Product.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Treatments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -104,7 +109,6 @@
             this.tabControl1.Controls.Add(this.Users);
             this.tabControl1.Controls.Add(this.Product);
             this.tabControl1.Controls.Add(this.Treatments);
-            this.tabControl1.Controls.Add(this.Conditions);
             this.tabControl1.Location = new System.Drawing.Point(1, 2);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
@@ -140,16 +144,63 @@
             this.Provider.Text = "Provider";
             this.Provider.UseVisualStyleBackColor = true;
             // 
+            // btnProExit
+            // 
+            this.btnProExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProExit.Location = new System.Drawing.Point(864, 502);
+            this.btnProExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProExit.Name = "btnProExit";
+            this.btnProExit.Size = new System.Drawing.Size(137, 31);
+            this.btnProExit.TabIndex = 16;
+            this.btnProExit.Text = "Exit";
+            this.btnProExit.UseVisualStyleBackColor = true;
+            this.btnProExit.Click += new System.EventHandler(this.btnProExit_Click);
+            // 
+            // btnProDel
+            // 
+            this.btnProDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProDel.Location = new System.Drawing.Point(693, 367);
+            this.btnProDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProDel.Name = "btnProDel";
+            this.btnProDel.Size = new System.Drawing.Size(137, 31);
+            this.btnProDel.TabIndex = 15;
+            this.btnProDel.Text = "Delete";
+            this.btnProDel.UseVisualStyleBackColor = true;
+            this.btnProDel.Click += new System.EventHandler(this.btnProDel_Click);
+            // 
+            // btnProIn
+            // 
+            this.btnProIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProIn.Location = new System.Drawing.Point(436, 367);
+            this.btnProIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProIn.Name = "btnProIn";
+            this.btnProIn.Size = new System.Drawing.Size(137, 31);
+            this.btnProIn.TabIndex = 14;
+            this.btnProIn.Text = "Insert";
+            this.btnProIn.UseVisualStyleBackColor = true;
+            this.btnProIn.Click += new System.EventHandler(this.btnProIn_Click);
+            // 
+            // dgvPro
+            // 
+            this.dgvPro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPro.Location = new System.Drawing.Point(487, 23);
+            this.dgvPro.Name = "dgvPro";
+            this.dgvPro.RowHeadersWidth = 51;
+            this.dgvPro.RowTemplate.Height = 24;
+            this.dgvPro.Size = new System.Drawing.Size(480, 300);
+            this.dgvPro.TabIndex = 13;
+            // 
             // btnProUp
             // 
             this.btnProUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProUp.Location = new System.Drawing.Point(130, 359);
+            this.btnProUp.Location = new System.Drawing.Point(159, 367);
             this.btnProUp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProUp.Name = "btnProUp";
             this.btnProUp.Size = new System.Drawing.Size(137, 31);
             this.btnProUp.TabIndex = 12;
             this.btnProUp.Text = "Update";
             this.btnProUp.UseVisualStyleBackColor = true;
+            this.btnProUp.Click += new System.EventHandler(this.btnProUp_Click);
             // 
             // lbTreatments
             // 
@@ -254,18 +305,22 @@
             // 
             // Users
             // 
+            this.Users.Controls.Add(this.cbAdmin);
+            this.Users.Controls.Add(this.txtUPass);
+            this.Users.Controls.Add(this.txtUserName);
+            this.Users.Controls.Add(this.label20);
+            this.Users.Controls.Add(this.label21);
+            this.Users.Controls.Add(this.label22);
             this.Users.Controls.Add(this.btnUExit);
             this.Users.Controls.Add(this.btnUDel);
             this.Users.Controls.Add(this.btnUIn);
             this.Users.Controls.Add(this.dgvUsers);
             this.Users.Controls.Add(this.btnUUp);
-            this.Users.Controls.Add(this.cmbPos);
             this.Users.Controls.Add(this.txtUContact);
             this.Users.Controls.Add(this.txtUID);
             this.Users.Controls.Add(this.txtuSur);
             this.Users.Controls.Add(this.txtUName);
             this.Users.Controls.Add(this.label12);
-            this.Users.Controls.Add(this.label11);
             this.Users.Controls.Add(this.label10);
             this.Users.Controls.Add(this.label9);
             this.Users.Controls.Add(this.label8);
@@ -280,50 +335,84 @@
             this.Users.Text = "Users";
             this.Users.UseVisualStyleBackColor = true;
             // 
+            // btnUExit
+            // 
+            this.btnUExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUExit.Location = new System.Drawing.Point(866, 505);
+            this.btnUExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUExit.Name = "btnUExit";
+            this.btnUExit.Size = new System.Drawing.Size(137, 31);
+            this.btnUExit.TabIndex = 20;
+            this.btnUExit.Text = "Exit";
+            this.btnUExit.UseVisualStyleBackColor = true;
+            this.btnUExit.Click += new System.EventHandler(this.btnUExit_Click);
+            // 
+            // btnUDel
+            // 
+            this.btnUDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUDel.Location = new System.Drawing.Point(693, 373);
+            this.btnUDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUDel.Name = "btnUDel";
+            this.btnUDel.Size = new System.Drawing.Size(137, 31);
+            this.btnUDel.TabIndex = 19;
+            this.btnUDel.Text = "Delete";
+            this.btnUDel.UseVisualStyleBackColor = true;
+            this.btnUDel.Click += new System.EventHandler(this.btnUDel_Click);
+            // 
+            // btnUIn
+            // 
+            this.btnUIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUIn.Location = new System.Drawing.Point(439, 373);
+            this.btnUIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUIn.Name = "btnUIn";
+            this.btnUIn.Size = new System.Drawing.Size(137, 31);
+            this.btnUIn.TabIndex = 18;
+            this.btnUIn.Text = "Insert";
+            this.btnUIn.UseVisualStyleBackColor = true;
+            this.btnUIn.Click += new System.EventHandler(this.btnUIn_Click);
+            // 
+            // dgvUsers
+            // 
+            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.Location = new System.Drawing.Point(489, 26);
+            this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.RowHeadersWidth = 51;
+            this.dgvUsers.RowTemplate.Height = 24;
+            this.dgvUsers.Size = new System.Drawing.Size(480, 300);
+            this.dgvUsers.TabIndex = 17;
+            // 
             // btnUUp
             // 
             this.btnUUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUUp.Location = new System.Drawing.Point(128, 362);
-            this.btnUUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUUp.Location = new System.Drawing.Point(200, 370);
+            this.btnUUp.Margin = new System.Windows.Forms.Padding(4);
             this.btnUUp.Name = "btnUUp";
             this.btnUUp.Size = new System.Drawing.Size(125, 34);
             this.btnUUp.TabIndex = 11;
             this.btnUUp.Text = "Update";
             this.btnUUp.UseVisualStyleBackColor = true;
-            // 
-            // cmbPos
-            // 
-            this.cmbPos.FormattingEnabled = true;
-            this.cmbPos.Items.AddRange(new object[] {
-            "",
-            "Admin",
-            "Staff"});
-            this.cmbPos.Location = new System.Drawing.Point(268, 223);
-            this.cmbPos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmbPos.Name = "cmbPos";
-            this.cmbPos.Size = new System.Drawing.Size(160, 32);
-            this.cmbPos.TabIndex = 10;
+            this.btnUUp.Click += new System.EventHandler(this.btnUUp_Click);
             // 
             // txtUContact
             // 
-            this.txtUContact.Location = new System.Drawing.Point(268, 279);
-            this.txtUContact.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUContact.Location = new System.Drawing.Point(268, 195);
+            this.txtUContact.Margin = new System.Windows.Forms.Padding(4);
             this.txtUContact.Name = "txtUContact";
             this.txtUContact.Size = new System.Drawing.Size(132, 29);
             this.txtUContact.TabIndex = 9;
             // 
             // txtUID
             // 
-            this.txtUID.Location = new System.Drawing.Point(268, 172);
-            this.txtUID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUID.Location = new System.Drawing.Point(268, 158);
+            this.txtUID.Margin = new System.Windows.Forms.Padding(4);
             this.txtUID.Name = "txtUID";
             this.txtUID.Size = new System.Drawing.Size(132, 29);
             this.txtUID.TabIndex = 8;
             // 
             // txtuSur
             // 
-            this.txtuSur.Location = new System.Drawing.Point(268, 126);
-            this.txtuSur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtuSur.Location = new System.Drawing.Point(268, 121);
+            this.txtuSur.Margin = new System.Windows.Forms.Padding(4);
             this.txtuSur.Name = "txtuSur";
             this.txtuSur.Size = new System.Drawing.Size(132, 29);
             this.txtuSur.TabIndex = 7;
@@ -331,7 +420,7 @@
             // txtUName
             // 
             this.txtUName.Location = new System.Drawing.Point(268, 84);
-            this.txtUName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUName.Margin = new System.Windows.Forms.Padding(4);
             this.txtUName.Name = "txtUName";
             this.txtUName.Size = new System.Drawing.Size(132, 29);
             this.txtUName.TabIndex = 6;
@@ -340,27 +429,17 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(125, 284);
+            this.label12.Location = new System.Drawing.Point(125, 200);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(100, 18);
             this.label12.TabIndex = 5;
             this.label12.Text = "User Contact:";
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(128, 228);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 18);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "User Positions:";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(128, 177);
+            this.label10.Location = new System.Drawing.Point(128, 163);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 18);
             this.label10.TabIndex = 3;
@@ -370,7 +449,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(128, 135);
+            this.label9.Location = new System.Drawing.Point(128, 130);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(104, 18);
             this.label9.TabIndex = 2;
@@ -382,9 +461,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(128, 89);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(88, 18);
+            this.label8.Size = new System.Drawing.Size(52, 18);
             this.label8.TabIndex = 1;
-            this.label8.Text = "User Name:";
+            this.label8.Text = "Name:";
             // 
             // label7
             // 
@@ -424,21 +503,92 @@
             this.Product.TabIndex = 2;
             this.Product.Text = "Product";
             this.Product.UseVisualStyleBackColor = true;
+            this.Product.Click += new System.EventHandler(this.Product_Click);
+            // 
+            // btnProdUp
+            // 
+            this.btnProdUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProdUp.Location = new System.Drawing.Point(186, 368);
+            this.btnProdUp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProdUp.Name = "btnProdUp";
+            this.btnProdUp.Size = new System.Drawing.Size(137, 31);
+            this.btnProdUp.TabIndex = 21;
+            this.btnProdUp.Text = "Update";
+            this.btnProdUp.UseVisualStyleBackColor = true;
+            this.btnProdUp.Click += new System.EventHandler(this.btnProdUp_Click);
+            // 
+            // btnProdExit
+            // 
+            this.btnProdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProdExit.Location = new System.Drawing.Point(865, 496);
+            this.btnProdExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProdExit.Name = "btnProdExit";
+            this.btnProdExit.Size = new System.Drawing.Size(137, 31);
+            this.btnProdExit.TabIndex = 20;
+            this.btnProdExit.Text = "Exit";
+            this.btnProdExit.UseVisualStyleBackColor = true;
+            this.btnProdExit.Click += new System.EventHandler(this.btnProdExit_Click);
+            // 
+            // btnProdDel
+            // 
+            this.btnProdDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProdDel.Location = new System.Drawing.Point(667, 368);
+            this.btnProdDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProdDel.Name = "btnProdDel";
+            this.btnProdDel.Size = new System.Drawing.Size(137, 31);
+            this.btnProdDel.TabIndex = 19;
+            this.btnProdDel.Text = "Delete";
+            this.btnProdDel.UseVisualStyleBackColor = true;
+            this.btnProdDel.Click += new System.EventHandler(this.btnProdDel_Click);
+            // 
+            // btnProdIn
+            // 
+            this.btnProdIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProdIn.Location = new System.Drawing.Point(424, 368);
+            this.btnProdIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProdIn.Name = "btnProdIn";
+            this.btnProdIn.Size = new System.Drawing.Size(137, 31);
+            this.btnProdIn.TabIndex = 18;
+            this.btnProdIn.Text = "Insert";
+            this.btnProdIn.UseVisualStyleBackColor = true;
+            this.btnProdIn.Click += new System.EventHandler(this.btnProdIn_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(488, 17);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(480, 300);
+            this.dataGridView1.TabIndex = 17;
             // 
             // cmbCover
             // 
             this.cmbCover.FormattingEnabled = true;
+            this.cmbCover.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
             this.cmbCover.Location = new System.Drawing.Point(273, 257);
-            this.cmbCover.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCover.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCover.Name = "cmbCover";
             this.cmbCover.Size = new System.Drawing.Size(160, 26);
             this.cmbCover.TabIndex = 12;
+            this.cmbCover.SelectedIndexChanged += new System.EventHandler(this.cmbCover_SelectedIndexChanged);
             // 
             // chkPro
             // 
             this.chkPro.AutoSize = true;
             this.chkPro.Location = new System.Drawing.Point(273, 294);
-            this.chkPro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkPro.Margin = new System.Windows.Forms.Padding(4);
             this.chkPro.Name = "chkPro";
             this.chkPro.Size = new System.Drawing.Size(87, 22);
             this.chkPro.TabIndex = 11;
@@ -449,7 +599,7 @@
             // 
             this.chkAvail.AutoSize = true;
             this.chkAvail.Location = new System.Drawing.Point(273, 129);
-            this.chkAvail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAvail.Margin = new System.Windows.Forms.Padding(4);
             this.chkAvail.Name = "chkAvail";
             this.chkAvail.Size = new System.Drawing.Size(87, 22);
             this.chkAvail.TabIndex = 10;
@@ -459,7 +609,7 @@
             // txtPPrice
             // 
             this.txtPPrice.Location = new System.Drawing.Point(273, 219);
-            this.txtPPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPPrice.Margin = new System.Windows.Forms.Padding(4);
             this.txtPPrice.Name = "txtPPrice";
             this.txtPPrice.Size = new System.Drawing.Size(132, 24);
             this.txtPPrice.TabIndex = 9;
@@ -467,7 +617,7 @@
             // txtPerform
             // 
             this.txtPerform.Location = new System.Drawing.Point(273, 169);
-            this.txtPerform.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPerform.Margin = new System.Windows.Forms.Padding(4);
             this.txtPerform.Name = "txtPerform";
             this.txtPerform.Size = new System.Drawing.Size(132, 24);
             this.txtPerform.TabIndex = 8;
@@ -475,7 +625,7 @@
             // txtPName
             // 
             this.txtPName.Location = new System.Drawing.Point(273, 87);
-            this.txtPName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPName.Margin = new System.Windows.Forms.Padding(4);
             this.txtPName.Name = "txtPName";
             this.txtPName.Size = new System.Drawing.Size(132, 24);
             this.txtPName.TabIndex = 7;
@@ -553,6 +703,7 @@
             // 
             // Treatments
             // 
+            this.Treatments.Controls.Add(this.button1);
             this.Treatments.Controls.Add(this.txtSrchTrt);
             this.Treatments.Controls.Add(this.btnSrchTrt);
             this.Treatments.Controls.Add(this.dgvTreatments);
@@ -566,10 +717,22 @@
             this.Treatments.UseVisualStyleBackColor = true;
             this.Treatments.Click += new System.EventHandler(this.Treatments_Click);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(864, 504);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(137, 31);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Exit";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // txtSrchTrt
             // 
             this.txtSrchTrt.Location = new System.Drawing.Point(100, 180);
-            this.txtSrchTrt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSrchTrt.Margin = new System.Windows.Forms.Padding(4);
             this.txtSrchTrt.Name = "txtSrchTrt";
             this.txtSrchTrt.Size = new System.Drawing.Size(132, 27);
             this.txtSrchTrt.TabIndex = 22;
@@ -577,7 +740,7 @@
             // btnSrchTrt
             // 
             this.btnSrchTrt.Location = new System.Drawing.Point(116, 118);
-            this.btnSrchTrt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSrchTrt.Margin = new System.Windows.Forms.Padding(4);
             this.btnSrchTrt.Name = "btnSrchTrt";
             this.btnSrchTrt.Size = new System.Drawing.Size(100, 28);
             this.btnSrchTrt.TabIndex = 21;
@@ -589,187 +752,92 @@
             // 
             this.dgvTreatments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTreatments.Location = new System.Drawing.Point(328, 4);
-            this.dgvTreatments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvTreatments.Margin = new System.Windows.Forms.Padding(4);
             this.dgvTreatments.Name = "dgvTreatments";
             this.dgvTreatments.RowHeadersWidth = 51;
             this.dgvTreatments.Size = new System.Drawing.Size(667, 400);
             this.dgvTreatments.TabIndex = 20;
             this.dgvTreatments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTreatments_CellContentClick);
             // 
-            // Conditions
+            // txtUPass
             // 
-            this.Conditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Conditions.Location = new System.Drawing.Point(4, 25);
-            this.Conditions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Conditions.Name = "Conditions";
-            this.Conditions.Size = new System.Drawing.Size(1004, 537);
-            this.Conditions.TabIndex = 4;
-            this.Conditions.Text = "Conditions";
-            this.Conditions.UseVisualStyleBackColor = true;
+            this.txtUPass.Location = new System.Drawing.Point(268, 274);
+            this.txtUPass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUPass.Name = "txtUPass";
+            this.txtUPass.Size = new System.Drawing.Size(132, 29);
+            this.txtUPass.TabIndex = 26;
             // 
-            // dgvPro
+            // txtUserName
             // 
-            this.dgvPro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPro.Location = new System.Drawing.Point(487, 23);
-            this.dgvPro.Name = "dgvPro";
-            this.dgvPro.RowHeadersWidth = 51;
-            this.dgvPro.RowTemplate.Height = 24;
-            this.dgvPro.Size = new System.Drawing.Size(480, 300);
-            this.dgvPro.TabIndex = 13;
+            this.txtUserName.Location = new System.Drawing.Point(268, 232);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(132, 29);
+            this.txtUserName.TabIndex = 25;
             // 
-            // btnProIn
+            // label20
             // 
-            this.btnProIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProIn.Location = new System.Drawing.Point(389, 359);
-            this.btnProIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProIn.Name = "btnProIn";
-            this.btnProIn.Size = new System.Drawing.Size(137, 31);
-            this.btnProIn.TabIndex = 14;
-            this.btnProIn.Text = "Insert";
-            this.btnProIn.UseVisualStyleBackColor = true;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(128, 313);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 18);
+            this.label20.TabIndex = 24;
+            this.label20.Text = "Admin:";
             // 
-            // btnProDel
+            // label21
             // 
-            this.btnProDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProDel.Location = new System.Drawing.Point(664, 359);
-            this.btnProDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProDel.Name = "btnProDel";
-            this.btnProDel.Size = new System.Drawing.Size(137, 31);
-            this.btnProDel.TabIndex = 15;
-            this.btnProDel.Text = "Delete";
-            this.btnProDel.UseVisualStyleBackColor = true;
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(128, 283);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(115, 18);
+            this.label21.TabIndex = 23;
+            this.label21.Text = "User Password:";
             // 
-            // btnProExit
+            // label22
             // 
-            this.btnProExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProExit.Location = new System.Drawing.Point(864, 502);
-            this.btnProExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProExit.Name = "btnProExit";
-            this.btnProExit.Size = new System.Drawing.Size(137, 31);
-            this.btnProExit.TabIndex = 16;
-            this.btnProExit.Text = "Exit";
-            this.btnProExit.UseVisualStyleBackColor = true;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(128, 237);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(88, 18);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "User Name:";
             // 
-            // btnUExit
+            // cbAdmin
             // 
-            this.btnUExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUExit.Location = new System.Drawing.Point(866, 505);
-            this.btnUExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnUExit.Name = "btnUExit";
-            this.btnUExit.Size = new System.Drawing.Size(137, 31);
-            this.btnUExit.TabIndex = 20;
-            this.btnUExit.Text = "Exit";
-            this.btnUExit.UseVisualStyleBackColor = true;
+            this.cbAdmin.AutoSize = true;
+            this.cbAdmin.Location = new System.Drawing.Point(268, 310);
+            this.cbAdmin.Name = "cbAdmin";
+            this.cbAdmin.Size = new System.Drawing.Size(92, 28);
+            this.cbAdmin.TabIndex = 27;
+            this.cbAdmin.Text = "Admin";
+            this.cbAdmin.UseVisualStyleBackColor = true;
             // 
-            // btnUDel
-            // 
-            this.btnUDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUDel.Location = new System.Drawing.Point(666, 362);
-            this.btnUDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnUDel.Name = "btnUDel";
-            this.btnUDel.Size = new System.Drawing.Size(137, 31);
-            this.btnUDel.TabIndex = 19;
-            this.btnUDel.Text = "Delete";
-            this.btnUDel.UseVisualStyleBackColor = true;
-            // 
-            // btnUIn
-            // 
-            this.btnUIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUIn.Location = new System.Drawing.Point(391, 362);
-            this.btnUIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnUIn.Name = "btnUIn";
-            this.btnUIn.Size = new System.Drawing.Size(137, 31);
-            this.btnUIn.TabIndex = 18;
-            this.btnUIn.Text = "Insert";
-            this.btnUIn.UseVisualStyleBackColor = true;
-            // 
-            // dgvUsers
-            // 
-            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsers.Location = new System.Drawing.Point(489, 26);
-            this.dgvUsers.Name = "dgvUsers";
-            this.dgvUsers.RowHeadersWidth = 51;
-            this.dgvUsers.RowTemplate.Height = 24;
-            this.dgvUsers.Size = new System.Drawing.Size(480, 300);
-            this.dgvUsers.TabIndex = 17;
-            // 
-            // btnProdExit
-            // 
-            this.btnProdExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProdExit.Location = new System.Drawing.Point(865, 496);
-            this.btnProdExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProdExit.Name = "btnProdExit";
-            this.btnProdExit.Size = new System.Drawing.Size(137, 31);
-            this.btnProdExit.TabIndex = 20;
-            this.btnProdExit.Text = "Exit";
-            this.btnProdExit.UseVisualStyleBackColor = true;
-            // 
-            // btnProdDel
-            // 
-            this.btnProdDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProdDel.Location = new System.Drawing.Point(682, 353);
-            this.btnProdDel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProdDel.Name = "btnProdDel";
-            this.btnProdDel.Size = new System.Drawing.Size(137, 31);
-            this.btnProdDel.TabIndex = 19;
-            this.btnProdDel.Text = "Delete";
-            this.btnProdDel.UseVisualStyleBackColor = true;
-            // 
-            // btnProdIn
-            // 
-            this.btnProdIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProdIn.Location = new System.Drawing.Point(439, 353);
-            this.btnProdIn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProdIn.Name = "btnProdIn";
-            this.btnProdIn.Size = new System.Drawing.Size(137, 31);
-            this.btnProdIn.TabIndex = 18;
-            this.btnProdIn.Text = "Insert";
-            this.btnProdIn.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(488, 17);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(480, 300);
-            this.dataGridView1.TabIndex = 17;
-            // 
-            // btnProdUp
-            // 
-            this.btnProdUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProdUp.Location = new System.Drawing.Point(174, 353);
-            this.btnProdUp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnProdUp.Name = "btnProdUp";
-            this.btnProdUp.Size = new System.Drawing.Size(137, 31);
-            this.btnProdUp.TabIndex = 21;
-            this.btnProdUp.Text = "Update";
-            this.btnProdUp.UseVisualStyleBackColor = true;
-            // 
-            // ProviderManage
+            // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1017, 574);
             this.Controls.Add(this.tabControl1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "ProviderManage";
-            this.Text = "ProviderManage";
+            this.Name = "AdminForm";
+            this.Text = "AdminForm";
             this.Load += new System.EventHandler(this.ProviderManage_Load);
             this.tabControl1.ResumeLayout(false);
             this.Provider.ResumeLayout(false);
             this.Provider.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).EndInit();
             this.Users.ResumeLayout(false);
             this.Users.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.Product.ResumeLayout(false);
             this.Product.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.Treatments.ResumeLayout(false);
             this.Treatments.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -779,8 +847,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Provider;
         private System.Windows.Forms.Button btnProUp;
-        private System.Windows.Forms.ListBox lbTreatments;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkCheck;
         private System.Windows.Forms.TextBox txtAgree;
         private System.Windows.Forms.TextBox txtContact;
@@ -794,15 +860,12 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TabPage Product;
         private System.Windows.Forms.TabPage Treatments;
-        private System.Windows.Forms.TabPage Conditions;
         private System.Windows.Forms.Button btnUUp;
-        private System.Windows.Forms.ComboBox cmbPos;
         private System.Windows.Forms.TextBox txtUContact;
         private System.Windows.Forms.TextBox txtUID;
         private System.Windows.Forms.TextBox txtuSur;
         private System.Windows.Forms.TextBox txtUName;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -835,5 +898,15 @@
         private System.Windows.Forms.Button btnProdDel;
         private System.Windows.Forms.Button btnProdIn;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox lbTreatments;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtUPass;
+        private System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox cbAdmin;
     }
 }
