@@ -47,6 +47,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Users = new System.Windows.Forms.TabPage();
+            this.cbAdmin = new System.Windows.Forms.CheckBox();
+            this.txtUPass = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.btnUExit = new System.Windows.Forms.Button();
             this.btnUDel = new System.Windows.Forms.Button();
             this.btnUIn = new System.Windows.Forms.Button();
@@ -86,12 +92,6 @@
             this.btnSrchTrt = new System.Windows.Forms.Button();
             this.dgvTreatments = new System.Windows.Forms.DataGridView();
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
-            this.txtUPass = new System.Windows.Forms.TextBox();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cbAdmin = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.Provider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
@@ -334,6 +334,62 @@
             this.Users.TabIndex = 1;
             this.Users.Text = "Users";
             this.Users.UseVisualStyleBackColor = true;
+            // 
+            // cbAdmin
+            // 
+            this.cbAdmin.AutoSize = true;
+            this.cbAdmin.Location = new System.Drawing.Point(268, 310);
+            this.cbAdmin.Name = "cbAdmin";
+            this.cbAdmin.Size = new System.Drawing.Size(92, 28);
+            this.cbAdmin.TabIndex = 27;
+            this.cbAdmin.Text = "Admin";
+            this.cbAdmin.UseVisualStyleBackColor = true;
+            // 
+            // txtUPass
+            // 
+            this.txtUPass.Location = new System.Drawing.Point(268, 274);
+            this.txtUPass.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUPass.Name = "txtUPass";
+            this.txtUPass.Size = new System.Drawing.Size(132, 29);
+            this.txtUPass.TabIndex = 26;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(268, 232);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(132, 29);
+            this.txtUserName.TabIndex = 25;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(128, 313);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(53, 18);
+            this.label20.TabIndex = 24;
+            this.label20.Text = "Admin:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(128, 283);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(115, 18);
+            this.label21.TabIndex = 23;
+            this.label21.Text = "User Password:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(128, 237);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(88, 18);
+            this.label22.TabIndex = 22;
+            this.label22.Text = "User Name:";
             // 
             // btnUExit
             // 
@@ -758,62 +814,6 @@
             this.dgvTreatments.Size = new System.Drawing.Size(667, 400);
             this.dgvTreatments.TabIndex = 20;
             this.dgvTreatments.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTreatments_CellContentClick);
-            // 
-            // txtUPass
-            // 
-            this.txtUPass.Location = new System.Drawing.Point(268, 274);
-            this.txtUPass.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUPass.Name = "txtUPass";
-            this.txtUPass.Size = new System.Drawing.Size(132, 29);
-            this.txtUPass.TabIndex = 26;
-            // 
-            // txtUserName
-            // 
-            this.txtUserName.Location = new System.Drawing.Point(268, 232);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(132, 29);
-            this.txtUserName.TabIndex = 25;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(128, 313);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(53, 18);
-            this.label20.TabIndex = 24;
-            this.label20.Text = "Admin:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(128, 283);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(115, 18);
-            this.label21.TabIndex = 23;
-            this.label21.Text = "User Password:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(128, 237);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(88, 18);
-            this.label22.TabIndex = 22;
-            this.label22.Text = "User Name:";
-            // 
-            // cbAdmin
-            // 
-            this.cbAdmin.AutoSize = true;
-            this.cbAdmin.Location = new System.Drawing.Point(268, 310);
-            this.cbAdmin.Name = "cbAdmin";
-            this.cbAdmin.Size = new System.Drawing.Size(92, 28);
-            this.cbAdmin.TabIndex = 27;
-            this.cbAdmin.Text = "Admin";
-            this.cbAdmin.UseVisualStyleBackColor = true;
             // 
             // AdminForm
             // 

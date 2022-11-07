@@ -18,44 +18,48 @@ namespace Genisis
         public AdminForm()
         {
             //Will display the Providers on Initialization
-            try
-            {
-                dgvPro.DataSource = Handle.getProvider();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Somthing went wrong trying to display the Providers.");
-            }
+            dgvPro.DataSource = Handle.getProvider();
+            //try
+            //{
+                
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Somthing went wrong trying to display the Providers.");
+            //}
 
             //Will display the Users on Initialization
-            try
-            {
-                dgvUsers.DataSource = Handle.getUser();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Somthing went wrong trying to display the Users.");
-            }
+            dgvUsers.DataSource = Handle.getUser();
+            //try
+            //{
+            //    dgvUsers.DataSource = Handle.getUser();
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Somthing went wrong trying to display the Users.");
+            //}
 
             //Will display the Products on Treatments
-            try
-            {
-                dgvTreatments.DataSource = Handle.getTreatments();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Somthing went wrong trying to display the Treatments.");
-            }
+            dgvTreatments.DataSource = Handle.getTreatments();
+            //try
+            //{
+            //    dgvTreatments.DataSource = Handle.getTreatments();
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Somthing went wrong trying to display the Treatments.");
+            //}
 
             //Will display the Products on Initialization
-            try
-            {
-                dgvPro.DataSource = Handle.getProduct();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Somthing went wrong trying to display the Products.");
-            }
+            dgvPro.DataSource = Handle.getProduct();
+            //try
+            //{
+            //    dgvPro.DataSource = Handle.getProduct();
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("Somthing went wrong trying to display the Products.");
+            //}
 
             InitializeComponent();
         }

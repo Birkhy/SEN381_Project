@@ -45,7 +45,15 @@ namespace Ukupholisa3
             this.tabShowDependants = new System.Windows.Forms.TabPage();
             this.dgvViewAccounts = new System.Windows.Forms.DataGridView();
             this.tabAddAccount = new System.Windows.Forms.TabPage();
+            this.pnlAddConditionDep = new System.Windows.Forms.Panel();
+            this.btnDone2 = new System.Windows.Forms.Button();
+            this.cmbDepCondition = new System.Windows.Forms.ComboBox();
+            this.lblConditionDep = new System.Windows.Forms.Label();
+            this.txtDependantID2 = new System.Windows.Forms.TextBox();
+            this.lblDependantID2 = new System.Windows.Forms.Label();
+            this.btnAddDepCondition = new System.Windows.Forms.Button();
             this.pnlDependantAdd = new System.Windows.Forms.Panel();
+            this.btnDone1 = new System.Windows.Forms.Button();
             this.cmbSex = new System.Windows.Forms.ComboBox();
             this.lblSex = new System.Windows.Forms.Label();
             this.dtpDOB = new System.Windows.Forms.DateTimePicker();
@@ -94,19 +102,12 @@ namespace Ukupholisa3
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.pnlAddConditionDep = new System.Windows.Forms.Panel();
-            this.cmbDepCondition = new System.Windows.Forms.ComboBox();
-            this.lblConditionDep = new System.Windows.Forms.Label();
-            this.txtDependantID2 = new System.Windows.Forms.TextBox();
-            this.lblDependantID2 = new System.Windows.Forms.Label();
-            this.btnAddDepCondition = new System.Windows.Forms.Button();
-            this.btnDone2 = new System.Windows.Forms.Button();
-            this.btnDone1 = new System.Windows.Forms.Button();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
             this.tabShowDependants.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).BeginInit();
             this.tabAddAccount.SuspendLayout();
+            this.pnlAddConditionDep.SuspendLayout();
             this.pnlDependantAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
             this.pnlAccountAdd.SuspendLayout();
@@ -114,7 +115,6 @@ namespace Ukupholisa3
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).BeginInit();
             this.Conditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
-            this.pnlAddConditionDep.SuspendLayout();
             this.SuspendLayout();
             // 
             // userTabCtrl
@@ -125,12 +125,11 @@ namespace Ukupholisa3
             this.userTabCtrl.Controls.Add(this.Treatments);
             this.userTabCtrl.Controls.Add(this.Conditions);
             this.userTabCtrl.Location = new System.Drawing.Point(0, 1);
-            this.userTabCtrl.Margin = new System.Windows.Forms.Padding(2);
+            this.userTabCtrl.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.userTabCtrl.Name = "userTabCtrl";
             this.userTabCtrl.SelectedIndex = 0;
-            this.userTabCtrl.Size = new System.Drawing.Size(803, 517);
+            this.userTabCtrl.Size = new System.Drawing.Size(1071, 636);
             this.userTabCtrl.TabIndex = 2;
-            //this.userTabCtrl.Click += new System.EventHandler(this.tabAddAccount_Click);
             // 
             // tabCall
             // 
@@ -145,31 +144,32 @@ namespace Ukupholisa3
             this.tabCall.Controls.Add(this.txtHKey);
             this.tabCall.Controls.Add(this.btnSubmit);
             this.tabCall.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabCall.Location = new System.Drawing.Point(4, 22);
-            this.tabCall.Margin = new System.Windows.Forms.Padding(2);
+            this.tabCall.Location = new System.Drawing.Point(4, 25);
+            this.tabCall.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabCall.Name = "tabCall";
-            this.tabCall.Padding = new System.Windows.Forms.Padding(2);
-            this.tabCall.Size = new System.Drawing.Size(795, 491);
+            this.tabCall.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabCall.Size = new System.Drawing.Size(1063, 607);
             this.tabCall.TabIndex = 0;
             this.tabCall.Text = "Call";
             this.tabCall.UseVisualStyleBackColor = true;
+            this.tabCall.Click += new System.EventHandler(this.tabCall_Click);
             // 
             // btnEnd
             // 
-            this.btnEnd.Location = new System.Drawing.Point(420, 242);
-            this.btnEnd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEnd.Location = new System.Drawing.Point(560, 298);
+            this.btnEnd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(76, 24);
+            this.btnEnd.Size = new System.Drawing.Size(101, 30);
             this.btnEnd.TabIndex = 21;
             this.btnEnd.Text = "Call End";
             this.btnEnd.UseVisualStyleBackColor = true;
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(216, 242);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStart.Location = new System.Drawing.Point(288, 298);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(76, 24);
+            this.btnStart.Size = new System.Drawing.Size(101, 30);
             this.btnStart.TabIndex = 20;
             this.btnStart.Text = "Call Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -178,10 +178,9 @@ namespace Ukupholisa3
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(271, 211);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(361, 260);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 17);
+            this.label5.Size = new System.Drawing.Size(116, 20);
             this.label5.TabIndex = 19;
             this.label5.Text = "Holder Phone:";
             // 
@@ -189,10 +188,9 @@ namespace Ukupholisa3
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(288, 90);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(384, 111);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(159, 29);
+            this.label4.Size = new System.Drawing.Size(192, 36);
             this.label4.TabIndex = 18;
             this.label4.Text = "Call Manage";
             // 
@@ -200,10 +198,9 @@ namespace Ukupholisa3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(271, 173);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(361, 213);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 17);
+            this.label3.Size = new System.Drawing.Size(97, 20);
             this.label3.TabIndex = 17;
             this.label3.Text = "Holder Key:";
             // 
@@ -211,43 +208,42 @@ namespace Ukupholisa3
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(271, 134);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(361, 165);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 17);
+            this.label1.Size = new System.Drawing.Size(86, 20);
             this.label1.TabIndex = 16;
             this.label1.Text = "Holder ID:";
             // 
             // txtHPone
             // 
-            this.txtHPone.Location = new System.Drawing.Point(374, 211);
-            this.txtHPone.Margin = new System.Windows.Forms.Padding(2);
+            this.txtHPone.Location = new System.Drawing.Point(499, 260);
+            this.txtHPone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHPone.Name = "txtHPone";
-            this.txtHPone.Size = new System.Drawing.Size(76, 24);
+            this.txtHPone.Size = new System.Drawing.Size(100, 29);
             this.txtHPone.TabIndex = 15;
             // 
             // txtHID
             // 
-            this.txtHID.Location = new System.Drawing.Point(374, 130);
-            this.txtHID.Margin = new System.Windows.Forms.Padding(2);
+            this.txtHID.Location = new System.Drawing.Point(499, 160);
+            this.txtHID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHID.Name = "txtHID";
-            this.txtHID.Size = new System.Drawing.Size(76, 24);
+            this.txtHID.Size = new System.Drawing.Size(100, 29);
             this.txtHID.TabIndex = 14;
             // 
             // txtHKey
             // 
-            this.txtHKey.Location = new System.Drawing.Point(374, 169);
-            this.txtHKey.Margin = new System.Windows.Forms.Padding(2);
+            this.txtHKey.Location = new System.Drawing.Point(499, 208);
+            this.txtHKey.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtHKey.Name = "txtHKey";
-            this.txtHKey.Size = new System.Drawing.Size(76, 24);
+            this.txtHKey.Size = new System.Drawing.Size(100, 29);
             this.txtHKey.TabIndex = 13;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(320, 242);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSubmit.Location = new System.Drawing.Point(427, 298);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(76, 24);
+            this.btnSubmit.Size = new System.Drawing.Size(101, 30);
             this.btnSubmit.TabIndex = 12;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -257,22 +253,23 @@ namespace Ukupholisa3
             // 
             this.tabShowDependants.Controls.Add(this.dgvViewAccounts);
             this.tabShowDependants.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabShowDependants.Location = new System.Drawing.Point(4, 22);
-            this.tabShowDependants.Margin = new System.Windows.Forms.Padding(2);
+            this.tabShowDependants.Location = new System.Drawing.Point(4, 25);
+            this.tabShowDependants.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabShowDependants.Name = "tabShowDependants";
-            this.tabShowDependants.Padding = new System.Windows.Forms.Padding(2);
-            this.tabShowDependants.Size = new System.Drawing.Size(795, 491);
+            this.tabShowDependants.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabShowDependants.Size = new System.Drawing.Size(1063, 607);
             this.tabShowDependants.TabIndex = 1;
             this.tabShowDependants.Text = "Dependants";
             this.tabShowDependants.UseVisualStyleBackColor = true;
-            //this.tabShowDependants.Click += new System.EventHandler(this.tabShowAccounts_Click);
             // 
             // dgvViewAccounts
             // 
             this.dgvViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvViewAccounts.Location = new System.Drawing.Point(8, 5);
+            this.dgvViewAccounts.Location = new System.Drawing.Point(11, 6);
+            this.dgvViewAccounts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvViewAccounts.Name = "dgvViewAccounts";
-            this.dgvViewAccounts.Size = new System.Drawing.Size(640, 370);
+            this.dgvViewAccounts.RowHeadersWidth = 51;
+            this.dgvViewAccounts.Size = new System.Drawing.Size(853, 455);
             this.dgvViewAccounts.TabIndex = 21;
             // 
             // tabAddAccount
@@ -282,13 +279,87 @@ namespace Ukupholisa3
             this.tabAddAccount.Controls.Add(this.dgvAccount);
             this.tabAddAccount.Controls.Add(this.pnlAccountAdd);
             this.tabAddAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabAddAccount.Location = new System.Drawing.Point(4, 22);
-            this.tabAddAccount.Margin = new System.Windows.Forms.Padding(2);
+            this.tabAddAccount.Location = new System.Drawing.Point(4, 25);
+            this.tabAddAccount.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAddAccount.Name = "tabAddAccount";
-            this.tabAddAccount.Size = new System.Drawing.Size(795, 491);
+            this.tabAddAccount.Size = new System.Drawing.Size(1063, 607);
             this.tabAddAccount.TabIndex = 2;
             this.tabAddAccount.Text = "Accounts";
             this.tabAddAccount.UseVisualStyleBackColor = true;
+            // 
+            // pnlAddConditionDep
+            // 
+            this.pnlAddConditionDep.Controls.Add(this.btnDone2);
+            this.pnlAddConditionDep.Controls.Add(this.cmbDepCondition);
+            this.pnlAddConditionDep.Controls.Add(this.lblConditionDep);
+            this.pnlAddConditionDep.Controls.Add(this.txtDependantID2);
+            this.pnlAddConditionDep.Controls.Add(this.lblDependantID2);
+            this.pnlAddConditionDep.Controls.Add(this.btnAddDepCondition);
+            this.pnlAddConditionDep.Location = new System.Drawing.Point(367, 4);
+            this.pnlAddConditionDep.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlAddConditionDep.Name = "pnlAddConditionDep";
+            this.pnlAddConditionDep.Size = new System.Drawing.Size(348, 302);
+            this.pnlAddConditionDep.TabIndex = 24;
+            // 
+            // btnDone2
+            // 
+            this.btnDone2.Location = new System.Drawing.Point(100, 235);
+            this.btnDone2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDone2.Name = "btnDone2";
+            this.btnDone2.Size = new System.Drawing.Size(133, 28);
+            this.btnDone2.TabIndex = 15;
+            this.btnDone2.Text = "Done";
+            this.btnDone2.UseVisualStyleBackColor = true;
+            // 
+            // cmbDepCondition
+            // 
+            this.cmbDepCondition.FormattingEnabled = true;
+            this.cmbDepCondition.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cmbDepCondition.Location = new System.Drawing.Point(191, 65);
+            this.cmbDepCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbDepCondition.Name = "cmbDepCondition";
+            this.cmbDepCondition.Size = new System.Drawing.Size(132, 26);
+            this.cmbDepCondition.TabIndex = 14;
+            // 
+            // lblConditionDep
+            // 
+            this.lblConditionDep.AutoSize = true;
+            this.lblConditionDep.Location = new System.Drawing.Point(20, 69);
+            this.lblConditionDep.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblConditionDep.Name = "lblConditionDep";
+            this.lblConditionDep.Size = new System.Drawing.Size(71, 18);
+            this.lblConditionDep.TabIndex = 11;
+            this.lblConditionDep.Text = "Condition";
+            // 
+            // txtDependantID2
+            // 
+            this.txtDependantID2.Location = new System.Drawing.Point(191, 28);
+            this.txtDependantID2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDependantID2.Name = "txtDependantID2";
+            this.txtDependantID2.Size = new System.Drawing.Size(132, 24);
+            this.txtDependantID2.TabIndex = 10;
+            // 
+            // lblDependantID2
+            // 
+            this.lblDependantID2.AutoSize = true;
+            this.lblDependantID2.Location = new System.Drawing.Point(20, 32);
+            this.lblDependantID2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDependantID2.Name = "lblDependantID2";
+            this.lblDependantID2.Size = new System.Drawing.Size(97, 18);
+            this.lblDependantID2.TabIndex = 8;
+            this.lblDependantID2.Text = "Dependant ID";
+            // 
+            // btnAddDepCondition
+            // 
+            this.btnAddDepCondition.Location = new System.Drawing.Point(100, 186);
+            this.btnAddDepCondition.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddDepCondition.Name = "btnAddDepCondition";
+            this.btnAddDepCondition.Size = new System.Drawing.Size(133, 28);
+            this.btnAddDepCondition.TabIndex = 5;
+            this.btnAddDepCondition.Text = "Add Condition";
+            this.btnAddDepCondition.UseVisualStyleBackColor = true;
             // 
             // pnlDependantAdd
             // 
@@ -306,10 +377,21 @@ namespace Ukupholisa3
             this.pnlDependantAdd.Controls.Add(this.txtDepSur);
             this.pnlDependantAdd.Controls.Add(this.txtDependantName);
             this.pnlDependantAdd.Controls.Add(this.txtAccountID);
-            this.pnlDependantAdd.Location = new System.Drawing.Point(8, 238);
+            this.pnlDependantAdd.Location = new System.Drawing.Point(11, 293);
+            this.pnlDependantAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlDependantAdd.Name = "pnlDependantAdd";
-            this.pnlDependantAdd.Size = new System.Drawing.Size(261, 245);
+            this.pnlDependantAdd.Size = new System.Drawing.Size(348, 302);
             this.pnlDependantAdd.TabIndex = 23;
+            // 
+            // btnDone1
+            // 
+            this.btnDone1.Location = new System.Drawing.Point(191, 247);
+            this.btnDone1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDone1.Name = "btnDone1";
+            this.btnDone1.Size = new System.Drawing.Size(133, 28);
+            this.btnDone1.TabIndex = 16;
+            this.btnDone1.Text = "Done";
+            this.btnDone1.UseVisualStyleBackColor = true;
             // 
             // cmbSex
             // 
@@ -317,116 +399,130 @@ namespace Ukupholisa3
             this.cmbSex.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbSex.Location = new System.Drawing.Point(143, 165);
+            this.cmbSex.Location = new System.Drawing.Point(191, 203);
+            this.cmbSex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbSex.Name = "cmbSex";
-            this.cmbSex.Size = new System.Drawing.Size(100, 23);
+            this.cmbSex.Size = new System.Drawing.Size(132, 26);
             this.cmbSex.TabIndex = 14;
             // 
             // lblSex
             // 
             this.lblSex.AutoSize = true;
-            this.lblSex.Location = new System.Drawing.Point(15, 168);
+            this.lblSex.Location = new System.Drawing.Point(20, 207);
+            this.lblSex.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSex.Name = "lblSex";
-            this.lblSex.Size = new System.Drawing.Size(92, 15);
+            this.lblSex.Size = new System.Drawing.Size(108, 18);
             this.lblSex.TabIndex = 13;
             this.lblSex.Text = "Dependant Sex";
             // 
             // dtpDOB
             // 
-            this.dtpDOB.Location = new System.Drawing.Point(143, 136);
+            this.dtpDOB.Location = new System.Drawing.Point(191, 167);
+            this.dtpDOB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpDOB.Name = "dtpDOB";
-            this.dtpDOB.Size = new System.Drawing.Size(115, 21);
+            this.dtpDOB.Size = new System.Drawing.Size(152, 24);
             this.dtpDOB.TabIndex = 12;
             // 
             // lblDOB
             // 
             this.lblDOB.AutoSize = true;
-            this.lblDOB.Location = new System.Drawing.Point(15, 136);
+            this.lblDOB.Location = new System.Drawing.Point(20, 167);
+            this.lblDOB.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDOB.Name = "lblDOB";
-            this.lblDOB.Size = new System.Drawing.Size(97, 15);
+            this.lblDOB.Size = new System.Drawing.Size(116, 18);
             this.lblDOB.TabIndex = 11;
             this.lblDOB.Text = "Dependant DOB";
             // 
             // txtDependantID
             // 
-            this.txtDependantID.Location = new System.Drawing.Point(143, 52);
+            this.txtDependantID.Location = new System.Drawing.Point(191, 64);
+            this.txtDependantID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDependantID.Name = "txtDependantID";
-            this.txtDependantID.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantID.Size = new System.Drawing.Size(132, 24);
             this.txtDependantID.TabIndex = 10;
             // 
             // lblDependantSurname
             // 
             this.lblDependantSurname.AutoSize = true;
-            this.lblDependantSurname.Location = new System.Drawing.Point(15, 111);
+            this.lblDependantSurname.Location = new System.Drawing.Point(20, 137);
+            this.lblDependantSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDependantSurname.Name = "lblDependantSurname";
-            this.lblDependantSurname.Size = new System.Drawing.Size(122, 15);
+            this.lblDependantSurname.Size = new System.Drawing.Size(143, 18);
             this.lblDependantSurname.TabIndex = 9;
             this.lblDependantSurname.Text = "Dependant Surname";
             // 
             // lblDependantID
             // 
             this.lblDependantID.AutoSize = true;
-            this.lblDependantID.Location = new System.Drawing.Point(15, 55);
+            this.lblDependantID.Location = new System.Drawing.Point(20, 68);
+            this.lblDependantID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDependantID.Name = "lblDependantID";
-            this.lblDependantID.Size = new System.Drawing.Size(83, 15);
+            this.lblDependantID.Size = new System.Drawing.Size(97, 18);
             this.lblDependantID.TabIndex = 8;
             this.lblDependantID.Text = "Dependant ID";
             // 
             // lblDependantName
             // 
             this.lblDependantName.AutoSize = true;
-            this.lblDependantName.Location = new System.Drawing.Point(15, 84);
+            this.lblDependantName.Location = new System.Drawing.Point(20, 103);
+            this.lblDependantName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDependantName.Name = "lblDependantName";
-            this.lblDependantName.Size = new System.Drawing.Size(105, 15);
+            this.lblDependantName.Size = new System.Drawing.Size(123, 18);
             this.lblDependantName.TabIndex = 7;
             this.lblDependantName.Text = "Dependant Name";
             // 
             // lblAccountID
             // 
             this.lblAccountID.AutoSize = true;
-            this.lblAccountID.Location = new System.Drawing.Point(15, 28);
+            this.lblAccountID.Location = new System.Drawing.Point(20, 34);
+            this.lblAccountID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAccountID.Name = "lblAccountID";
-            this.lblAccountID.Size = new System.Drawing.Size(65, 15);
+            this.lblAccountID.Size = new System.Drawing.Size(80, 18);
             this.lblAccountID.TabIndex = 6;
             this.lblAccountID.Text = "Account ID";
             // 
             // btnAddDependant
             // 
-            this.btnAddDependant.Location = new System.Drawing.Point(12, 201);
+            this.btnAddDependant.Location = new System.Drawing.Point(16, 247);
+            this.btnAddDependant.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddDependant.Name = "btnAddDependant";
-            this.btnAddDependant.Size = new System.Drawing.Size(100, 23);
+            this.btnAddDependant.Size = new System.Drawing.Size(133, 28);
             this.btnAddDependant.TabIndex = 5;
             this.btnAddDependant.Text = "Add Dependant";
             this.btnAddDependant.UseVisualStyleBackColor = true;
-            //this.btnAddDependant.Click += new System.EventHandler(this.btnAddDependant_Click);
             // 
             // txtDepSur
             // 
-            this.txtDepSur.Location = new System.Drawing.Point(143, 105);
+            this.txtDepSur.Location = new System.Drawing.Point(191, 129);
+            this.txtDepSur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDepSur.Name = "txtDepSur";
-            this.txtDepSur.Size = new System.Drawing.Size(100, 21);
+            this.txtDepSur.Size = new System.Drawing.Size(132, 24);
             this.txtDepSur.TabIndex = 4;
             // 
             // txtDependantName
             // 
-            this.txtDependantName.Location = new System.Drawing.Point(143, 81);
+            this.txtDependantName.Location = new System.Drawing.Point(191, 100);
+            this.txtDependantName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDependantName.Name = "txtDependantName";
-            this.txtDependantName.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantName.Size = new System.Drawing.Size(132, 24);
             this.txtDependantName.TabIndex = 3;
             // 
             // txtAccountID
             // 
-            this.txtAccountID.Location = new System.Drawing.Point(143, 25);
+            this.txtAccountID.Location = new System.Drawing.Point(191, 31);
+            this.txtAccountID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAccountID.Name = "txtAccountID";
-            this.txtAccountID.Size = new System.Drawing.Size(100, 21);
+            this.txtAccountID.Size = new System.Drawing.Size(132, 24);
             this.txtAccountID.TabIndex = 1;
             // 
             // dgvAccount
             // 
             this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAccount.Location = new System.Drawing.Point(293, 263);
+            this.dgvAccount.Location = new System.Drawing.Point(391, 324);
+            this.dgvAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvAccount.Name = "dgvAccount";
-            this.dgvAccount.Size = new System.Drawing.Size(479, 220);
+            this.dgvAccount.RowHeadersWidth = 51;
+            this.dgvAccount.Size = new System.Drawing.Size(639, 271);
             this.dgvAccount.TabIndex = 22;
             // 
             // pnlAccountAdd
@@ -440,52 +536,58 @@ namespace Ukupholisa3
             this.pnlAccountAdd.Controls.Add(this.txtHolderKey);
             this.pnlAccountAdd.Controls.Add(this.cmbPackage);
             this.pnlAccountAdd.Controls.Add(this.txtHolderID);
-            this.pnlAccountAdd.Location = new System.Drawing.Point(8, 19);
+            this.pnlAccountAdd.Location = new System.Drawing.Point(11, 23);
+            this.pnlAccountAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlAccountAdd.Name = "pnlAccountAdd";
-            this.pnlAccountAdd.Size = new System.Drawing.Size(227, 198);
+            this.pnlAccountAdd.Size = new System.Drawing.Size(303, 244);
             this.pnlAccountAdd.TabIndex = 0;
             // 
             // lblHolderCell
             // 
             this.lblHolderCell.AutoSize = true;
-            this.lblHolderCell.Location = new System.Drawing.Point(15, 111);
+            this.lblHolderCell.Location = new System.Drawing.Point(20, 137);
+            this.lblHolderCell.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHolderCell.Name = "lblHolderCell";
-            this.lblHolderCell.Size = new System.Drawing.Size(68, 15);
+            this.lblHolderCell.Size = new System.Drawing.Size(81, 18);
             this.lblHolderCell.TabIndex = 9;
             this.lblHolderCell.Text = "Holder Cell";
             // 
             // lblPackage
             // 
             this.lblPackage.AutoSize = true;
-            this.lblPackage.Location = new System.Drawing.Point(15, 55);
+            this.lblPackage.Location = new System.Drawing.Point(20, 68);
+            this.lblPackage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPackage.Name = "lblPackage";
-            this.lblPackage.Size = new System.Drawing.Size(55, 15);
+            this.lblPackage.Size = new System.Drawing.Size(66, 18);
             this.lblPackage.TabIndex = 8;
             this.lblPackage.Text = "Package";
             // 
             // lblHolderKey
             // 
             this.lblHolderKey.AutoSize = true;
-            this.lblHolderKey.Location = new System.Drawing.Point(15, 84);
+            this.lblHolderKey.Location = new System.Drawing.Point(20, 103);
+            this.lblHolderKey.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHolderKey.Name = "lblHolderKey";
-            this.lblHolderKey.Size = new System.Drawing.Size(67, 15);
+            this.lblHolderKey.Size = new System.Drawing.Size(81, 18);
             this.lblHolderKey.TabIndex = 7;
             this.lblHolderKey.Text = "Holder Key";
             // 
             // lblHolderID
             // 
             this.lblHolderID.AutoSize = true;
-            this.lblHolderID.Location = new System.Drawing.Point(15, 28);
+            this.lblHolderID.Location = new System.Drawing.Point(20, 34);
+            this.lblHolderID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHolderID.Name = "lblHolderID";
-            this.lblHolderID.Size = new System.Drawing.Size(59, 15);
+            this.lblHolderID.Size = new System.Drawing.Size(70, 18);
             this.lblHolderID.TabIndex = 6;
             this.lblHolderID.Text = "Holder ID";
             // 
             // btnAddAccount
             // 
-            this.btnAddAccount.Location = new System.Drawing.Point(99, 135);
+            this.btnAddAccount.Location = new System.Drawing.Point(132, 166);
+            this.btnAddAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddAccount.Name = "btnAddAccount";
-            this.btnAddAccount.Size = new System.Drawing.Size(100, 23);
+            this.btnAddAccount.Size = new System.Drawing.Size(133, 28);
             this.btnAddAccount.TabIndex = 5;
             this.btnAddAccount.Text = "Add Account";
             this.btnAddAccount.UseVisualStyleBackColor = true;
@@ -493,32 +595,36 @@ namespace Ukupholisa3
             // 
             // txtHolderCell
             // 
-            this.txtHolderCell.Location = new System.Drawing.Point(99, 108);
+            this.txtHolderCell.Location = new System.Drawing.Point(132, 133);
+            this.txtHolderCell.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtHolderCell.Name = "txtHolderCell";
-            this.txtHolderCell.Size = new System.Drawing.Size(100, 21);
+            this.txtHolderCell.Size = new System.Drawing.Size(132, 24);
             this.txtHolderCell.TabIndex = 4;
             // 
             // txtHolderKey
             // 
-            this.txtHolderKey.Location = new System.Drawing.Point(99, 81);
+            this.txtHolderKey.Location = new System.Drawing.Point(132, 100);
+            this.txtHolderKey.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtHolderKey.Name = "txtHolderKey";
-            this.txtHolderKey.Size = new System.Drawing.Size(100, 21);
+            this.txtHolderKey.Size = new System.Drawing.Size(132, 24);
             this.txtHolderKey.TabIndex = 3;
             // 
             // cmbPackage
             // 
             this.cmbPackage.FormattingEnabled = true;
-            this.cmbPackage.Location = new System.Drawing.Point(99, 52);
+            this.cmbPackage.Location = new System.Drawing.Point(132, 64);
+            this.cmbPackage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbPackage.Name = "cmbPackage";
-            this.cmbPackage.Size = new System.Drawing.Size(100, 23);
+            this.cmbPackage.Size = new System.Drawing.Size(132, 26);
             this.cmbPackage.TabIndex = 2;
             this.cmbPackage.SelectedIndexChanged += new System.EventHandler(this.cmbPackage_SelectedIndexChanged);
             // 
             // txtHolderID
             // 
-            this.txtHolderID.Location = new System.Drawing.Point(99, 25);
+            this.txtHolderID.Location = new System.Drawing.Point(132, 31);
+            this.txtHolderID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtHolderID.Name = "txtHolderID";
-            this.txtHolderID.Size = new System.Drawing.Size(100, 21);
+            this.txtHolderID.Size = new System.Drawing.Size(132, 24);
             this.txtHolderID.TabIndex = 1;
             // 
             // Treatments
@@ -527,26 +633,28 @@ namespace Ukupholisa3
             this.Treatments.Controls.Add(this.btnSrchTrt);
             this.Treatments.Controls.Add(this.dgvTreatments);
             this.Treatments.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Treatments.Location = new System.Drawing.Point(4, 22);
-            this.Treatments.Margin = new System.Windows.Forms.Padding(2);
+            this.Treatments.Location = new System.Drawing.Point(4, 25);
+            this.Treatments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Treatments.Name = "Treatments";
-            this.Treatments.Size = new System.Drawing.Size(795, 491);
+            this.Treatments.Size = new System.Drawing.Size(1063, 607);
             this.Treatments.TabIndex = 3;
             this.Treatments.Text = "Treatments";
             this.Treatments.UseVisualStyleBackColor = true;
             // 
             // txtSrchTrt
             // 
-            this.txtSrchTrt.Location = new System.Drawing.Point(75, 146);
+            this.txtSrchTrt.Location = new System.Drawing.Point(100, 180);
+            this.txtSrchTrt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSrchTrt.Name = "txtSrchTrt";
-            this.txtSrchTrt.Size = new System.Drawing.Size(100, 23);
+            this.txtSrchTrt.Size = new System.Drawing.Size(132, 27);
             this.txtSrchTrt.TabIndex = 22;
             // 
             // btnSrchTrt
             // 
-            this.btnSrchTrt.Location = new System.Drawing.Point(87, 96);
+            this.btnSrchTrt.Location = new System.Drawing.Point(116, 118);
+            this.btnSrchTrt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSrchTrt.Name = "btnSrchTrt";
-            this.btnSrchTrt.Size = new System.Drawing.Size(75, 23);
+            this.btnSrchTrt.Size = new System.Drawing.Size(100, 28);
             this.btnSrchTrt.TabIndex = 21;
             this.btnSrchTrt.Text = "Search";
             this.btnSrchTrt.UseVisualStyleBackColor = true;
@@ -555,9 +663,11 @@ namespace Ukupholisa3
             // dgvTreatments
             // 
             this.dgvTreatments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTreatments.Location = new System.Drawing.Point(246, 3);
+            this.dgvTreatments.Location = new System.Drawing.Point(328, 4);
+            this.dgvTreatments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvTreatments.Name = "dgvTreatments";
-            this.dgvTreatments.Size = new System.Drawing.Size(500, 325);
+            this.dgvTreatments.RowHeadersWidth = 51;
+            this.dgvTreatments.Size = new System.Drawing.Size(667, 400);
             this.dgvTreatments.TabIndex = 20;
             // 
             // Conditions
@@ -582,10 +692,10 @@ namespace Ukupholisa3
             this.Conditions.Controls.Add(this.label10);
             this.Conditions.Controls.Add(this.label21);
             this.Conditions.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Conditions.Location = new System.Drawing.Point(4, 22);
-            this.Conditions.Margin = new System.Windows.Forms.Padding(2);
+            this.Conditions.Location = new System.Drawing.Point(4, 25);
+            this.Conditions.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Conditions.Name = "Conditions";
-            this.Conditions.Size = new System.Drawing.Size(795, 491);
+            this.Conditions.Size = new System.Drawing.Size(1063, 607);
             this.Conditions.TabIndex = 4;
             this.Conditions.Text = "Conditions";
             this.Conditions.UseVisualStyleBackColor = true;
@@ -593,10 +703,10 @@ namespace Ukupholisa3
             // rbnOther
             // 
             this.rbnOther.AutoSize = true;
-            this.rbnOther.Location = new System.Drawing.Point(188, 213);
-            this.rbnOther.Margin = new System.Windows.Forms.Padding(2);
+            this.rbnOther.Location = new System.Drawing.Point(251, 262);
+            this.rbnOther.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbnOther.Name = "rbnOther";
-            this.rbnOther.Size = new System.Drawing.Size(67, 21);
+            this.rbnOther.Size = new System.Drawing.Size(77, 24);
             this.rbnOther.TabIndex = 38;
             this.rbnOther.TabStop = true;
             this.rbnOther.Text = "Other";
@@ -605,10 +715,10 @@ namespace Ukupholisa3
             // rbnFemale
             // 
             this.rbnFemale.AutoSize = true;
-            this.rbnFemale.Location = new System.Drawing.Point(113, 213);
-            this.rbnFemale.Margin = new System.Windows.Forms.Padding(2);
+            this.rbnFemale.Location = new System.Drawing.Point(151, 262);
+            this.rbnFemale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbnFemale.Name = "rbnFemale";
-            this.rbnFemale.Size = new System.Drawing.Size(78, 21);
+            this.rbnFemale.Size = new System.Drawing.Size(91, 24);
             this.rbnFemale.TabIndex = 37;
             this.rbnFemale.TabStop = true;
             this.rbnFemale.Text = "Female";
@@ -617,10 +727,10 @@ namespace Ukupholisa3
             // rbnMale
             // 
             this.rbnMale.AutoSize = true;
-            this.rbnMale.Location = new System.Drawing.Point(53, 213);
-            this.rbnMale.Margin = new System.Windows.Forms.Padding(2);
+            this.rbnMale.Location = new System.Drawing.Point(71, 262);
+            this.rbnMale.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbnMale.Name = "rbnMale";
-            this.rbnMale.Size = new System.Drawing.Size(60, 21);
+            this.rbnMale.Size = new System.Drawing.Size(70, 24);
             this.rbnMale.TabIndex = 36;
             this.rbnMale.TabStop = true;
             this.rbnMale.Text = "Male";
@@ -628,9 +738,10 @@ namespace Ukupholisa3
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(616, 400);
+            this.btnSearch.Location = new System.Drawing.Point(821, 492);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.Size = new System.Drawing.Size(100, 28);
             this.btnSearch.TabIndex = 35;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -639,24 +750,27 @@ namespace Ukupholisa3
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(17, 64);
+            this.label6.Location = new System.Drawing.Point(23, 79);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 16);
+            this.label6.Size = new System.Drawing.Size(31, 20);
             this.label6.TabIndex = 34;
             this.label6.Text = "ID:";
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(123, 61);
+            this.txtID.Location = new System.Drawing.Point(164, 75);
+            this.txtID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(100, 23);
+            this.txtID.Size = new System.Drawing.Size(132, 27);
             this.txtID.TabIndex = 33;
             // 
             // dtkDOB
             // 
-            this.dtkDOB.Location = new System.Drawing.Point(123, 172);
+            this.dtkDOB.Location = new System.Drawing.Point(164, 212);
+            this.dtkDOB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtkDOB.Name = "dtkDOB";
-            this.dtkDOB.Size = new System.Drawing.Size(146, 23);
+            this.dtkDOB.Size = new System.Drawing.Size(193, 27);
             this.dtkDOB.TabIndex = 32;
             this.dtkDOB.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -664,9 +778,10 @@ namespace Ukupholisa3
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 140);
+            this.label2.Location = new System.Drawing.Point(23, 172);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 16);
+            this.label2.Size = new System.Drawing.Size(81, 20);
             this.label2.TabIndex = 31;
             this.label2.Text = "Surname:";
             // 
@@ -674,9 +789,10 @@ namespace Ukupholisa3
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(17, 177);
+            this.label7.Location = new System.Drawing.Point(23, 218);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(84, 16);
+            this.label7.Size = new System.Drawing.Size(114, 20);
             this.label7.TabIndex = 30;
             this.label7.Text = "Date Of Birth:";
             // 
@@ -684,9 +800,10 @@ namespace Ukupholisa3
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(17, 213);
+            this.label8.Location = new System.Drawing.Point(23, 262);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(33, 16);
+            this.label8.Size = new System.Drawing.Size(42, 20);
             this.label8.TabIndex = 29;
             this.label8.Text = "Sex:";
             // 
@@ -694,49 +811,55 @@ namespace Ukupholisa3
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(17, 104);
+            this.label9.Location = new System.Drawing.Point(23, 128);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(47, 16);
+            this.label9.Size = new System.Drawing.Size(58, 20);
             this.label9.TabIndex = 28;
             this.label9.Text = "Name:";
             // 
             // txtSName
             // 
-            this.txtSName.Location = new System.Drawing.Point(123, 136);
+            this.txtSName.Location = new System.Drawing.Point(164, 167);
+            this.txtSName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSName.Name = "txtSName";
-            this.txtSName.Size = new System.Drawing.Size(100, 23);
+            this.txtSName.Size = new System.Drawing.Size(132, 27);
             this.txtSName.TabIndex = 27;
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(123, 101);
+            this.txtName.Location = new System.Drawing.Point(164, 124);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(100, 23);
+            this.txtName.Size = new System.Drawing.Size(132, 27);
             this.txtName.TabIndex = 26;
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(267, 400);
+            this.btnUpdate.Location = new System.Drawing.Point(356, 492);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(100, 28);
             this.btnUpdate.TabIndex = 25;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(452, 400);
+            this.btnDelete.Location = new System.Drawing.Point(603, 492);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(100, 28);
             this.btnDelete.TabIndex = 24;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(86, 400);
+            this.btnInsert.Location = new System.Drawing.Point(115, 492);
+            this.btnInsert.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(75, 23);
+            this.btnInsert.Size = new System.Drawing.Size(100, 28);
             this.btnInsert.TabIndex = 23;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -744,116 +867,41 @@ namespace Ukupholisa3
             // dgvClients
             // 
             this.dgvClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClients.Location = new System.Drawing.Point(277, 61);
+            this.dgvClients.Location = new System.Drawing.Point(369, 75);
+            this.dgvClients.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvClients.Name = "dgvClients";
             this.dgvClients.RowHeadersWidth = 51;
-            this.dgvClients.Size = new System.Drawing.Size(500, 325);
+            this.dgvClients.Size = new System.Drawing.Size(667, 400);
             this.dgvClients.TabIndex = 22;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(289, 29);
+            this.label10.Location = new System.Drawing.Point(385, 36);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(181, 29);
+            this.label10.Size = new System.Drawing.Size(219, 36);
             this.label10.TabIndex = 21;
             this.label10.Text = "Client Manage";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(161, 109);
+            this.label21.Location = new System.Drawing.Point(215, 134);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(61, 17);
+            this.label21.Size = new System.Drawing.Size(69, 20);
             this.label21.TabIndex = 1;
             this.label21.Text = "label21";
             // 
-            // pnlAddConditionDep
-            // 
-            this.pnlAddConditionDep.Controls.Add(this.btnDone2);
-            this.pnlAddConditionDep.Controls.Add(this.cmbDepCondition);
-            this.pnlAddConditionDep.Controls.Add(this.lblConditionDep);
-            this.pnlAddConditionDep.Controls.Add(this.txtDependantID2);
-            this.pnlAddConditionDep.Controls.Add(this.lblDependantID2);
-            this.pnlAddConditionDep.Controls.Add(this.btnAddDepCondition);
-            this.pnlAddConditionDep.Location = new System.Drawing.Point(275, 3);
-            this.pnlAddConditionDep.Name = "pnlAddConditionDep";
-            this.pnlAddConditionDep.Size = new System.Drawing.Size(261, 245);
-            this.pnlAddConditionDep.TabIndex = 24;
-            // 
-            // cmbDepCondition
-            // 
-            this.cmbDepCondition.FormattingEnabled = true;
-            this.cmbDepCondition.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
-            this.cmbDepCondition.Location = new System.Drawing.Point(143, 53);
-            this.cmbDepCondition.Name = "cmbDepCondition";
-            this.cmbDepCondition.Size = new System.Drawing.Size(100, 23);
-            this.cmbDepCondition.TabIndex = 14;
-            // 
-            // lblConditionDep
-            // 
-            this.lblConditionDep.AutoSize = true;
-            this.lblConditionDep.Location = new System.Drawing.Point(15, 56);
-            this.lblConditionDep.Name = "lblConditionDep";
-            this.lblConditionDep.Size = new System.Drawing.Size(59, 15);
-            this.lblConditionDep.TabIndex = 11;
-            this.lblConditionDep.Text = "Condition";
-            // 
-            // txtDependantID2
-            // 
-            this.txtDependantID2.Location = new System.Drawing.Point(143, 23);
-            this.txtDependantID2.Name = "txtDependantID2";
-            this.txtDependantID2.Size = new System.Drawing.Size(100, 21);
-            this.txtDependantID2.TabIndex = 10;
-            // 
-            // lblDependantID2
-            // 
-            this.lblDependantID2.AutoSize = true;
-            this.lblDependantID2.Location = new System.Drawing.Point(15, 26);
-            this.lblDependantID2.Name = "lblDependantID2";
-            this.lblDependantID2.Size = new System.Drawing.Size(83, 15);
-            this.lblDependantID2.TabIndex = 8;
-            this.lblDependantID2.Text = "Dependant ID";
-            // 
-            // btnAddDepCondition
-            // 
-            this.btnAddDepCondition.Location = new System.Drawing.Point(75, 151);
-            this.btnAddDepCondition.Name = "btnAddDepCondition";
-            this.btnAddDepCondition.Size = new System.Drawing.Size(100, 23);
-            this.btnAddDepCondition.TabIndex = 5;
-            this.btnAddDepCondition.Text = "Add Condition";
-            this.btnAddDepCondition.UseVisualStyleBackColor = true;
-            //this.btnAddDepCondition.Click += new System.EventHandler(this.btnAddDepCondition_Click);
-            // 
-            // btnDone2
-            // 
-            this.btnDone2.Location = new System.Drawing.Point(75, 191);
-            this.btnDone2.Name = "btnDone2";
-            this.btnDone2.Size = new System.Drawing.Size(100, 23);
-            this.btnDone2.TabIndex = 15;
-            this.btnDone2.Text = "Done";
-            this.btnDone2.UseVisualStyleBackColor = true;
-            //this.btnDone2.Click += new System.EventHandler(this.btnDone2_Click);
-            // 
-            // btnDone1
-            // 
-            this.btnDone1.Location = new System.Drawing.Point(143, 201);
-            this.btnDone1.Name = "btnDone1";
-            this.btnDone1.Size = new System.Drawing.Size(100, 23);
-            this.btnDone1.TabIndex = 16;
-            this.btnDone1.Text = "Done";
-            this.btnDone1.UseVisualStyleBackColor = true;
-            //this.btnDone1.Click += new System.EventHandler(this.btnDone1_Click);
-            // 
             // UserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 518);
+            this.ClientSize = new System.Drawing.Size(1073, 638);
             this.Controls.Add(this.userTabCtrl);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UserForm";
             this.Text = "UserForm";
             this.Load += new System.EventHandler(this.UserForm_Load);
@@ -863,6 +911,8 @@ namespace Ukupholisa3
             this.tabShowDependants.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).EndInit();
             this.tabAddAccount.ResumeLayout(false);
+            this.pnlAddConditionDep.ResumeLayout(false);
+            this.pnlAddConditionDep.PerformLayout();
             this.pnlDependantAdd.ResumeLayout(false);
             this.pnlDependantAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
@@ -874,8 +924,6 @@ namespace Ukupholisa3
             this.Conditions.ResumeLayout(false);
             this.Conditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
-            this.pnlAddConditionDep.ResumeLayout(false);
-            this.pnlAddConditionDep.PerformLayout();
             this.ResumeLayout(false);
 
         }

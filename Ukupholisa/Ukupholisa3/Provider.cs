@@ -8,19 +8,21 @@ namespace Genisis
 {
     class Provider
     {
+        private int iD;
         private string providerName;
         private int providerStatus;
         private string agreement;
         private string contact;
 
-        public Provider(string providerName, int providerStatus)
-        {
-            this.ProviderName = providerName;
-            this.ProviderStatus = providerStatus;
-        }
+        //public Provider(string providerName, int providerStatus)
+        //{
+        //    this.ProviderName = providerName;
+        //    this.ProviderStatus = providerStatus;
+        //}
 
-        public Provider(string providerName, int providerStatus, string Agreement, string Contact)
+        public Provider(int iD, string providerName, int providerStatus, string Agreement, string Contact)
         {
+            this.iD = iD;
             this.ProviderName = providerName;
             this.ProviderStatus = providerStatus;
             this.Agreement = Agreement;
@@ -31,6 +33,7 @@ namespace Genisis
         public int ProviderStatus { get => providerStatus; set => providerStatus = value; }
         public string Agreement { get => agreement; set => agreement = value; }
         public string Contact { get => contact; set => contact = value; }
+        public int ID { get => iD; set => iD = value; }
 
         private static string displayProvider(string providerName)
         {

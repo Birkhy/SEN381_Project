@@ -59,10 +59,7 @@ namespace Ukupholisa3
             cmbPackage.DataSource = userHandle.getPackages();
         }
 
-        private void tabShowAccounts_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -100,6 +97,11 @@ namespace Ukupholisa3
            // userHandle.AddAccount(newAccount);
             
             //MessageBox.Show(AccountID.ToString());
+        }
+
+        private void tabCall_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

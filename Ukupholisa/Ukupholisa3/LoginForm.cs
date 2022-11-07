@@ -53,23 +53,23 @@ namespace Genisis
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 if (handler.CheckAdminLog(txtUserName.Text.Trim(), txtPass.Text))
                 {
-                    AdminForm nf = new AdminForm();
-                    nf.Show();
+                    AdminForm af = new AdminForm();
+                    af.Show();
                     this.Hide();
                 }
                 else
                 {
                     MessageBox.Show("These credential does not exist within the database.");
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Somthing whent wrong trying to login to the program, please try again later.");
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Somthing whent wrong trying to login to the program, please try again later.");
+            //}
         }
     }
 }
