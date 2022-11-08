@@ -767,12 +767,12 @@ namespace Ukupholisa3
                     connect.Open();
                     MySqlCommand sql_cmnd = new MySqlCommand("updateProducts", connect);
                     sql_cmnd.CommandType = CommandType.StoredProcedure;
-                    sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
-                    sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Decimal).Value = Price;
-                    sql_cmnd.Parameters.AddWithValue("@PAvailability", SqlDbType.Binary).Value = Availability;
-                    sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.Int).Value = Preformance;
-                    sql_cmnd.Parameters.AddWithValue("@CLevel", SqlDbType.Int).Value = coverLevel;
-                    sql_cmnd.Parameters.AddWithValue("@PPromotion", SqlDbType.Binary).Value = Promotion;
+                    sql_cmnd.Parameters.AddWithValue("@PName", Name);
+                    sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
+                    sql_cmnd.Parameters.AddWithValue("@Avail", Availability);
+                    sql_cmnd.Parameters.AddWithValue("@PPreformance", Preformance);
+                    sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
+                    sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
 
                     int Row = sql_cmnd.ExecuteNonQuery();
 
@@ -811,12 +811,12 @@ namespace Ukupholisa3
                     connect.Open();
                     MySqlCommand sql_cmnd = new MySqlCommand("insertProduct", connect);
                     sql_cmnd.CommandType = CommandType.StoredProcedure;
-                    sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
-                    sql_cmnd.Parameters.AddWithValue("@PPrice", SqlDbType.Decimal).Value = Price;
-                    sql_cmnd.Parameters.AddWithValue("@Avail", SqlDbType.Binary).Value = Availability;
-                    sql_cmnd.Parameters.AddWithValue("@PPreformance", SqlDbType.Int).Value = Preformance;
-                    sql_cmnd.Parameters.AddWithValue("@CLevel", SqlDbType.Int).Value = coverLevel;
-                    sql_cmnd.Parameters.AddWithValue("@PPromotion", SqlDbType.Binary).Value = Promotion;
+                    sql_cmnd.Parameters.AddWithValue("@PName", Name);
+                    sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
+                    sql_cmnd.Parameters.AddWithValue("@Avail", Availability);
+                    sql_cmnd.Parameters.AddWithValue("@PPreformance", Preformance);
+                    sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
+                    sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
                     int Row = sql_cmnd.ExecuteNonQuery();
                     if (Row > 0)
                     {
@@ -851,7 +851,7 @@ namespace Ukupholisa3
             {
                 SqlCommand command = new SqlCommand("deleteProduct", connect);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
+                command.Parameters.AddWithValue("@PName", Name);
 
                 int Row = command.ExecuteNonQuery();
                 if (Row >= 0)
@@ -879,14 +879,12 @@ namespace Ukupholisa3
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("getProvider", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                MySqlDataAdapter sda = new MySqlDataAdapter(sql_cmnd);
+                MySqlCommand vpt = new MySqlCommand("Select * From Provider", connect);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
 
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
 
-                MessageBox.Show("Lekker");
                 connect.Close();
                 return dt;
 
@@ -907,10 +905,10 @@ namespace Ukupholisa3
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("updateProvider", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = PName;
-                sql_cmnd.Parameters.AddWithValue("@PStatus", SqlDbType.Binary).Value = Status;
-                sql_cmnd.Parameters.AddWithValue("@PAgreement", SqlDbType.NVarChar).Value = Agreement;
-                sql_cmnd.Parameters.AddWithValue("@PContact", SqlDbType.NVarChar).Value = Contact;
+                sql_cmnd.Parameters.AddWithValue("@PName", PName);
+                sql_cmnd.Parameters.AddWithValue("@PStatus", Status);
+                sql_cmnd.Parameters.AddWithValue("@PAgreement", Agreement);
+                sql_cmnd.Parameters.AddWithValue("@PContact", Contact);
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -939,10 +937,10 @@ namespace Ukupholisa3
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("insertProvider", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = PName;
-                sql_cmnd.Parameters.AddWithValue("@PStatus", SqlDbType.Binary).Value = Status;
-                sql_cmnd.Parameters.AddWithValue("@PAgreement", SqlDbType.NVarChar).Value = Agreement;
-                sql_cmnd.Parameters.AddWithValue("@PContact", SqlDbType.NVarChar).Value = Contact;
+                sql_cmnd.Parameters.AddWithValue("@PName", PName);
+                sql_cmnd.Parameters.AddWithValue("@PStatus", Status);
+                sql_cmnd.Parameters.AddWithValue("@PAgreement", Agreement);
+                sql_cmnd.Parameters.AddWithValue("@PContact", Contact);
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -972,7 +970,7 @@ namespace Ukupholisa3
             {
                 SqlCommand command = new SqlCommand("deleteProvider", connect);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@PName", SqlDbType.NVarChar).Value = Name;
+                command.Parameters.AddWithValue("@PName", Name);
 
                 int Row = command.ExecuteNonQuery();
                 if (Row >= 0)
@@ -994,25 +992,27 @@ namespace Ukupholisa3
         }
 
         //The getProviderS function gets the Provider from the database and will be used to display the data in the Provider DataGridView.
-        public List<Staff> getUser()
+        public DataTable getUser()
         {
-            List<Staff> allStaff = new List<Staff>();
             MySqlConnection connect = new MySqlConnection(conn);
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                MySqlCommand command = new MySqlCommand("Select * From Staff", connect);
+                MySqlCommand vpt = new MySqlCommand("Select * From Staff", connect);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
 
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        allStaff.Add(new Staff(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString(), int.Parse(reader[6].ToString())));
-                    }
-                }
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                return dt;
+
             }
-            connect.Close();
-            return allStaff;
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
         }
 
         //updateProvider will be used to update the specified Provider in the database.
@@ -1024,13 +1024,13 @@ namespace Ukupholisa3
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("updateUser", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@EName", SqlDbType.NVarChar).Value = name;
-                sql_cmnd.Parameters.AddWithValue("@SName", SqlDbType.NVarChar).Value = surname;
-                sql_cmnd.Parameters.AddWithValue("@EContact", SqlDbType.NVarChar).Value = contact;
-                sql_cmnd.Parameters.AddWithValue("@EID", SqlDbType.NVarChar).Value = username;
-                sql_cmnd.Parameters.AddWithValue("@UName", SqlDbType.NVarChar).Value = password;
-                sql_cmnd.Parameters.AddWithValue("@UPassword", SqlDbType.Bit).Value = clearance;
-                sql_cmnd.Parameters.AddWithValue("@UClearance", SqlDbType.NVarChar).Value = ID;
+                sql_cmnd.Parameters.AddWithValue("@EName", name);
+                sql_cmnd.Parameters.AddWithValue("@SName", surname).Value = surname;
+                sql_cmnd.Parameters.AddWithValue("@UContact", contact);
+                sql_cmnd.Parameters.AddWithValue("@UID", username);
+                sql_cmnd.Parameters.AddWithValue("@UName", password);
+                sql_cmnd.Parameters.AddWithValue("@UPassword", clearance);
+                sql_cmnd.Parameters.AddWithValue("@UClearance", ID);
 
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
@@ -1060,13 +1060,13 @@ namespace Ukupholisa3
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("inserUser", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@EName", SqlDbType.NVarChar).Value = name;
-                sql_cmnd.Parameters.AddWithValue("@SName", SqlDbType.NVarChar).Value = surname;
-                sql_cmnd.Parameters.AddWithValue("@UContact", SqlDbType.NVarChar).Value = contact;
-                sql_cmnd.Parameters.AddWithValue("@UID", SqlDbType.NVarChar).Value = username;
-                sql_cmnd.Parameters.AddWithValue("@UName", SqlDbType.NVarChar).Value = password;
-                sql_cmnd.Parameters.AddWithValue("@UPassword", SqlDbType.Bit).Value = clearance;
-                sql_cmnd.Parameters.AddWithValue("@UClearance", SqlDbType.NVarChar).Value = ID;
+                sql_cmnd.Parameters.AddWithValue("@EName", name);
+                sql_cmnd.Parameters.AddWithValue("@SName", surname).Value = surname;
+                sql_cmnd.Parameters.AddWithValue("@UContact", contact);
+                sql_cmnd.Parameters.AddWithValue("@UID", username);
+                sql_cmnd.Parameters.AddWithValue("@UName", password);
+                sql_cmnd.Parameters.AddWithValue("@UPassword", clearance);
+                sql_cmnd.Parameters.AddWithValue("@UClearance", ID);
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -1096,7 +1096,7 @@ namespace Ukupholisa3
             {
                 SqlCommand command = new SqlCommand("deleteUser", connect);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@UserID", SqlDbType.NVarChar).Value = ID;
+                command.Parameters.AddWithValue("@UserID", ID);
 
                 int Row = command.ExecuteNonQuery();
                 if (Row >= 0)
