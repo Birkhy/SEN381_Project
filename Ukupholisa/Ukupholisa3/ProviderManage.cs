@@ -76,7 +76,16 @@ namespace Genisis
                 MessageBox.Show("Somthing went wrong trying to display the Products.");
             }
 
-
+            
+            //Will display the Condtions on Initialization
+            try
+            {
+                dgvConditions.DataSource = Handle.getCondition();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong trying to display the Conditions.");
+            }
         }
 
         private void dgvTreatments_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -319,6 +328,45 @@ namespace Genisis
         private void button2_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void btnConDelete_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Handle.deleteCondition(txtCondtionName.Text));
+            try
+            {
+                dgvConditions.DataSource = Handle.getCondition();
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to delete Condition: {txtCondtionName.Text}.");
+            }
+        }
+
+        private void btnConInsert_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Handle.addCondtion(txtCondtionName.Text));
+            try
+            {
+                dgvConditions.DataSource = Handle.getCondition();
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to insert Condition: {txtCondtionName.Text}.");
+            }
+        }
+
+        private void btnConUpdate_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Handle.updateCondtion(txtConditionNewName.Text));
+            try
+            {
+                dgvConditions.DataSource = Handle.getCondition();
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update Condition: {txtCondtionName.Text}.");
+            }
         }
     }
 }

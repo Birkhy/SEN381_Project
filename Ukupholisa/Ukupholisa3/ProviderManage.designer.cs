@@ -85,21 +85,23 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.Treatments = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.txtSrchTrt = new System.Windows.Forms.TextBox();
             this.btnSrchTrt = new System.Windows.Forms.Button();
             this.dgvTreatments = new System.Windows.Forms.DataGridView();
-            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
             this.Conditions = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.txtCondtionName = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.btnConUpdate = new System.Windows.Forms.Button();
             this.btnConExit = new System.Windows.Forms.Button();
             this.btnConDelete = new System.Windows.Forms.Button();
             this.btnConInsert = new System.Windows.Forms.Button();
             this.dgvConditions = new System.Windows.Forms.DataGridView();
-            this.btnConUpdate = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.txtConditionNewName = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Provider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
@@ -764,6 +766,18 @@
             this.Treatments.UseVisualStyleBackColor = true;
             this.Treatments.Click += new System.EventHandler(this.Treatments_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(82, 30);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(172, 36);
+            this.label6.TabIndex = 24;
+            this.label6.Text = "Treatments";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -808,7 +822,9 @@
             // 
             // Conditions
             // 
-            this.Conditions.Controls.Add(this.textBox1);
+            this.Conditions.Controls.Add(this.txtConditionNewName);
+            this.Conditions.Controls.Add(this.label24);
+            this.Conditions.Controls.Add(this.txtCondtionName);
             this.Conditions.Controls.Add(this.label23);
             this.Conditions.Controls.Add(this.btnConUpdate);
             this.Conditions.Controls.Add(this.btnConExit);
@@ -823,28 +839,37 @@
             this.Conditions.Text = "Conditions";
             this.Conditions.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // txtCondtionName
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(82, 30);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(172, 36);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Treatments";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.txtCondtionName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCondtionName.Location = new System.Drawing.Point(233, 98);
+            this.txtCondtionName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCondtionName.Name = "txtCondtionName";
+            this.txtCondtionName.Size = new System.Drawing.Size(184, 34);
+            this.txtCondtionName.TabIndex = 32;
             // 
-            // label11
+            // label23
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(116, 40);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(168, 36);
-            this.label11.TabIndex = 25;
-            this.label11.Text = "Conditions";
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(37, 98);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(193, 29);
+            this.label23.TabIndex = 31;
+            this.label23.Text = "Condition Name:";
+            // 
+            // btnConUpdate
+            // 
+            this.btnConUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConUpdate.Location = new System.Drawing.Point(185, 370);
+            this.btnConUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnConUpdate.Name = "btnConUpdate";
+            this.btnConUpdate.Size = new System.Drawing.Size(137, 31);
+            this.btnConUpdate.TabIndex = 30;
+            this.btnConUpdate.Text = "Update";
+            this.btnConUpdate.UseVisualStyleBackColor = true;
+            this.btnConUpdate.Click += new System.EventHandler(this.btnConUpdate_Click);
             // 
             // btnConExit
             // 
@@ -868,6 +893,7 @@
             this.btnConDelete.TabIndex = 28;
             this.btnConDelete.Text = "Delete";
             this.btnConDelete.UseVisualStyleBackColor = true;
+            this.btnConDelete.Click += new System.EventHandler(this.btnConDelete_Click);
             // 
             // btnConInsert
             // 
@@ -879,6 +905,7 @@
             this.btnConInsert.TabIndex = 27;
             this.btnConInsert.Text = "Insert";
             this.btnConInsert.UseVisualStyleBackColor = true;
+            this.btnConInsert.Click += new System.EventHandler(this.btnConInsert_Click);
             // 
             // dgvConditions
             // 
@@ -890,36 +917,36 @@
             this.dgvConditions.Size = new System.Drawing.Size(480, 300);
             this.dgvConditions.TabIndex = 26;
             // 
-            // btnConUpdate
+            // label11
             // 
-            this.btnConUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConUpdate.Location = new System.Drawing.Point(42, 194);
-            this.btnConUpdate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnConUpdate.Name = "btnConUpdate";
-            this.btnConUpdate.Size = new System.Drawing.Size(137, 31);
-            this.btnConUpdate.TabIndex = 30;
-            this.btnConUpdate.Text = "Insert";
-            this.btnConUpdate.UseVisualStyleBackColor = true;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(116, 40);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(168, 36);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "Conditions";
             // 
-            // textBox1
+            // txtConditionNewName
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(233, 98);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(184, 34);
-            this.textBox1.TabIndex = 32;
+            this.txtConditionNewName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConditionNewName.Location = new System.Drawing.Point(255, 320);
+            this.txtConditionNewName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtConditionNewName.Name = "txtConditionNewName";
+            this.txtConditionNewName.Size = new System.Drawing.Size(184, 34);
+            this.txtConditionNewName.TabIndex = 34;
             // 
-            // label23
+            // label24
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(37, 98);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(193, 29);
-            this.label23.TabIndex = 31;
-            this.label23.Text = "Condition Name:";
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(59, 320);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(182, 29);
+            this.label24.TabIndex = 33;
+            this.label24.Text = "Updated Name:";
             // 
             // AdminForm
             // 
@@ -1023,7 +1050,9 @@
         private System.Windows.Forms.Button btnConInsert;
         private System.Windows.Forms.DataGridView dgvConditions;
         private System.Windows.Forms.Button btnConUpdate;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCondtionName;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtConditionNewName;
+        private System.Windows.Forms.Label label24;
     }
 }

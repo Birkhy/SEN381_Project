@@ -236,7 +236,7 @@ namespace Ukupholisa3
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
                 sql_cmnd.Parameters.AddWithValue("@TreatmentName", TreatmentName);
-                
+
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -259,7 +259,7 @@ namespace Ukupholisa3
             }
         }
 
-        public bool AddDependantCondition(string DependantID,int ConditionID)
+        public bool AddDependantCondition(string DependantID, int ConditionID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (DependantID != "")
@@ -269,8 +269,8 @@ namespace Ukupholisa3
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
                 sql_cmnd.Parameters.AddWithValue("@ConditionID", ConditionID);
-                
-                
+
+
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -597,7 +597,7 @@ namespace Ukupholisa3
             {
                 connect.Open();
                 MySqlCommand command = new MySqlCommand("SELECT Package_Name FROM product", connect);
-  
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -612,9 +612,9 @@ namespace Ukupholisa3
         //sets account id according to holder id
         public string getAccountID(string HolderID)
         {
-          
+
             MySqlConnection connect = new MySqlConnection(conn);
-           
+
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
@@ -627,7 +627,7 @@ namespace Ukupholisa3
                 command.ExecuteNonQuery();
 
                 string AccountID = command.Parameters["AccountID"].Value.ToString();
-                
+
 
 
 
@@ -675,7 +675,7 @@ namespace Ukupholisa3
             {
                 connect.Open();
                 MySqlCommand command = new MySqlCommand("SELECT conditions.Condition FROM conditions", connect);
-     
+
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -1239,7 +1239,7 @@ namespace Ukupholisa3
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                MySqlCommand vpt = new MySqlCommand("Select * From Condition", connect);
+                MySqlCommand vpt = new MySqlCommand("Select * From conditions", connect);
                 MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
 
                 DataTable dt = new DataTable();
@@ -1247,7 +1247,6 @@ namespace Ukupholisa3
 
                 connect.Close();
                 return dt;
-
             }
             else
             {
@@ -1256,16 +1255,16 @@ namespace Ukupholisa3
             }
         }
 
-        //updateProvider will be used to update the specified Provider in the database.
-        public string updateCondtion(string name)
+        //updateConditions will be used to update the specified Conditions in the database.
+        public string updateCondition(string name)
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (name != "")
             {
                 connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("updateCondtion", connect);
+                MySqlCommand sql_cmnd = new MySqlCommand("updateCondition", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@ConditionName", name);
+                sql_cmnd.Parameters.AddWithValue("@CName", name);
 
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
@@ -1286,16 +1285,16 @@ namespace Ukupholisa3
             }
         }
 
-        //addUser will be able to add a new User to the database.
+        //addConditions will be able to add a new Conditions to the database.
         public string addCondtion(string name)
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (name != "")
             {
                 connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("inserCondition", connect);
+                MySqlCommand sql_cmnd = new MySqlCommand("addCondition", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@EName", name);
+                sql_cmnd.Parameters.AddWithValue("@CName", name);
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -1315,7 +1314,7 @@ namespace Ukupholisa3
             }
         }
 
-        //The deleteUser function will be used to delete a User out of the database using the EmployeeID.
+        //The deleteConditions function will be used to delete a Conditions out of the database using the ConditionName.
         public string deleteCondition(string Name)
         {
             MySqlConnection connect = new MySqlConnection(conn);
@@ -1325,7 +1324,7 @@ namespace Ukupholisa3
             {
                 MySqlCommand command = new MySqlCommand("deleteCondition", connect);
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@ConditionName", Name);
+                command.Parameters.AddWithValue("@CName", Name);
 
                 int Row = command.ExecuteNonQuery();
                 if (Row >= 0)
