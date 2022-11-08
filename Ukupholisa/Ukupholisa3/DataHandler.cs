@@ -225,6 +225,39 @@ namespace Ukupholisa3
                 return false;
             }
         }
+        //adds claim
+        public bool AddClaim(int AccountID, string TreatmentName)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (TreatmentName != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("AddClaim", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
+                sql_cmnd.Parameters.AddWithValue("@TreatmentName", TreatmentName);
+                
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    MessageBox.Show("Claim was added.");
+                    return true;
+                }
+                else
+                {
+                    connect.Close();
+                    MessageBox.Show("Claim failed to be added.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all required data");
+                connect.Close();
+                return false;
+            }
+        }
 
         public bool AddDependantCondition(string DependantID,int ConditionID)
         {
@@ -232,11 +265,10 @@ namespace Ukupholisa3
             if (DependantID != "")
             {
                 connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("AddDependantCondition", connect);
+                MySqlCommand sql_cmnd = new MySqlCommand("newAddDependantCondition", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
-                sql_cmnd.Parameters.AddWithValue("" +
-                    "@ConditionID", ConditionID);
+                sql_cmnd.Parameters.AddWithValue("@ConditionID", ConditionID);
                 
                 
                 int Row = sql_cmnd.ExecuteNonQuery();
@@ -490,10 +522,10 @@ namespace Ukupholisa3
         //}
 
         //This method verifies an account holderkey and returns a boolean, it works.
-        public bool checkHolderKey(int holderKey, string holderID)
+        public bool checkHolderKey(string holderKey, string holderID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (holderKey != 0 && (holderKey.ToString()).Length == 5)
+            if (holderKey != "" && (holderKey.ToString()).Length == 5)
             {
                 connect.Open();
 
@@ -577,6 +609,62 @@ namespace Ukupholisa3
             connect.Close();
             return AllPackages;
         }
+        //sets account id according to holder id
+        public string getAccountID(string HolderID)
+        {
+          
+            MySqlConnection connect = new MySqlConnection(conn);
+           
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("getAccountID", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@HolderID", HolderID);
+                command.Parameters.Add("AccountID", MySqlDbType.Int32);
+                command.Parameters["AccountID"].Direction = ParameterDirection.Output;
+
+                command.ExecuteNonQuery();
+
+                string AccountID = command.Parameters["AccountID"].Value.ToString();
+                
+
+
+
+
+                connect.Close();
+
+                return AccountID;
+            }
+            return "";
+        }
+
+        //public Int32 getLastID()
+        //{
+        //    MySqlConnection connect = new MySqlConnection(conn);
+        //    if (connect.State != ConnectionState.Open)
+        //    {
+        //        connect.Open();
+        //        MySqlCommand selectlastID = new MySqlCommand("getLastAccountID", connect);
+        //        selectlastID.CommandType = CommandType.StoredProcedure;
+        //        selectlastID.Parameters.Add("lastAccountID", MySqlDbType.Int32);
+        //        selectlastID.Parameters["lastAccountID"].Direction = ParameterDirection.Output;
+
+        //        selectlastID.ExecuteNonQuery();
+
+        //        Int32 lastID = (Int32)selectlastID.Parameters["lastAccountID"].Value;
+
+
+
+
+
+        //        connect.Close();
+
+        //        return lastID;
+
+        //    }
+        //    return 0;
+        //}
 
         //Method returns List to populate combobox associated with conditions.
         public List<string> getConditions()
@@ -624,29 +712,32 @@ namespace Ukupholisa3
         }
 
         //Sets package Id for specific claim
-        public int setPackageIDClaim(string HolderID)
+        public string setPackageIDClaim(string HolderID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            int PackageID = 0;
+
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                MySqlCommand spi = new MySqlCommand("SELECT account.Package_ID FROM account WHERE account.Holder_ID = @HolderID", connect);
-                spi.Parameters.AddWithValue("@HolderID", HolderID);
+                MySqlCommand command = new MySqlCommand("getAccountID", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@HolderID", HolderID);
+                command.Parameters.Add("AccountID", MySqlDbType.Int32);
+                command.Parameters["AccountID"].Direction = ParameterDirection.Output;
+
+                command.ExecuteNonQuery();
+
+                string AccountID = command.Parameters["AccountID"].Value.ToString();
 
 
 
-                using (var reader = spi.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        PackageID = int.Parse(reader[0].ToString());
-                    }
 
-                }
+
+                connect.Close();
+
+                return AccountID;
             }
-            connect.Close();
-            return PackageID;
+            return "";
         }
 
         // sets package id according to package name
@@ -677,30 +768,32 @@ namespace Ukupholisa3
         }
 
         // sets condition id according to condition name
-        public int setConditionID(string Condition)
+        public string setConditionID(string VCondition)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            int PackageID = 0;
+
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                MySqlCommand spi = new MySqlCommand("setConditionID", connect);
-                spi.CommandType = CommandType.StoredProcedure;
-                spi.Parameters.AddWithValue("@VCondition", Condition);
+                MySqlCommand command = new MySqlCommand("setConditionID", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@VCondition", VCondition);
+                command.Parameters.Add("ConditionID", MySqlDbType.Int32);
+                command.Parameters["ConditionID"].Direction = ParameterDirection.Output;
+
+                command.ExecuteNonQuery();
+
+                string AccountID = command.Parameters["ConditionID"].Value.ToString();
 
 
 
-                using (var reader = spi.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        PackageID = int.Parse(reader[0].ToString());
-                    }
 
-                }
+
+                connect.Close();
+
+                return AccountID;
             }
-            connect.Close();
-            return PackageID;
+            return "";
         }
 
         //Method returns datatable to view treatments associated with a package.

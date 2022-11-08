@@ -278,6 +278,7 @@ namespace Ukupholisa3
             this.btnSubmitClaim.TabIndex = 23;
             this.btnSubmitClaim.Text = "Submit";
             this.btnSubmitClaim.UseVisualStyleBackColor = true;
+            this.btnSubmitClaim.Click += new System.EventHandler(this.btnSubmitClaim_Click);
             // 
             // cmbClaimCondition
             // 
