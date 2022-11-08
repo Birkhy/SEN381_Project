@@ -165,6 +165,7 @@ namespace Ukupholisa3
             this.btnEnd.TabIndex = 21;
             this.btnEnd.Text = "Call End";
             this.btnEnd.UseVisualStyleBackColor = true;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
             // btnStart
             // 
@@ -173,8 +174,9 @@ namespace Ukupholisa3
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(76, 24);
             this.btnStart.TabIndex = 20;
-            this.btnStart.Text = "Call Start";
+            this.btnStart.Text = "Start Call";
             this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // label5
             // 

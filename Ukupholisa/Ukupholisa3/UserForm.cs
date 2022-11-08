@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.Types;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,10 +24,13 @@ namespace Ukupholisa3
         string DependantName;
         string DependantSurname;
         DateTime DOB;
+        DateTime CallStartTime;
+        DateTime CallEndTime;
         string DependantSex;
         int ConditionID;
         string VCondition;
         int packageIDclaim;
+        TimeSpan CallDuration;
 
         DataHandler userHandle = new DataHandler();
         public UserForm()
@@ -208,6 +212,22 @@ namespace Ukupholisa3
             {
                 MessageBox.Show("something went wrong");
             }
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            CallStartTime = DateTime.Now;
+            MessageBox.Show(CallStartTime.ToString());
+
+
+        }
+
+        private void btnEnd_Click(object sender, EventArgs e)
+        {
+            CallEndTime = DateTime.Now;
+            MessageBox.Show(CallEndTime.ToString());
+            CallDuration = CallStartTime.Subtract(CallEndTime);
+            
         }
     }
 }
