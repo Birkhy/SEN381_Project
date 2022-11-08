@@ -813,8 +813,8 @@ namespace Ukupholisa3
                     sql_cmnd.CommandType = CommandType.StoredProcedure;
                     sql_cmnd.Parameters.AddWithValue("@PName", Name);
                     sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
-                    sql_cmnd.Parameters.AddWithValue("@Avail", Availability);
-                    sql_cmnd.Parameters.AddWithValue("@PPreformance", Preformance);
+                    sql_cmnd.Parameters.AddWithValue("@Avial", Availability);
+                    sql_cmnd.Parameters.AddWithValue("@PPerformance", Preformance);
                     sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
                     sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
                     int Row = sql_cmnd.ExecuteNonQuery();
@@ -844,12 +844,12 @@ namespace Ukupholisa3
         //The deleteProduct function will be used to delete a product out of the database using the ProductName.
         public string deleteProduct(string Name)
         {
-            SqlConnection connect = new SqlConnection(conn);
+            MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
             if (Name != "")
             {
-                SqlCommand command = new SqlCommand("deleteProduct", connect);
+                MySqlCommand command = new MySqlCommand("deleteProduct", connect);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@PName", Name);
 
@@ -963,12 +963,12 @@ namespace Ukupholisa3
         //The deleteProduct function will be used to delete a product out of the database using the ProductName.
         public string deleteProvider(string Name)
         {
-            SqlConnection connect = new SqlConnection(conn);
+            MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
             if (Name != "")
             {
-                SqlCommand command = new SqlCommand("deleteProvider", connect);
+                MySqlCommand command = new MySqlCommand("deleteProvider", connect);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@PName", Name);
 
@@ -1089,12 +1089,12 @@ namespace Ukupholisa3
         //The deleteUser function will be used to delete a User out of the database using the EmployeeID.
         public string deleteUser(string ID)
         {
-            SqlConnection connect = new SqlConnection(conn);
+            MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
             if (ID != "")
             {
-                SqlCommand command = new SqlCommand("deleteUser", connect);
+                MySqlCommand command = new MySqlCommand("deleteUser", connect);
                 command.CommandType = CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@UserID", ID);
 

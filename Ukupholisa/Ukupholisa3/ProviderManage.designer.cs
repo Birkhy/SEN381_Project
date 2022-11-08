@@ -72,7 +72,7 @@
             this.btnProdExit = new System.Windows.Forms.Button();
             this.btnProdDel = new System.Windows.Forms.Button();
             this.btnProdIn = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvProduct = new System.Windows.Forms.DataGridView();
             this.cmbCover = new System.Windows.Forms.ComboBox();
             this.chkPro = new System.Windows.Forms.CheckBox();
             this.chkAvail = new System.Windows.Forms.CheckBox();
@@ -98,7 +98,7 @@
             this.Users.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.Product.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).BeginInit();
             this.Treatments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).BeginInit();
             this.SuspendLayout();
@@ -537,7 +537,7 @@
             this.Product.Controls.Add(this.btnProdExit);
             this.Product.Controls.Add(this.btnProdDel);
             this.Product.Controls.Add(this.btnProdIn);
-            this.Product.Controls.Add(this.dataGridView1);
+            this.Product.Controls.Add(this.dgvProduct);
             this.Product.Controls.Add(this.cmbCover);
             this.Product.Controls.Add(this.chkPro);
             this.Product.Controls.Add(this.chkAvail);
@@ -609,15 +609,15 @@
             this.btnProdIn.UseVisualStyleBackColor = true;
             this.btnProdIn.Click += new System.EventHandler(this.btnProdIn_Click);
             // 
-            // dataGridView1
+            // dgvProduct
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(488, 17);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(480, 300);
-            this.dataGridView1.TabIndex = 17;
+            this.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProduct.Location = new System.Drawing.Point(488, 17);
+            this.dgvProduct.Name = "dgvProduct";
+            this.dgvProduct.RowHeadersWidth = 51;
+            this.dgvProduct.RowTemplate.Height = 24;
+            this.dgvProduct.Size = new System.Drawing.Size(480, 300);
+            this.dgvProduct.TabIndex = 17;
             // 
             // cmbCover
             // 
@@ -834,7 +834,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.Product.ResumeLayout(false);
             this.Product.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProduct)).EndInit();
             this.Treatments.ResumeLayout(false);
             this.Treatments.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).EndInit();
@@ -897,7 +897,7 @@
         private System.Windows.Forms.Button btnProdExit;
         private System.Windows.Forms.Button btnProdDel;
         private System.Windows.Forms.Button btnProdIn;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvProduct;
         private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox lbTreatments;
