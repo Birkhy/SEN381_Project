@@ -114,8 +114,6 @@ namespace Ukupholisa3
                     txtAccountID.Text = AccountID.ToString();
                     txtDependantID.Text = HolderID;
                 }
-                ;
-
             }
             catch (Exception)
             {
