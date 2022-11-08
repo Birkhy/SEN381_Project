@@ -1233,7 +1233,118 @@ namespace Ukupholisa3
                 return dt;
             }
         }
+        public DataTable getCondition()
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand vpt = new MySqlCommand("Select * From Condition", connect);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
 
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+        }
+
+        //updateProvider will be used to update the specified Provider in the database.
+        public string updateCondtion(string name)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (name != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("updateCondtion", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@ConditionName", name);
+
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    return "Condition with the Name " + name + " was updated in the database.";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"The Condition with the Name {name} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter all required data to update the specified Condition.";
+            }
+        }
+
+        //addUser will be able to add a new User to the database.
+        public string addCondtion(string name)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (name != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("inserCondition", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@EName", name);
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    return "Condition with the Name " + name + " was added to the database.";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"The Condition with the Name {name} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter all required data to insert the specified Condition.";
+            }
+        }
+
+        //The deleteUser function will be used to delete a User out of the database using the EmployeeID.
+        public string deleteCondition(string Name)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            connect.Open();
+
+            if (Name != "")
+            {
+                MySqlCommand command = new MySqlCommand("deleteCondition", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@ConditionName", Name);
+
+                int Row = command.ExecuteNonQuery();
+                if (Row >= 0)
+                {
+                    connect.Close();
+                    return "Deleted details of Condition with the Name: " + Name + ".";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"Condition with ID {Name} does not exist.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter the Condition Name you want to delete.";
+            }
+        }
     }
 
 }

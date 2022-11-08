@@ -310,5 +310,15 @@ namespace Genisis
                 MessageBox.Show("Somthing went wrong trying to display the Products.");
             //}
         }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
