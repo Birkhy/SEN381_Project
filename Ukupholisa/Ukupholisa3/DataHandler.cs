@@ -400,12 +400,9 @@ namespace Ukupholisa3
             }
         }
 
-<<<<<<< HEAD
-        //adds condition associated with a dependant
-        public bool AddDependantCondition(string DependantID,int ConditionID)
-=======
+
         public bool AddDependantCondition(string DependantID, int ConditionID)
->>>>>>> 3d0a9ca6905d8dcbf41c055ea28d07a1edae91d2
+
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (DependantID != "")
