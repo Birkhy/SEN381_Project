@@ -153,6 +153,147 @@ namespace Ukupholisa3
             }
             return 0;
         }
+
+        //This method gets the last ID in the Call table in order to add new ones.
+        public Int32 getLastCallID()
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand selectlastID = new MySqlCommand("getLastCallID", connect);
+                selectlastID.CommandType = CommandType.StoredProcedure;
+                selectlastID.Parameters.Add("lastCallID", MySqlDbType.Int32);
+                selectlastID.Parameters["lastCallID"].Direction = ParameterDirection.Output;
+
+                selectlastID.ExecuteNonQuery();
+
+                Int32 lastID = (Int32)selectlastID.Parameters["lastCallID"].Value;
+
+
+
+
+
+                connect.Close();
+
+                return lastID;
+
+            }
+            return 0;
+        }
+
+        //adds call to the call table
+        public bool AddCallStart(int CallID, DateTime CallDate, DateTime CallStartTime)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (CallDate != null && CallStartTime != null)
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("AddCall", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@CallID", CallID);
+                sql_cmnd.Parameters.AddWithValue("@CallDate", CallDate);
+                sql_cmnd.Parameters.AddWithValue("@CallStartTime", CallStartTime);
+                
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    MessageBox.Show("Call added");
+                    return true;
+                }
+                else
+                {
+                    connect.Close();
+                    MessageBox.Show("Call failed to be added.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all required data");
+                connect.Close();
+                return false;
+            }
+        }
+
+        public bool AddCallEnd(int CallID,string HolderID, DateTime CallEndTime, TimeSpan CallDuration)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (CallEndTime != null && CallEndTime != null)
+            {
+
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("AddCallEnd", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                if(HolderID == null)
+                {
+                    sql_cmnd.Parameters.AddWithValue("@HolderID", "Not Regstered");
+                }
+                else
+                {
+                    sql_cmnd.Parameters.AddWithValue("@HolderID", HolderID);
+                }
+                sql_cmnd.Parameters.AddWithValue("@CallID", CallID);
+                sql_cmnd.Parameters.AddWithValue("@CallEndTime", CallEndTime);
+                sql_cmnd.Parameters.AddWithValue("@CallDuration", CallDuration);
+
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    MessageBox.Show("Call added");
+                    return true;
+                }
+                else
+                {
+                    connect.Close();
+                    MessageBox.Show("Call failed to be added.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all required data");
+                connect.Close();
+                return false;
+            }
+        }
+        //not sure if works yet
+        public bool AddAccountCall(string HolderID, int CallID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (HolderID != "")
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("AddAccountCall", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@HolderID", HolderID);
+                sql_cmnd.Parameters.AddWithValue("@CallID", CallID);
+
+
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    //MessageBox.Show("Condition with ID " + ConditionID + " was aAdded.");
+                    return true;
+                }
+                else
+                {
+                    connect.Close();
+                    //MessageBox.Show("Condition with ID " + ConditionID + " failed to be added.");
+                    return false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter all required data");
+                connect.Close();
+                return false;
+            }
+        }
+
         //Adds account to database and returns a bool.
         public bool AddAccount(int AccountID, string HolderKey, string HolderID, string HolderCell, int PackageID)
         {
@@ -259,7 +400,12 @@ namespace Ukupholisa3
             }
         }
 
+<<<<<<< HEAD
+        //adds condition associated with a dependant
+        public bool AddDependantCondition(string DependantID,int ConditionID)
+=======
         public bool AddDependantCondition(string DependantID, int ConditionID)
+>>>>>>> 3d0a9ca6905d8dcbf41c055ea28d07a1edae91d2
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (DependantID != "")
