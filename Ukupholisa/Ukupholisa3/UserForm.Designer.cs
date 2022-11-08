@@ -42,10 +42,20 @@ namespace Ukupholisa3
             this.txtHID = new System.Windows.Forms.TextBox();
             this.txtHKey = new System.Windows.Forms.TextBox();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.tabShowDependants = new System.Windows.Forms.TabPage();
-            this.dgvViewAccounts = new System.Windows.Forms.DataGridView();
+            this.tabClaims = new System.Windows.Forms.TabPage();
+            this.btnSubmitClaim = new System.Windows.Forms.Button();
+            this.cmbClaimCondition = new System.Windows.Forms.ComboBox();
+            this.dgvClaims = new System.Windows.Forms.DataGridView();
             this.tabAddAccount = new System.Windows.Forms.TabPage();
+            this.pnlAddConditionDep = new System.Windows.Forms.Panel();
+            this.btnDone2 = new System.Windows.Forms.Button();
+            this.cmbDepCondition = new System.Windows.Forms.ComboBox();
+            this.lblConditionDep = new System.Windows.Forms.Label();
+            this.txtDependantID2 = new System.Windows.Forms.TextBox();
+            this.lblDependantID2 = new System.Windows.Forms.Label();
+            this.btnAddDepCondition = new System.Windows.Forms.Button();
             this.pnlDependantAdd = new System.Windows.Forms.Panel();
+            this.btnDone1 = new System.Windows.Forms.Button();
             this.cmbSex = new System.Windows.Forms.ComboBox();
             this.lblSex = new System.Windows.Forms.Label();
             this.dtpDOB = new System.Windows.Forms.DateTimePicker();
@@ -94,19 +104,12 @@ namespace Ukupholisa3
             this.dgvClients = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.pnlAddConditionDep = new System.Windows.Forms.Panel();
-            this.cmbDepCondition = new System.Windows.Forms.ComboBox();
-            this.lblConditionDep = new System.Windows.Forms.Label();
-            this.txtDependantID2 = new System.Windows.Forms.TextBox();
-            this.lblDependantID2 = new System.Windows.Forms.Label();
-            this.btnAddDepCondition = new System.Windows.Forms.Button();
-            this.btnDone2 = new System.Windows.Forms.Button();
-            this.btnDone1 = new System.Windows.Forms.Button();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
-            this.tabShowDependants.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).BeginInit();
+            this.tabClaims.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClaims)).BeginInit();
             this.tabAddAccount.SuspendLayout();
+            this.pnlAddConditionDep.SuspendLayout();
             this.pnlDependantAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
             this.pnlAccountAdd.SuspendLayout();
@@ -114,13 +117,12 @@ namespace Ukupholisa3
             ((System.ComponentModel.ISupportInitialize)(this.dgvTreatments)).BeginInit();
             this.Conditions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).BeginInit();
-            this.pnlAddConditionDep.SuspendLayout();
             this.SuspendLayout();
             // 
             // userTabCtrl
             // 
             this.userTabCtrl.Controls.Add(this.tabCall);
-            this.userTabCtrl.Controls.Add(this.tabShowDependants);
+            this.userTabCtrl.Controls.Add(this.tabClaims);
             this.userTabCtrl.Controls.Add(this.tabAddAccount);
             this.userTabCtrl.Controls.Add(this.Treatments);
             this.userTabCtrl.Controls.Add(this.Conditions);
@@ -156,7 +158,7 @@ namespace Ukupholisa3
             // 
             // btnEnd
             // 
-            this.btnEnd.Location = new System.Drawing.Point(420, 242);
+            this.btnEnd.Location = new System.Drawing.Point(601, 19);
             this.btnEnd.Margin = new System.Windows.Forms.Padding(2);
             this.btnEnd.Name = "btnEnd";
             this.btnEnd.Size = new System.Drawing.Size(76, 24);
@@ -166,7 +168,7 @@ namespace Ukupholisa3
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(216, 242);
+            this.btnStart.Location = new System.Drawing.Point(697, 19);
             this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(76, 24);
@@ -253,27 +255,45 @@ namespace Ukupholisa3
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // tabShowDependants
+            // tabClaims
             // 
-            this.tabShowDependants.Controls.Add(this.dgvViewAccounts);
-            this.tabShowDependants.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabShowDependants.Location = new System.Drawing.Point(4, 22);
-            this.tabShowDependants.Margin = new System.Windows.Forms.Padding(2);
-            this.tabShowDependants.Name = "tabShowDependants";
-            this.tabShowDependants.Padding = new System.Windows.Forms.Padding(2);
-            this.tabShowDependants.Size = new System.Drawing.Size(795, 491);
-            this.tabShowDependants.TabIndex = 1;
-            this.tabShowDependants.Text = "Dependants";
-            this.tabShowDependants.UseVisualStyleBackColor = true;
-            this.tabShowDependants.Click += new System.EventHandler(this.tabShowAccounts_Click);
+            this.tabClaims.Controls.Add(this.btnSubmitClaim);
+            this.tabClaims.Controls.Add(this.cmbClaimCondition);
+            this.tabClaims.Controls.Add(this.dgvClaims);
+            this.tabClaims.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabClaims.Location = new System.Drawing.Point(4, 22);
+            this.tabClaims.Margin = new System.Windows.Forms.Padding(2);
+            this.tabClaims.Name = "tabClaims";
+            this.tabClaims.Padding = new System.Windows.Forms.Padding(2);
+            this.tabClaims.Size = new System.Drawing.Size(795, 491);
+            this.tabClaims.TabIndex = 1;
+            this.tabClaims.Text = "Claims";
+            this.tabClaims.UseVisualStyleBackColor = true;
             // 
-            // dgvViewAccounts
+            // btnSubmitClaim
             // 
-            this.dgvViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvViewAccounts.Location = new System.Drawing.Point(8, 5);
-            this.dgvViewAccounts.Name = "dgvViewAccounts";
-            this.dgvViewAccounts.Size = new System.Drawing.Size(640, 370);
-            this.dgvViewAccounts.TabIndex = 21;
+            this.btnSubmitClaim.Location = new System.Drawing.Point(8, 48);
+            this.btnSubmitClaim.Name = "btnSubmitClaim";
+            this.btnSubmitClaim.Size = new System.Drawing.Size(75, 23);
+            this.btnSubmitClaim.TabIndex = 23;
+            this.btnSubmitClaim.Text = "Submit";
+            this.btnSubmitClaim.UseVisualStyleBackColor = true;
+            // 
+            // cmbClaimCondition
+            // 
+            this.cmbClaimCondition.FormattingEnabled = true;
+            this.cmbClaimCondition.Location = new System.Drawing.Point(8, 16);
+            this.cmbClaimCondition.Name = "cmbClaimCondition";
+            this.cmbClaimCondition.Size = new System.Drawing.Size(179, 26);
+            this.cmbClaimCondition.TabIndex = 22;
+            // 
+            // dgvClaims
+            // 
+            this.dgvClaims.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvClaims.Location = new System.Drawing.Point(211, 0);
+            this.dgvClaims.Name = "dgvClaims";
+            this.dgvClaims.Size = new System.Drawing.Size(584, 491);
+            this.dgvClaims.TabIndex = 21;
             // 
             // tabAddAccount
             // 
@@ -289,6 +309,75 @@ namespace Ukupholisa3
             this.tabAddAccount.TabIndex = 2;
             this.tabAddAccount.Text = "Accounts";
             this.tabAddAccount.UseVisualStyleBackColor = true;
+            // 
+            // pnlAddConditionDep
+            // 
+            this.pnlAddConditionDep.Controls.Add(this.btnDone2);
+            this.pnlAddConditionDep.Controls.Add(this.cmbDepCondition);
+            this.pnlAddConditionDep.Controls.Add(this.lblConditionDep);
+            this.pnlAddConditionDep.Controls.Add(this.txtDependantID2);
+            this.pnlAddConditionDep.Controls.Add(this.lblDependantID2);
+            this.pnlAddConditionDep.Controls.Add(this.btnAddDepCondition);
+            this.pnlAddConditionDep.Location = new System.Drawing.Point(275, 3);
+            this.pnlAddConditionDep.Name = "pnlAddConditionDep";
+            this.pnlAddConditionDep.Size = new System.Drawing.Size(261, 245);
+            this.pnlAddConditionDep.TabIndex = 24;
+            // 
+            // btnDone2
+            // 
+            this.btnDone2.Location = new System.Drawing.Point(75, 191);
+            this.btnDone2.Name = "btnDone2";
+            this.btnDone2.Size = new System.Drawing.Size(100, 23);
+            this.btnDone2.TabIndex = 15;
+            this.btnDone2.Text = "Done";
+            this.btnDone2.UseVisualStyleBackColor = true;
+            this.btnDone2.Click += new System.EventHandler(this.btnDone2_Click);
+            // 
+            // cmbDepCondition
+            // 
+            this.cmbDepCondition.FormattingEnabled = true;
+            this.cmbDepCondition.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.cmbDepCondition.Location = new System.Drawing.Point(143, 53);
+            this.cmbDepCondition.Name = "cmbDepCondition";
+            this.cmbDepCondition.Size = new System.Drawing.Size(100, 23);
+            this.cmbDepCondition.TabIndex = 14;
+            // 
+            // lblConditionDep
+            // 
+            this.lblConditionDep.AutoSize = true;
+            this.lblConditionDep.Location = new System.Drawing.Point(15, 56);
+            this.lblConditionDep.Name = "lblConditionDep";
+            this.lblConditionDep.Size = new System.Drawing.Size(59, 15);
+            this.lblConditionDep.TabIndex = 11;
+            this.lblConditionDep.Text = "Condition";
+            // 
+            // txtDependantID2
+            // 
+            this.txtDependantID2.Location = new System.Drawing.Point(143, 23);
+            this.txtDependantID2.Name = "txtDependantID2";
+            this.txtDependantID2.Size = new System.Drawing.Size(100, 21);
+            this.txtDependantID2.TabIndex = 10;
+            // 
+            // lblDependantID2
+            // 
+            this.lblDependantID2.AutoSize = true;
+            this.lblDependantID2.Location = new System.Drawing.Point(15, 26);
+            this.lblDependantID2.Name = "lblDependantID2";
+            this.lblDependantID2.Size = new System.Drawing.Size(83, 15);
+            this.lblDependantID2.TabIndex = 8;
+            this.lblDependantID2.Text = "Dependant ID";
+            // 
+            // btnAddDepCondition
+            // 
+            this.btnAddDepCondition.Location = new System.Drawing.Point(75, 151);
+            this.btnAddDepCondition.Name = "btnAddDepCondition";
+            this.btnAddDepCondition.Size = new System.Drawing.Size(100, 23);
+            this.btnAddDepCondition.TabIndex = 5;
+            this.btnAddDepCondition.Text = "Add Condition";
+            this.btnAddDepCondition.UseVisualStyleBackColor = true;
+            this.btnAddDepCondition.Click += new System.EventHandler(this.btnAddDepCondition_Click);
             // 
             // pnlDependantAdd
             // 
@@ -310,6 +399,16 @@ namespace Ukupholisa3
             this.pnlDependantAdd.Name = "pnlDependantAdd";
             this.pnlDependantAdd.Size = new System.Drawing.Size(261, 245);
             this.pnlDependantAdd.TabIndex = 23;
+            // 
+            // btnDone1
+            // 
+            this.btnDone1.Location = new System.Drawing.Point(143, 201);
+            this.btnDone1.Name = "btnDone1";
+            this.btnDone1.Size = new System.Drawing.Size(100, 23);
+            this.btnDone1.TabIndex = 16;
+            this.btnDone1.Text = "Done";
+            this.btnDone1.UseVisualStyleBackColor = true;
+            this.btnDone1.Click += new System.EventHandler(this.btnDone1_Click);
             // 
             // cmbSex
             // 
@@ -769,85 +868,6 @@ namespace Ukupholisa3
             this.label21.TabIndex = 1;
             this.label21.Text = "label21";
             // 
-            // pnlAddConditionDep
-            // 
-            this.pnlAddConditionDep.Controls.Add(this.btnDone2);
-            this.pnlAddConditionDep.Controls.Add(this.cmbDepCondition);
-            this.pnlAddConditionDep.Controls.Add(this.lblConditionDep);
-            this.pnlAddConditionDep.Controls.Add(this.txtDependantID2);
-            this.pnlAddConditionDep.Controls.Add(this.lblDependantID2);
-            this.pnlAddConditionDep.Controls.Add(this.btnAddDepCondition);
-            this.pnlAddConditionDep.Location = new System.Drawing.Point(275, 3);
-            this.pnlAddConditionDep.Name = "pnlAddConditionDep";
-            this.pnlAddConditionDep.Size = new System.Drawing.Size(261, 245);
-            this.pnlAddConditionDep.TabIndex = 24;
-            // 
-            // cmbDepCondition
-            // 
-            this.cmbDepCondition.FormattingEnabled = true;
-            this.cmbDepCondition.Items.AddRange(new object[] {
-            "Male",
-            "Female"});
-            this.cmbDepCondition.Location = new System.Drawing.Point(143, 53);
-            this.cmbDepCondition.Name = "cmbDepCondition";
-            this.cmbDepCondition.Size = new System.Drawing.Size(100, 23);
-            this.cmbDepCondition.TabIndex = 14;
-            // 
-            // lblConditionDep
-            // 
-            this.lblConditionDep.AutoSize = true;
-            this.lblConditionDep.Location = new System.Drawing.Point(15, 56);
-            this.lblConditionDep.Name = "lblConditionDep";
-            this.lblConditionDep.Size = new System.Drawing.Size(59, 15);
-            this.lblConditionDep.TabIndex = 11;
-            this.lblConditionDep.Text = "Condition";
-            // 
-            // txtDependantID2
-            // 
-            this.txtDependantID2.Location = new System.Drawing.Point(143, 23);
-            this.txtDependantID2.Name = "txtDependantID2";
-            this.txtDependantID2.Size = new System.Drawing.Size(100, 21);
-            this.txtDependantID2.TabIndex = 10;
-            // 
-            // lblDependantID2
-            // 
-            this.lblDependantID2.AutoSize = true;
-            this.lblDependantID2.Location = new System.Drawing.Point(15, 26);
-            this.lblDependantID2.Name = "lblDependantID2";
-            this.lblDependantID2.Size = new System.Drawing.Size(83, 15);
-            this.lblDependantID2.TabIndex = 8;
-            this.lblDependantID2.Text = "Dependant ID";
-            // 
-            // btnAddDepCondition
-            // 
-            this.btnAddDepCondition.Location = new System.Drawing.Point(75, 151);
-            this.btnAddDepCondition.Name = "btnAddDepCondition";
-            this.btnAddDepCondition.Size = new System.Drawing.Size(100, 23);
-            this.btnAddDepCondition.TabIndex = 5;
-            this.btnAddDepCondition.Text = "Add Condition";
-            this.btnAddDepCondition.UseVisualStyleBackColor = true;
-            this.btnAddDepCondition.Click += new System.EventHandler(this.btnAddDepCondition_Click);
-            // 
-            // btnDone2
-            // 
-            this.btnDone2.Location = new System.Drawing.Point(75, 191);
-            this.btnDone2.Name = "btnDone2";
-            this.btnDone2.Size = new System.Drawing.Size(100, 23);
-            this.btnDone2.TabIndex = 15;
-            this.btnDone2.Text = "Done";
-            this.btnDone2.UseVisualStyleBackColor = true;
-            this.btnDone2.Click += new System.EventHandler(this.btnDone2_Click);
-            // 
-            // btnDone1
-            // 
-            this.btnDone1.Location = new System.Drawing.Point(143, 201);
-            this.btnDone1.Name = "btnDone1";
-            this.btnDone1.Size = new System.Drawing.Size(100, 23);
-            this.btnDone1.TabIndex = 16;
-            this.btnDone1.Text = "Done";
-            this.btnDone1.UseVisualStyleBackColor = true;
-            this.btnDone1.Click += new System.EventHandler(this.btnDone1_Click);
-            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -860,9 +880,11 @@ namespace Ukupholisa3
             this.userTabCtrl.ResumeLayout(false);
             this.tabCall.ResumeLayout(false);
             this.tabCall.PerformLayout();
-            this.tabShowDependants.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvViewAccounts)).EndInit();
+            this.tabClaims.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvClaims)).EndInit();
             this.tabAddAccount.ResumeLayout(false);
+            this.pnlAddConditionDep.ResumeLayout(false);
+            this.pnlAddConditionDep.PerformLayout();
             this.pnlDependantAdd.ResumeLayout(false);
             this.pnlDependantAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
@@ -874,22 +896,20 @@ namespace Ukupholisa3
             this.Conditions.ResumeLayout(false);
             this.Conditions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClients)).EndInit();
-            this.pnlAddConditionDep.ResumeLayout(false);
-            this.pnlAddConditionDep.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
-        private void tabShowAccounts_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void tabShowAccounts_Click(object sender, EventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         #endregion
 
         private System.Windows.Forms.TabControl userTabCtrl;
         private System.Windows.Forms.TabPage tabCall;
-        private System.Windows.Forms.TabPage tabShowDependants;
+        private System.Windows.Forms.TabPage tabClaims;
         private System.Windows.Forms.TabPage tabAddAccount;
         private System.Windows.Forms.TabPage Treatments;
         private System.Windows.Forms.TextBox txtSrchTrt;
@@ -907,7 +927,7 @@ namespace Ukupholisa3
         private System.Windows.Forms.TextBox txtHID;
         private System.Windows.Forms.TextBox txtHKey;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.DataGridView dgvViewAccounts;
+        private System.Windows.Forms.DataGridView dgvClaims;
         private System.Windows.Forms.RadioButton rbnOther;
         private System.Windows.Forms.RadioButton rbnFemale;
         private System.Windows.Forms.RadioButton rbnMale;
@@ -959,5 +979,7 @@ namespace Ukupholisa3
         private System.Windows.Forms.Label lblDependantID2;
         private System.Windows.Forms.Button btnAddDepCondition;
         private System.Windows.Forms.Button btnDone1;
+        private System.Windows.Forms.ComboBox cmbClaimCondition;
+        private System.Windows.Forms.Button btnSubmitClaim;
     }
 }

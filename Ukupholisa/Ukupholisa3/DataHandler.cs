@@ -237,6 +237,7 @@ namespace Ukupholisa3
                 sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
                 sql_cmnd.Parameters.AddWithValue("@ConditionID", ConditionID);
                 
+                
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -454,6 +455,39 @@ namespace Ukupholisa3
                 return false;
             }
         }
+
+        //public bool checkClaimValid(string ConditionName)
+        //{
+        //    MySqlConnection connect = new MySqlConnection(conn);
+        //    if (ConditionName != "")
+        //    {
+        //        connect.Open();
+
+        //        // THIS WORKS AS WELL!!!!!!!
+        //        MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID", connect);
+        //        check_if_account_exists.Parameters.AddWithValue("@hID", ConditionName);
+        //        Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
+
+        //        if (accExists > 0)
+        //        {
+        //            connect.Close();
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Account does not exist within the system!");
+        //            connect.Close();
+        //            return false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Invalid ID number");
+        //        connect.Close();
+        //        return false;
+        //    }
+        //}
+
         //This method verifies an account holderkey and returns a boolean, it works.
         public bool checkHolderKey(int holderKey, string holderID)
         {
@@ -563,6 +597,55 @@ namespace Ukupholisa3
             }
             connect.Close();
             return AllConditions;
+        }
+
+        public List<string> getPackageTreatments(int PackageID)
+        {
+            List<string> PackageTreatments = new List<string>();
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("getPackageTreatments", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@PackageID", PackageID);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PackageTreatments.Add(reader[0].ToString());
+                    }
+                }
+            }
+            connect.Close();
+            return PackageTreatments;
+        }
+
+        //Sets package Id for specific claim
+        public int setPackageIDClaim(string HolderID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            int PackageID = 0;
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand spi = new MySqlCommand("SELECT account.Package_ID FROM account WHERE account.Holder_ID = @HolderID", connect);
+                spi.Parameters.AddWithValue("@HolderID", HolderID);
+
+
+
+                using (var reader = spi.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        PackageID = int.Parse(reader[0].ToString());
+                    }
+
+                }
+            }
+            connect.Close();
+            return PackageID;
         }
 
         // sets package id according to package name

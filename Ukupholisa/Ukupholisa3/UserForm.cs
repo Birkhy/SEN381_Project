@@ -26,6 +26,7 @@ namespace Ukupholisa3
         string DependantSex;
         int ConditionID;
         string VCondition;
+        int packageIDclaim;
 
         DataHandler userHandle = new DataHandler();
         public UserForm()
@@ -43,8 +44,12 @@ namespace Ukupholisa3
                 if (userHandle.checkAccount(holderID) && userHandle.checkHolderKey(holderKey, holderID) && userHandle.checkHolderPhone(holderPhone, holderID))
                 {
                     MessageBox.Show("Account Exists");
-                    userTabCtrl.SelectTab(tabShowDependants);
-                    dgvViewAccounts.DataSource = userHandle.ViewAccountCall(holderID);
+                    userTabCtrl.SelectTab(tabClaims);
+                    //dgvClaims.DataSource = userHandle.ViewAccountCall(holderID);
+                    dgvClaims.DataSource = userHandle.ViewPackageTreatments(PackageName);
+                    dgvClaims.AutoResizeColumns();
+                    cmbClaimCondition.DataSource = userHandle.getPackageTreatments(userHandle.setPackageIDClaim(holderID));
+
 
                 }
                 else
@@ -52,18 +57,19 @@ namespace Ukupholisa3
                     MessageBox.Show("Something wrongly failed validation");
                 }
 
-            }
+        }
             catch (Exception)
             {
                 //e.GetBaseException();
                 MessageBox.Show("Something went wrong trying to check account.");
             }
-        }
+}
 
         private void UserForm_Load(object sender, EventArgs e)
         {
             cmbPackage.DataSource = userHandle.getPackages();
             cmbDepCondition.DataSource = userHandle.getConditions();
+            
         }
 
         private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
