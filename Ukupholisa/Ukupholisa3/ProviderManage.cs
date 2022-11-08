@@ -247,7 +247,7 @@ namespace Genisis
             //}
             //catch
             //{
-                MessageBox.Show($"Somthing went wrong trying to Update Product with the Name: {txtPName.Text}");
+                //MessageBox.Show($"Somthing went wrong trying to Update Product with the Name: {txtPName.Text}");
             //}
         }
 

@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Genisis;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Ukupholisa3
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Genisis.LoginForm());
+            Application.Run(new LoginForm());
 
             //Product banana = new Product();
             //banana.Availabilty = true;

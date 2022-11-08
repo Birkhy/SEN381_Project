@@ -35,8 +35,6 @@
             this.btnProIn = new System.Windows.Forms.Button();
             this.dgvPro = new System.Windows.Forms.DataGridView();
             this.btnProUp = new System.Windows.Forms.Button();
-            this.lbTreatments = new System.Windows.Forms.ListBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.chkCheck = new System.Windows.Forms.CheckBox();
             this.txtAgree = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
@@ -123,8 +121,6 @@
             this.Provider.Controls.Add(this.btnProIn);
             this.Provider.Controls.Add(this.dgvPro);
             this.Provider.Controls.Add(this.btnProUp);
-            this.Provider.Controls.Add(this.lbTreatments);
-            this.Provider.Controls.Add(this.label6);
             this.Provider.Controls.Add(this.chkCheck);
             this.Provider.Controls.Add(this.txtAgree);
             this.Provider.Controls.Add(this.txtContact);
@@ -201,25 +197,6 @@
             this.btnProUp.Text = "Update";
             this.btnProUp.UseVisualStyleBackColor = true;
             this.btnProUp.Click += new System.EventHandler(this.btnProUp_Click);
-            // 
-            // lbTreatments
-            // 
-            this.lbTreatments.FormattingEnabled = true;
-            this.lbTreatments.ItemHeight = 24;
-            this.lbTreatments.Location = new System.Drawing.Point(252, 254);
-            this.lbTreatments.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.lbTreatments.Name = "lbTreatments";
-            this.lbTreatments.Size = new System.Drawing.Size(160, 52);
-            this.lbTreatments.TabIndex = 11;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 254);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(184, 24);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Provider Treatments:";
             // 
             // chkCheck
             // 
@@ -900,8 +877,6 @@
         private System.Windows.Forms.DataGridView dgvProduct;
         private MySql.Data.MySqlClient.CustomInstaller customInstaller1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListBox lbTreatments;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtUPass;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label20;

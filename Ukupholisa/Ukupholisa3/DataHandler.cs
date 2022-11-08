@@ -858,12 +858,12 @@ namespace Ukupholisa3
                 if (Name != "" && Price >= 0 && coverLevel >= 0)
                 {
                     connect.Open();
-                    MySqlCommand sql_cmnd = new MySqlCommand("updateProducts", connect);
+                    MySqlCommand sql_cmnd = new MySqlCommand("updateProduct", connect);
                     sql_cmnd.CommandType = CommandType.StoredProcedure;
                     sql_cmnd.Parameters.AddWithValue("@PName", Name);
                     sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
-                    sql_cmnd.Parameters.AddWithValue("@Avail", Availability);
-                    sql_cmnd.Parameters.AddWithValue("@PPreformance", Preformance);
+                    sql_cmnd.Parameters.AddWithValue("@PAvailability", Availability);
+                    sql_cmnd.Parameters.AddWithValue("@PPerformance", Preformance);
                     sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
                     sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
 
@@ -1119,8 +1119,8 @@ namespace Ukupholisa3
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@EName", name);
                 sql_cmnd.Parameters.AddWithValue("@SName", surname).Value = surname;
-                sql_cmnd.Parameters.AddWithValue("@UContact", contact);
-                sql_cmnd.Parameters.AddWithValue("@UID", username);
+                sql_cmnd.Parameters.AddWithValue("@EContact", contact);
+                sql_cmnd.Parameters.AddWithValue("@EID", username);
                 sql_cmnd.Parameters.AddWithValue("@UName", password);
                 sql_cmnd.Parameters.AddWithValue("@UPassword", clearance);
                 sql_cmnd.Parameters.AddWithValue("@UClearance", ID);
@@ -1154,12 +1154,12 @@ namespace Ukupholisa3
                 MySqlCommand sql_cmnd = new MySqlCommand("inserUser", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@EName", name);
-                sql_cmnd.Parameters.AddWithValue("@SName", surname).Value = surname;
+                sql_cmnd.Parameters.AddWithValue("@SName", surname);
                 sql_cmnd.Parameters.AddWithValue("@UContact", contact);
-                sql_cmnd.Parameters.AddWithValue("@UID", username);
-                sql_cmnd.Parameters.AddWithValue("@UName", password);
-                sql_cmnd.Parameters.AddWithValue("@UPassword", clearance);
-                sql_cmnd.Parameters.AddWithValue("@UClearance", ID);
+                sql_cmnd.Parameters.AddWithValue("@UID", ID);
+                sql_cmnd.Parameters.AddWithValue("@UName", username);
+                sql_cmnd.Parameters.AddWithValue("@UPassword", password);
+                sql_cmnd.Parameters.AddWithValue("@UClearance", clearance);
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -1195,7 +1195,7 @@ namespace Ukupholisa3
                 if (Row >= 0)
                 {
                     connect.Close();
-                    return "Deleted details of Provider with the ID: " + ID + ".";
+                    return "Deleted details of User with the ID: " + ID + ".";
                 }
                 else
                 {
