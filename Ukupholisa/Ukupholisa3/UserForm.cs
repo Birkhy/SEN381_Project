@@ -26,11 +26,14 @@ namespace Ukupholisa3
         DateTime DOB;
         DateTime CallStartTime;
         DateTime CallEndTime;
+        DateTime CallDate;
         string DependantSex;
         int ConditionID;
         string VCondition;
         int packageIDclaim;
         TimeSpan CallDuration;
+        Int32 CallID;
+        bool accountVerified = false;
 
         DataHandler userHandle = new DataHandler();
         public UserForm()
@@ -53,6 +56,7 @@ namespace Ukupholisa3
                     dgvClaims.DataSource = userHandle.ViewPackageTreatments(PackageName);
                     dgvClaims.AutoResizeColumns();
                     cmbClaimCondition.DataSource = userHandle.getPackageTreatments(int.Parse(userHandle.setPackageIDClaim(HolderID)));
+                    accountVerified = true;
 
 
                 }
@@ -217,6 +221,12 @@ namespace Ukupholisa3
         private void btnStart_Click(object sender, EventArgs e)
         {
             CallStartTime = DateTime.Now;
+            CallDate = DateTime.Now;
+            CallID = userHandle.getLastCallID();
+            if (userHandle.AddCallStart(CallID+1, CallDate, CallStartTime))
+            {
+                MessageBox.Show("Successfully added call");
+            }
             MessageBox.Show(CallStartTime.ToString());
 
 
@@ -224,9 +234,20 @@ namespace Ukupholisa3
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
+            //HolderID = txtHID.Text;
             CallEndTime = DateTime.Now;
             MessageBox.Show(CallEndTime.ToString());
-            CallDuration = CallStartTime.Subtract(CallEndTime);
+            CallDuration = CallEndTime.Subtract(CallStartTime);
+            if (userHandle.AddCallEnd(CallID,HolderID,CallEndTime,CallDuration))
+            {
+                MessageBox.Show("Call successfully updated");
+
+                //if (userHandle.AddAccountCall(HolderID, CallID))
+                //{
+                //    MessageBox.Show("Call ended");
+                //}
+            }
+            
             
         }
     }
