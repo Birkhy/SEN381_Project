@@ -7,6 +7,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Numerics;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -928,10 +930,6 @@ namespace Ukupholisa3
 
                 string AccountID = command.Parameters["ConditionID"].Value.ToString();
 
-
-
-
-
                 connect.Close();
 
                 return AccountID;
@@ -1035,7 +1033,7 @@ namespace Ukupholisa3
                     }
                     else
                     {
-                        return "Please enter a valid Pri.";
+                        return "Please enter a valid Price.";
                     }
                 }
                 else
@@ -1092,7 +1090,7 @@ namespace Ukupholisa3
                     }
                     else
                     {
-                        return "Please enter a valid Pri.";
+                        return "Please enter a valid Price.";
                     }
                 }
                 else
@@ -1194,7 +1192,7 @@ namespace Ukupholisa3
                     else
                     {
                         connect.Close();
-                        return "Please enter a Valid Name.";
+                        return "Please enter a Valid contact number.";
                     }
                 }
                 else
@@ -1206,7 +1204,7 @@ namespace Ukupholisa3
             else
             {
                 connect.Close();
-                return "Please enter a Valid contact number";
+                return "Please enter a Valid Name.";
             }
         }
 
@@ -1242,7 +1240,7 @@ namespace Ukupholisa3
                     else
                     {
                         connect.Close();
-                        return "Please enter a Valid Name.";
+                        return "Please enter a Valid contact number.";
                     }
                 }
                 else
@@ -1254,7 +1252,7 @@ namespace Ukupholisa3
             else
             {
                 connect.Close();
-                return "Please enter a Valid contact number";
+                return "Please enter a Valid Name.";
             }
 
         }
@@ -1623,40 +1621,39 @@ namespace Ukupholisa3
             }
         }
 
-        //public List<int> GetPreformance()
-        //{
-        //    List<int> Preformance = new List<int>();
-        //    Stack<int> IDs = new Stack<int>();
-        //    int counter = 0;
+        public Stack<int> GetPreformance()
+        {
+            Stack<int> Preformance = new Stack<int>();
+            Stack<int> IDs = new Stack<int>();
+            int counter = 0;
 
-        //    MySqlConnection connect = new MySqlConnection(conn);
-        //    MySqlCommand command = new MySqlCommand($"Select * From product", connect);
-        //    connect.Open();
-        //    int Row = command.ExecuteNonQuery();
-        //    connect.Close();
-            
-        //    //while(counter !=  Row)
-        //    //{
-        //        MySqlCommand GetIDs = new MySqlCommand("Select Package_ID From product Where Package_ID = 3)", connect);
-        //        connect.Open();
-        //        MySqlDataReader ReadIDs = GetIDs.ExecuteReader();
-        //        IDs.Push(int.Parse(ReadIDs.ToString()));
-        //        connect.Close();
-        //    //}
+            MySqlConnection connect = new MySqlConnection(conn);
+            MySqlCommand command = new MySqlCommand($"Select * From product", connect);
+            connect.Open();
+            int Row = command.ExecuteNonQuery();
+            connect.Close();
 
-//<<<<<<< Updated upstream
-//<<<<<<< Updated upstream
-//<<<<<<< Updated upstream
-        //    for (int i = 0; i <= Row; i++)
-        //    {
-        //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
-        //        connect.Open();
-        //        MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
-        //        Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
-        //        connect.Close();
-        //    }
-        //    return Preformance;
-        //}
+            while (counter == Row - 1)
+            {
+                MySqlCommand GetIDs = new MySqlCommand($"Select Package_ID From product Where Package_ID = 3", connect);
+                connect.Open();
+                int ID = int.Parse(GetIDs.ExecuteScalar().ToString());
+                IDs.Push(ID);
+                connect.Close();
+                counter++;
+            }
+
+            for (int i = 0; i <= Row; i++)
+            {
+                MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
+                connect.Open();
+                int percentComplete = (int)Math.Round((double)(100 * int.Parse(SUPERQUERY.ExecuteScalar().ToString())) / Row);
+                Preformance.Push(percentComplete); ;
+                connect.Close();
+            }
+            MessageBox.Show(IDs.Pop().ToString());
+            return Preformance;
+        }
 
         // gets all accounts for the dgv
         public DataTable getAccount()
@@ -1729,28 +1726,34 @@ namespace Ukupholisa3
                 return null;
             }
         }
-//=======
-//=======
-//>>>>>>> Stashed changes
-//=======
-//>>>>>>> Stashed changes
-        //    for (int i = 0; i <= Row; i++)
-        //    {
-        //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
-        //        connect.Open();
-        //        MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
-        //        Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
-        //        connect.Close();
-        //    }
-        //    return Preformance;
-        //}
-//<<<<<<< Updated upstream
-//<<<<<<< Updated upstream
-//>>>>>>> Stashed changes
-//=======
-//>>>>>>> Stashed changes
-//======
-//>>>>>>> Stashed changes
+
+        //updatePrecentages will be used to update the Precentages in the database.
+        public string updatePrecentages(Stack<int> Precentages)
+        {
+            int counter = -1;
+            MySqlConnection connect = new MySqlConnection(conn);
+            MySqlCommand command = new MySqlCommand($"Select * From product", connect);
+            connect.Open();
+            int Row = command.ExecuteNonQuery();
+            connect.Close();
+
+            while(counter == Row - 1)
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand($"Update product set Performance = {Precentages.Pop()} limit {Row},1", connect);
+                connect.Close();
+                Row--;
+            }
+
+            if(Row == counter)
+            {
+                return "Success";
+            }
+            else
+            {
+                return "Failed";
+            }
+        }
     }
 
 }

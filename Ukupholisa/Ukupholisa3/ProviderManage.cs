@@ -127,27 +127,27 @@ namespace Genisis
                 Clearance = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.updateUser(txtUName.Text, txtuSur.Text, txtUContact.Text, txtUID.Text, txtUserName.Text, txtUPass.Text, Clearance));
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Update User with ID: {txtUID.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update User with ID: {txtUID.Text}");
+            }
         }
 
         private void btnShowU_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Somthing went wrong trying to display the Users.");
-            //}
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong trying to display the Users.");
+            }
         }
 
         private void btnUIn_Click(object sender, EventArgs e)
@@ -159,28 +159,28 @@ namespace Genisis
                 Clearance = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.addUser(txtUName.Text, txtuSur.Text, txtUContact.Text, txtUID.Text, txtUserName.Text, txtUPass.Text, Clearance));
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Insert User with ID: {txtUID.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Insert User with ID: {txtUID.Text}");
+            }
         }
 
         private void btnUDel_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.deleteUser(txtUID.Text));
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Delete User with ID: {txtUID.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Delete User with ID: {txtUID.Text}");
+            }
         }
 
         private void btnProUp_Click(object sender, EventArgs e)
@@ -192,15 +192,15 @@ namespace Genisis
                 Status = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.updateProvider(txtName.Text, Status, txtAgree.Text, txtContact.Text));
                 dgvPro.DataSource = Handle.getProvider();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
+            }
         }
 
         private void btnProIn_Click(object sender, EventArgs e)
@@ -212,28 +212,28 @@ namespace Genisis
                 Status = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.addProvider(txtName.Text, Status, txtAgree.Text, txtContact.Text));
                 dgvPro.DataSource = Handle.getProvider();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
+            }
         }
 
         private void btnProDel_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.deleteProvider(txtName.Text));
                 dgvPro.DataSource = Handle.getProvider();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Delete Provider with the Name: {txtName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Delete Provider with the Name: {txtName.Text}");
+            }
         }
 
         private void btnProdUp_Click(object sender, EventArgs e)
@@ -249,15 +249,15 @@ namespace Genisis
                 Pro = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.updateProduct(txtPName.Text, double.Parse(txtPPrice.Text), Avail, double.Parse(txtPerform.Text), int.Parse(cmbCover.Text), Pro));
                 dgvProduct.DataSource = Handle.getProduct();
-            //}
-            //catch
-            //{
-                //MessageBox.Show($"Somthing went wrong trying to Update Product with the Name: {txtPName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update Product with the Name: {txtPName.Text}");
+            }
         }
 
         private void Product_Click(object sender, EventArgs e)
@@ -279,28 +279,28 @@ namespace Genisis
                 Pro = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.addProduct(txtPName.Text, double.Parse(txtPPrice.Text), Avail, double.Parse(txtPerform.Text), int.Parse(cmbCover.Text), Pro));
                 dgvProduct.DataSource = Handle.getProduct();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Insert Product with the Name: {txtPName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Insert Product with the Name: {txtPName.Text}");
+            }
         }
 
         private void btnProdDel_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.deleteProduct(txtPName.Text));
                 dgvProduct.DataSource = Handle.getProduct();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Delete Product with the Name: {txtPName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Delete Product with the Name: {txtPName.Text}");
+            }
         }
 
         private void cmbCover_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,14 +310,14 @@ namespace Genisis
 
         private void btnShowPro_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 dgvPro.DataSource = Handle.getProduct();
-            //}
-            //catch (Exception)
-            //{
+            }
+            catch (Exception)
+            {
                 MessageBox.Show("Somthing went wrong trying to display the Products.");
-            //}
+            }
         }
 
         private void label6_Click(object sender, EventArgs e)
