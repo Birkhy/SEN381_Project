@@ -1623,37 +1623,37 @@ namespace Ukupholisa3
             }
         }
 
-        public List<int> GetPreformance()
-        {
-            List<int> Preformance = new List<int>();
-            Stack<int> IDs = new Stack<int>();
-            int counter = 0;
+        //public List<int> GetPreformance()
+        //{
+        //    List<int> Preformance = new List<int>();
+        //    Stack<int> IDs = new Stack<int>();
+        //    int counter = 0;
 
-            MySqlConnection connect = new MySqlConnection(conn);
-            MySqlCommand command = new MySqlCommand($"Select * From product", connect);
-            connect.Open();
-            int Row = command.ExecuteNonQuery();
-            connect.Close();
+        //    MySqlConnection connect = new MySqlConnection(conn);
+        //    MySqlCommand command = new MySqlCommand($"Select * From product", connect);
+        //    connect.Open();
+        //    int Row = command.ExecuteNonQuery();
+        //    connect.Close();
             
-            //while(counter !=  Row)
-            //{
-                MySqlCommand GetIDs = new MySqlCommand($"Select Package_ID From product Where Package Where Package_ID = 3)", connect);
-                connect.Open();
-                MySqlDataReader ReadIDs = GetIDs.ExecuteReader();
-                IDs.Push(int.Parse(ReadIDs.ToString()));
-                connect.Close();
-            //}
+        //    //while(counter !=  Row)
+        //    //{
+        //        MySqlCommand GetIDs = new MySqlCommand($"Select Package_ID From product Where Package Where Package_ID = 3)", connect);
+        //        connect.Open();
+        //        MySqlDataReader ReadIDs = GetIDs.ExecuteReader();
+        //        IDs.Push(int.Parse(ReadIDs.ToString()));
+        //        connect.Close();
+        //    //}
 
-            for (int i = 0; i <= Row; i++)
-            {
-                MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
-                connect.Open();
-                MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
-                Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
-                connect.Close();
-            }
-            return Preformance;
-        }
+        //    for (int i = 0; i <= Row; i++)
+        //    {
+        //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
+        //        connect.Open();
+        //        MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
+        //        Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
+        //        connect.Close();
+        //    }
+        //    return Preformance;
+        //}
 
         // gets all accounts for the dgv
         public DataTable getAccount()

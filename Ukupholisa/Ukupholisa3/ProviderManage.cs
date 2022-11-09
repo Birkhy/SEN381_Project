@@ -88,7 +88,7 @@ namespace Genisis
             }
         }
 
-        private void dgvTreatments_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvTreatments_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
@@ -366,6 +366,144 @@ namespace Genisis
             catch
             {
                 MessageBox.Show($"Somthing went wrong trying to Update Condition: {txtCondtionName.Text}.");
+            }
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            txtName.Clear();
+            chkCheck.Checked = false;
+            txtContact.Clear();
+            txtAgree.Clear();
+        }
+
+        private void btnUsersClear_Click(object sender, EventArgs e)
+        {
+            txtUName.Clear();
+            txtuSur.Clear();
+            txtUID.Clear();
+            txtUContact.Clear();
+            txtUserName.Clear();
+            txtUPass.Clear();
+            cbAdmin.Checked = false;
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+            txtPName.Clear();
+            chkAvail.Checked = false;
+            txtPerform.Clear();
+            txtPPrice.Clear();
+            cmbCover.Text = "";
+            chkPro.Checked = false;
+        }
+
+        private void btnTreClear_Click(object sender, EventArgs e)
+        {
+            txtSrchTrt.Clear();
+        }
+
+        private void btnConClear_Click(object sender, EventArgs e)
+        {
+            txtCondtionName.Clear();
+            txtConditionNewName.Clear();
+        }
+
+        private void dgvPro_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvPro.Rows[e.RowIndex];
+                    txtName.Text = Rows.Cells["Provider_Name"].Value.ToString();
+                    chkCheck.Checked = (bool)Rows.Cells["Provider_Status"].Value;
+                    txtAgree.Text = Rows.Cells["Agreement"].Value.ToString();
+                    txtContact.Text = Rows.Cells["Contact"].Value.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvPro_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvUsers.Rows[e.RowIndex];
+                    txtUName.Text = Rows.Cells["Employee_Name"].Value.ToString();
+                    txtuSur.Text = Rows.Cells["Employee_Surname"].Value.ToString();
+                    txtUContact.Text = Rows.Cells["Contact"].Value.ToString();
+                    txtUID.Text = Rows.Cells["Employee_ID"].Value.ToString();
+                    txtUserName.Text = Rows.Cells["Username"].Value.ToString();
+                    txtUPass.Text = Rows.Cells["UserPassword"].Value.ToString();
+                    cbAdmin.Checked = (bool)Rows.Cells["Clearance"].Value;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvProduct.Rows[e.RowIndex];
+                    txtPName.Text = Rows.Cells["Package_Name"].Value.ToString();
+                    txtPPrice.Text = Rows.Cells["Price"].Value.ToString();
+                    chkAvail.Checked = (bool)Rows.Cells["Availability"].Value;
+                    txtPerform.Text = Rows.Cells["Performance"].Value.ToString();
+                    cmbCover.Text = Rows.Cells["Cover_Level"].Value.ToString();
+                    chkPro.Checked = (bool)Rows.Cells["Promotion"].Value;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvTreatments_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvTreatments.Rows[e.RowIndex];
+                    txtSrchTrt.Text = Rows.Cells["Treatment"].Value.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvConditions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvConditions.Rows[e.RowIndex];
+                    txtCondtionName.Text = Rows.Cells["Condition"].Value.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
             }
         }
     }
