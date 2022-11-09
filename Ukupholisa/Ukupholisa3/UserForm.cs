@@ -336,6 +336,8 @@ namespace Ukupholisa3
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
+            dgvAccount.DataSource = userHandle.getAccount();
+
             pnlAddConditionDep.Visible = false;
             pnlDependantAdd.Visible = false;
             pnlAccountAdd.Visible = true;
@@ -356,6 +358,8 @@ namespace Ukupholisa3
 
         private void btnDependant_Click(object sender, EventArgs e)
         {
+            dgvAccount.DataSource = userHandle.getDependants();
+
             pnlAccountAdd.Visible = false;
             pnlAddConditionDep.Visible = false;
             pnlDependantAdd.Visible = true;
@@ -375,6 +379,8 @@ namespace Ukupholisa3
 
         private void btnCondition_Click(object sender, EventArgs e)
         {
+            dgvAccount.DataSource = userHandle.getDependantCondition();
+
             pnlAccountAdd.Visible = false;
             pnlDependantAdd.Visible = false;
             pnlAddConditionDep.Visible = true;

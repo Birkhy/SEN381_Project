@@ -1654,6 +1654,78 @@ namespace Ukupholisa3
             }
             return Preformance;
         }
+
+        // gets all accounts for the dgv
+        public DataTable getAccount()
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand vpt = new MySqlCommand("Select * From account", connect);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+        }
+
+        //gets all dependants for the dgv
+        public DataTable getDependants()
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand vpt = new MySqlCommand("Select * From dependants", connect);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+        }
+
+        //gets all dependantconditions for the dgv
+        public DataTable getDependantCondition()
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand vpt = new MySqlCommand("Select * From dependantcondition", connect);
+                MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
+
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+                connect.Close();
+                return dt;
+
+            }
+            else
+            {
+                MessageBox.Show("Returns a null");
+                return null;
+            }
+        }
     }
 
 }
