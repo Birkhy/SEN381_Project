@@ -11,6 +11,7 @@ using System.Numerics;
 using System.Reflection;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -88,47 +89,52 @@ namespace Ukupholisa3
             connect.Close();
             return AllAccounts;
         }
-
-        public string UpdateClient(string CID, string SName, string SSName, DateTime DOB, string Sex)
+        //updates account
+        public string UpdateAccount(string HolderKey, string HolderID, string HolderCell, int PackageID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
 
-            if (DOB.Year > 1900 && DOB.Year < DateTime.Now.Year)
+            if (HolderID.Length == 13)
             {
-                if (CID != "" && SName != "" && SSName != "" && Sex != "")
+                if (HolderKey != "" && HolderKey.Length == 5)
                 {
-                    connect.Open();
-                    MySqlCommand sql_cmnd = new MySqlCommand("updateClient", connect);
-                    sql_cmnd.CommandType = CommandType.StoredProcedure;
-                    sql_cmnd.Parameters.AddWithValue("@FIRST_NAME", SqlDbType.NVarChar).Value = CID;
-                    sql_cmnd.Parameters.AddWithValue("@LAST_NAME", SqlDbType.NVarChar).Value = SName;
-                    sql_cmnd.Parameters.AddWithValue("@AGE", SqlDbType.NVarChar).Value = SSName;
-                    sql_cmnd.Parameters.AddWithValue("@DOB", SqlDbType.Date).Value = DOB;
-                    sql_cmnd.Parameters.AddWithValue("@SEX", SqlDbType.NVarChar).Value = Sex;
-                    int Row = sql_cmnd.ExecuteNonQuery();
-                    if (Row > 0)
+                    if (HolderCell.Length == 10)
                     {
-                        connect.Close();
-                        return "Client with ID " + CID + " was updated.";
+                        connect.Open();
+                        MySqlCommand sql_cmnd = new MySqlCommand("updateAccount", connect);
+                        sql_cmnd.CommandType = CommandType.StoredProcedure;
+                        sql_cmnd.Parameters.AddWithValue("@HolderKey", HolderKey);
+                        sql_cmnd.Parameters.AddWithValue("@HolderID", HolderID);
+                        sql_cmnd.Parameters.AddWithValue("@HolderCell", HolderCell);
+                        sql_cmnd.Parameters.AddWithValue("@PackageID", PackageID);
+
+                        int Row = sql_cmnd.ExecuteNonQuery();
+                        if (Row > 0)
+                        {
+                            connect.Close();
+                            return "Account with the ID " + HolderID + " was updated in the database.";
+                        }
+                        else
+                        {
+                            connect.Close();
+                            return $"The Account with the ID {HolderID} does not exist.";
+                        }
                     }
                     else
                     {
-                        connect.Close();
-                        return "Client with ID " + CID + " failed to be updated.";
+                        return "Please enter a valid contact number.";
                     }
+
                 }
                 else
                 {
-                    connect.Close();
-                    return "Please enter all the needed data to be updated.";
+                    return "Please enter a valid Key.";
                 }
             }
             else
             {
-                return "Please enter a correct date.";
+                return "Please enter a valid ID.";
             }
-
-
         }
         //This method gets the last ID in the Account table in order to add new ones.
         public Int32 getLastID()
@@ -156,6 +162,60 @@ namespace Ukupholisa3
 
             }
             return 0;
+        }
+
+        //updates dependant
+        public string updateDependant(string DependantID, string DependantName, string DependantSurname, DateTime DOB, string Sex)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (DependantID.Length == 13)
+            {
+                if (DependantName != "" && DependantName.Length <= 50 && Regex.Match(DependantName, "^[A-Z][a-zA-Z]*$").Success)
+                {
+                    if (DependantSurname != "" && DependantSurname.Length <= 150)
+                    {
+                            if (Sex != "")
+                            {
+                                    connect.Open();
+                                    MySqlCommand sql_cmnd = new MySqlCommand("updateDependant", connect);
+                                    sql_cmnd.CommandType = CommandType.StoredProcedure;
+                                    sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
+                                    sql_cmnd.Parameters.AddWithValue("@DependantName", DependantName);
+                                    sql_cmnd.Parameters.AddWithValue("@DependantSurname", DependantSurname);
+                                    sql_cmnd.Parameters.AddWithValue("@sDOB", DOB);
+                                    sql_cmnd.Parameters.AddWithValue("@sSex", Sex);
+
+                                    int Row = sql_cmnd.ExecuteNonQuery();
+                                    if (Row > 0)
+                                    {
+                                        connect.Close();
+                                        return "Dependant with the ID " + DependantID + " was updated in the database.";
+                                    }
+                                    else
+                                    {
+                                        connect.Close();
+                                        return $"Dependant with the ID {DependantID} does not exist.";
+                                    }
+                            }
+                            else
+                            {
+                                return "Please enter a valid sex.";
+                            }
+                    }
+                    else
+                    {
+                        return "Please enter a valid surname.";
+                    }
+                }
+                else
+                {
+                    return "Please enter a valid Name.";
+                }
+            }
+            else
+            {
+                return "Please enter a valid ID.";
+            }
         }
 
         //This method gets the last ID in the Call table in order to add new ones.
@@ -404,7 +464,7 @@ namespace Ukupholisa3
             }
         }
 
-
+        //adds condition to dependant
         public bool AddDependantCondition(string DependantID, int ConditionID)
 
         {
@@ -437,6 +497,37 @@ namespace Ukupholisa3
                 MessageBox.Show("Please enter all required data");
                 connect.Close();
                 return false;
+            }
+        }
+
+        //updates dependant condition
+        public string updateDependantCondition(string DependantID, int ConditionID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+
+            if (DependantID.Length == 13)
+            {
+                connect.Open();
+                MySqlCommand sql_cmnd = new MySqlCommand("updateDependantCondition", connect);
+                sql_cmnd.CommandType = CommandType.StoredProcedure;
+                sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
+                sql_cmnd.Parameters.AddWithValue("@ConditionID", ConditionID);
+
+                int Row = sql_cmnd.ExecuteNonQuery();
+                if (Row > 0)
+                {
+                    connect.Close();
+                    return "Dependant condition with the ID " + DependantID + " was updated in the database.";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"Dependant condition with the ID {DependantID} does not exist or record could not be updated.";
+                }
+            }
+            else
+            {
+                return "Please enter a valid ID.";
             }
         }
 
@@ -930,11 +1021,61 @@ namespace Ukupholisa3
 
                 command.ExecuteNonQuery();
 
-                string AccountID = command.Parameters["ConditionID"].Value.ToString();
+                string ConditionID = command.Parameters["ConditionID"].Value.ToString();
 
                 connect.Close();
 
-                return AccountID;
+                return ConditionID;
+            }
+            return "";
+        }
+
+        // sets condition name according to condition id
+        public string setConditionName(string ConditionID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("setConditionName", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@ConditionID", ConditionID);
+                command.Parameters.Add("VCondition", MySqlDbType.String);
+                command.Parameters["VCondition"].Direction = ParameterDirection.Output;
+
+                command.ExecuteNonQuery();
+
+                string ConditionName = command.Parameters["VCondition"].Value.ToString();
+
+                connect.Close();
+
+                return ConditionName;
+            }
+            return "";
+        }
+
+        // sets package name according to package id
+        public string setPackageName(string PackageID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("setPackageName", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@PackageID", PackageID);
+                command.Parameters.Add("PackageName", MySqlDbType.String);
+                command.Parameters["PackageName"].Direction = ParameterDirection.Output;
+
+                command.ExecuteNonQuery();
+
+                string ConditionName = command.Parameters["PackageName"].Value.ToString();
+
+                connect.Close();
+
+                return ConditionName;
             }
             return "";
         }
@@ -1672,7 +1813,7 @@ namespace Ukupholisa3
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                MySqlCommand vpt = new MySqlCommand("Select * From account", connect);
+                MySqlCommand vpt = new MySqlCommand("Select Account_ID, Holder_Key, Holder_ID, Holder_Cell, Package_ID From account", connect);
                 MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
 
                 DataTable dt = new DataTable();
@@ -1720,7 +1861,7 @@ namespace Ukupholisa3
             if (connect.State != ConnectionState.Open)
             {
                 connect.Open();
-                MySqlCommand vpt = new MySqlCommand("Select * From dependantcondition", connect);
+                MySqlCommand vpt = new MySqlCommand("Select dependantcondition.Dependant_ID, dependantcondition.Condition_ID, conditions.Condition From dependantcondition INNER JOIN conditions ON dependantcondition.Condition_ID = conditions.Condition_ID", connect);
                 MySqlDataAdapter sda = new MySqlDataAdapter(vpt);
 
                 DataTable dt = new DataTable();

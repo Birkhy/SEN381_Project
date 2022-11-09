@@ -116,7 +116,7 @@ namespace Ukupholisa3
         private void cmbPackage_SelectedIndexChanged(object sender, EventArgs e)
         {
             PackageName = cmbPackage.Text;
-            dgvAccount.DataSource = userHandle.ViewPackageTreatments(PackageName);
+            dgvViewPackage.DataSource = userHandle.ViewPackageTreatments(PackageName);
         }
 
         private void btnSrchTrt_Click(object sender, EventArgs e)
@@ -139,27 +139,54 @@ namespace Ukupholisa3
 
         private void btnAddAccount_Click(object sender, EventArgs e)
         {
-            AccountID = userHandle.getLastID() + 1;
+
             PackageID = userHandle.setPackageID(PackageName);
             HolderKey = txtHolderKey.Text;
             HolderID = txtHolderID.Text;
             HolderCell = txtHolderCell.Text;
-            try
+
+            if (checkInsert)
             {
-                if (userHandle.AddAccount(AccountID, HolderKey, HolderID, HolderCell, PackageID))
+                AccountID = userHandle.getLastID() + 1;
+
+                try
                 {
-                    dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
-                    dgvAccount.AutoResizeColumns();
-                    pnlAccountAdd.Visible = false;
-                    pnlDependantAdd.Visible = true;
-                    txtAccountID.Text = AccountID.ToString();
-                    txtDependantID.Text = HolderID;
+                    if (userHandle.AddAccount(AccountID, HolderKey, HolderID, HolderCell, PackageID))
+                    {
+                        dgvAccount.DataSource = userHandle.getAccount();
+                        //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                        dgvAccount.AutoResizeColumns();
+                        pnlAccountAdd.Visible = false;
+                        pnlDependantAdd.Visible = true;
+                        txtAccountID.Text = AccountID.ToString();
+                        txtDependantID.Text = HolderID;
+                    }
+                    //MessageBox.Show("Add Account");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
                 }
             }
-            catch (Exception)
+            if (checkUpdate)
             {
-                MessageBox.Show("something went wrong");
+                try
+                {
+                    MessageBox.Show(userHandle.UpdateAccount(HolderKey, HolderID, HolderCell, PackageID));
+
+                    dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                    dgvAccount.AutoResizeColumns();
+                    //MessageBox.Show("Update Account");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
+                }
             }
+
+
+
+
         }
 
         private void tabAddAccount_Click(object sender, EventArgs e)
@@ -177,30 +204,49 @@ namespace Ukupholisa3
             DOB = dtpDOB.Value;
             DependantSex = cmbSex.Text;
 
-            try
+            if (checkInsert)
             {
-                if (userHandle.AddDependant(DependantID, AccountID, DependantName, DependantSurname, DOB, DependantSex))
+                try
                 {
-                    dgvAccount.DataSource = userHandle.ViewDependentsByAccount(AccountID);
-                    dgvAccount.AutoResizeColumns();
-                    txtDependantID.Clear();
-                    txtDependantName.Clear();
-                    txtDepSur.Clear();
-                    dtpDOB.ResetText();
-                    cmbSex.ResetText();
+                    if (userHandle.AddDependant(DependantID, AccountID, DependantName, DependantSurname, DOB, DependantSex))
+                    {
+                        dgvAccount.DataSource = userHandle.ViewDependentsByAccount(AccountID);
+                        dgvAccount.AutoResizeColumns();
+                        txtDependantID.Clear();
+                        txtDependantName.Clear();
+                        txtDepSur.Clear();
+                        dtpDOB.ResetText();
+                        cmbSex.ResetText();
 
-                    pnlAddConditionDep.Visible = true;
-                    pnlDependantAdd.Visible = false;
+                        pnlAddConditionDep.Visible = true;
+                        pnlDependantAdd.Visible = false;
 
-                    txtDependantID2.Text = DependantID.ToString();
+                        txtDependantID2.Text = DependantID.ToString();
+                    }
                 }
-                ;
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
+                }
+            }
 
-            }
-            catch (Exception)
+            if (checkUpdate)
             {
-                MessageBox.Show("something went wrong");
+                try
+                {
+                    MessageBox.Show(userHandle.updateDependant(DependantID, DependantName, DependantSurname, DOB, DependantSex));
+
+                    dgvAccount.DataSource = userHandle.getDependants();
+                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                    dgvAccount.AutoResizeColumns();
+                    //MessageBox.Show("Update Account");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
+                }
             }
+
         }
 
         private void btnDone2_Click(object sender, EventArgs e)
@@ -219,15 +265,38 @@ namespace Ukupholisa3
         {
             VCondition = cmbDepCondition.Text;
             ConditionID = int.Parse(userHandle.setConditionID(VCondition));
-            MessageBox.Show(ConditionID.ToString());
+            //MessageBox.Show(ConditionID.ToString());
             DependantID = txtDependantID2.Text;
-            MessageBox.Show(DependantID);
+            //MessageBox.Show(DependantID);
 
-            if(userHandle.AddDependantCondition(DependantID, ConditionID))
+            if (checkInsert)
             {
-                MessageBox.Show("Successfully added condition");
+                if (userHandle.AddDependantCondition(DependantID, ConditionID))
+                {
+                    MessageBox.Show("Successfully added condition");
+                    dgvAccount.DataSource = userHandle.getDependantCondition();
+                }
             }
-            
+
+            if (checkUpdate)
+            {
+                try
+                {
+                    MessageBox.Show(userHandle.updateDependantCondition(DependantID, ConditionID));
+
+                    dgvAccount.DataSource = userHandle.getDependantCondition();
+                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                    dgvAccount.AutoResizeColumns();
+                    //MessageBox.Show("Update Account");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
+                }
+            }
+
+
+
         }
 
         private void btnSubmitClaim_Click(object sender, EventArgs e)
@@ -241,8 +310,6 @@ namespace Ukupholisa3
                 if (userHandle.AddClaim(AccountID, cmbClaimCondition.Text))
                 {
                     MessageBox.Show("Claim has been approved and is being processed");
-
-
                 }
             }
             catch (Exception)
@@ -256,12 +323,12 @@ namespace Ukupholisa3
             sw.Start();
             UpdateDisplay();
             timer.Start();
-            
+
 
             CallStartTime = DateTime.Now;
             CallDate = DateTime.Now;
             CallID = userHandle.getLastCallID();
-            if (userHandle.AddCallStart(CallID+1, CallDate, CallStartTime))
+            if (userHandle.AddCallStart(CallID + 1, CallDate, CallStartTime))
             {
                 MessageBox.Show("Successfully added call");
             }
@@ -280,9 +347,9 @@ namespace Ukupholisa3
             CallEndTime = DateTime.Now;
             MessageBox.Show(CallEndTime.ToString());
             CallDuration = CallEndTime.Subtract(CallStartTime);
-            if (userHandle.AddCallEnd(CallID,HolderID,CallEndTime,CallDuration))
+            if (userHandle.AddCallEnd(CallID, HolderID, CallEndTime, CallDuration))
             {
-                if (HolderID==null)
+                if (HolderID == null)
                 {
                     MessageBox.Show("Call successfully updated");
                 }
@@ -298,8 +365,8 @@ namespace Ukupholisa3
             {
                 MessageBox.Show("Something went wrong");
             }
-            
-            
+
+
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -307,7 +374,7 @@ namespace Ukupholisa3
             checkInsert = true;
             pnlButtons.Visible = false;
             pnlSelectButtons.Visible = true;
-            
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -421,19 +488,22 @@ namespace Ukupholisa3
                 try
                 {
                     if (e.RowIndex >= 0)
-                    {
-                        DataGridViewRow Rows = this.dgvAccount.Rows[e.RowIndex];
-                        txtHolderID.Text = Rows.Cells["Holder_ID"].Value.ToString();
-                        cmbPackage.Text = Rows.Cells["Package_ID"].Value.ToString();
-                        txtHolderKey.Text = Rows.Cells["Holder_Key"].Value.ToString();
-                        txtHolderCell.Text = Rows.Cells["Holder_Cell"].Value.ToString();
-                    }
-                }
-                catch (Exception)
                 {
-                    MessageBox.Show("Somthing went wrong.");
+                    DataGridViewRow Rows = this.dgvAccount.Rows[e.RowIndex];
+                    txtHolderKey.Text = Rows.Cells["Holder_Key"].Value.ToString();
+                    txtHolderID.Text = Rows.Cells["Holder_ID"].Value.ToString();
+                    txtHolderCell.Text = Rows.Cells["Holder_Cell"].Value.ToString();
+                    int PackageID = (int)Rows.Cells["Package_ID"].Value;
+                    cmbPackage.Text = userHandle.setPackageName(PackageID.ToString());
+
+
                 }
             }
+                catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
 
             if (checkDependant)
             {
@@ -462,7 +532,7 @@ namespace Ukupholisa3
                 {
                     if (e.RowIndex >= 0)
                     {
-                        
+
                         DataGridViewRow Rows = this.dgvAccount.Rows[e.RowIndex];
                         int ConditionID = (int)Rows.Cells["Condition_ID"].Value;
                         txtDependantID2.Text = Rows.Cells["Dependant_ID"].Value.ToString();
@@ -474,6 +544,11 @@ namespace Ukupholisa3
                     MessageBox.Show("Somthing went wrong.");
                 }
             }
+
+        }
+
+        private void cmbPackage_MouseClick(object sender, MouseEventArgs e)
+        {
 
         }
     }

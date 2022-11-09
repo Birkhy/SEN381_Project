@@ -90,6 +90,7 @@ namespace Ukupholisa3
             this.txtHolderKey = new System.Windows.Forms.TextBox();
             this.cmbPackage = new System.Windows.Forms.ComboBox();
             this.txtHolderID = new System.Windows.Forms.TextBox();
+            this.dgvViewPackage = new System.Windows.Forms.DataGridView();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
             this.tabClaims.SuspendLayout();
@@ -101,6 +102,7 @@ namespace Ukupholisa3
             this.pnlDependantAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
             this.pnlAccountAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvViewPackage)).BeginInit();
             this.SuspendLayout();
             // 
             // userTabCtrl
@@ -292,6 +294,7 @@ namespace Ukupholisa3
             // 
             // tabAddAccount
             // 
+            this.tabAddAccount.Controls.Add(this.dgvViewPackage);
             this.tabAddAccount.Controls.Add(this.pnlSelectButtons);
             this.tabAddAccount.Controls.Add(this.pnlButtons);
             this.tabAddAccount.Controls.Add(this.pnlAddConditionDep);
@@ -313,14 +316,14 @@ namespace Ukupholisa3
             this.pnlSelectButtons.Controls.Add(this.btnCondition);
             this.pnlSelectButtons.Controls.Add(this.btnDependant);
             this.pnlSelectButtons.Controls.Add(this.btnAccount);
-            this.pnlSelectButtons.Location = new System.Drawing.Point(542, 127);
+            this.pnlSelectButtons.Location = new System.Drawing.Point(18, 5);
             this.pnlSelectButtons.Name = "pnlSelectButtons";
-            this.pnlSelectButtons.Size = new System.Drawing.Size(247, 73);
+            this.pnlSelectButtons.Size = new System.Drawing.Size(247, 58);
             this.pnlSelectButtons.TabIndex = 27;
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(72, 37);
+            this.btnCancel.Location = new System.Drawing.Point(183, 35);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(64, 23);
             this.btnCancel.TabIndex = 17;
@@ -330,7 +333,7 @@ namespace Ukupholisa3
             // 
             // btnCondition
             // 
-            this.btnCondition.Location = new System.Drawing.Point(155, 8);
+            this.btnCondition.Location = new System.Drawing.Point(158, 8);
             this.btnCondition.Name = "btnCondition";
             this.btnCondition.Size = new System.Drawing.Size(75, 23);
             this.btnCondition.TabIndex = 16;
@@ -363,16 +366,16 @@ namespace Ukupholisa3
             this.pnlButtons.Controls.Add(this.btnDelete);
             this.pnlButtons.Controls.Add(this.btnUpdate);
             this.pnlButtons.Controls.Add(this.btnInsert);
-            this.pnlButtons.Location = new System.Drawing.Point(542, 26);
+            this.pnlButtons.Location = new System.Drawing.Point(18, 5);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(247, 71);
+            this.pnlButtons.Size = new System.Drawing.Size(247, 58);
             this.pnlButtons.TabIndex = 25;
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(133, 13);
+            this.btnDelete.Location = new System.Drawing.Point(158, 8);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(57, 23);
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -380,9 +383,9 @@ namespace Ukupholisa3
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(66, 13);
+            this.btnUpdate.Location = new System.Drawing.Point(72, 8);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(61, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(80, 23);
             this.btnUpdate.TabIndex = 15;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
@@ -390,9 +393,9 @@ namespace Ukupholisa3
             // 
             // btnInsert
             // 
-            this.btnInsert.Location = new System.Drawing.Point(3, 13);
+            this.btnInsert.Location = new System.Drawing.Point(3, 8);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(57, 23);
+            this.btnInsert.Size = new System.Drawing.Size(63, 23);
             this.btnInsert.TabIndex = 5;
             this.btnInsert.Text = "Insert";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -406,14 +409,14 @@ namespace Ukupholisa3
             this.pnlAddConditionDep.Controls.Add(this.txtDependantID2);
             this.pnlAddConditionDep.Controls.Add(this.lblDependantID2);
             this.pnlAddConditionDep.Controls.Add(this.btnAddDepCondition);
-            this.pnlAddConditionDep.Location = new System.Drawing.Point(275, 3);
+            this.pnlAddConditionDep.Location = new System.Drawing.Point(3, 72);
             this.pnlAddConditionDep.Name = "pnlAddConditionDep";
-            this.pnlAddConditionDep.Size = new System.Drawing.Size(261, 245);
+            this.pnlAddConditionDep.Size = new System.Drawing.Size(261, 188);
             this.pnlAddConditionDep.TabIndex = 24;
             // 
             // btnDone2
             // 
-            this.btnDone2.Location = new System.Drawing.Point(75, 191);
+            this.btnDone2.Location = new System.Drawing.Point(140, 165);
             this.btnDone2.Name = "btnDone2";
             this.btnDone2.Size = new System.Drawing.Size(100, 23);
             this.btnDone2.TabIndex = 15;
@@ -427,7 +430,7 @@ namespace Ukupholisa3
             this.cmbDepCondition.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbDepCondition.Location = new System.Drawing.Point(143, 53);
+            this.cmbDepCondition.Location = new System.Drawing.Point(140, 132);
             this.cmbDepCondition.Name = "cmbDepCondition";
             this.cmbDepCondition.Size = new System.Drawing.Size(100, 23);
             this.cmbDepCondition.TabIndex = 14;
@@ -435,7 +438,7 @@ namespace Ukupholisa3
             // lblConditionDep
             // 
             this.lblConditionDep.AutoSize = true;
-            this.lblConditionDep.Location = new System.Drawing.Point(15, 56);
+            this.lblConditionDep.Location = new System.Drawing.Point(19, 135);
             this.lblConditionDep.Name = "lblConditionDep";
             this.lblConditionDep.Size = new System.Drawing.Size(59, 15);
             this.lblConditionDep.TabIndex = 11;
@@ -443,7 +446,7 @@ namespace Ukupholisa3
             // 
             // txtDependantID2
             // 
-            this.txtDependantID2.Location = new System.Drawing.Point(143, 23);
+            this.txtDependantID2.Location = new System.Drawing.Point(140, 105);
             this.txtDependantID2.Name = "txtDependantID2";
             this.txtDependantID2.Size = new System.Drawing.Size(100, 21);
             this.txtDependantID2.TabIndex = 10;
@@ -451,7 +454,7 @@ namespace Ukupholisa3
             // lblDependantID2
             // 
             this.lblDependantID2.AutoSize = true;
-            this.lblDependantID2.Location = new System.Drawing.Point(15, 26);
+            this.lblDependantID2.Location = new System.Drawing.Point(13, 108);
             this.lblDependantID2.Name = "lblDependantID2";
             this.lblDependantID2.Size = new System.Drawing.Size(83, 15);
             this.lblDependantID2.TabIndex = 8;
@@ -459,7 +462,7 @@ namespace Ukupholisa3
             // 
             // btnAddDepCondition
             // 
-            this.btnAddDepCondition.Location = new System.Drawing.Point(75, 151);
+            this.btnAddDepCondition.Location = new System.Drawing.Point(10, 165);
             this.btnAddDepCondition.Name = "btnAddDepCondition";
             this.btnAddDepCondition.Size = new System.Drawing.Size(100, 23);
             this.btnAddDepCondition.TabIndex = 5;
@@ -483,14 +486,14 @@ namespace Ukupholisa3
             this.pnlDependantAdd.Controls.Add(this.txtDepSur);
             this.pnlDependantAdd.Controls.Add(this.txtDependantName);
             this.pnlDependantAdd.Controls.Add(this.txtAccountID);
-            this.pnlDependantAdd.Location = new System.Drawing.Point(8, 238);
+            this.pnlDependantAdd.Location = new System.Drawing.Point(8, 66);
             this.pnlDependantAdd.Name = "pnlDependantAdd";
-            this.pnlDependantAdd.Size = new System.Drawing.Size(261, 245);
+            this.pnlDependantAdd.Size = new System.Drawing.Size(261, 188);
             this.pnlDependantAdd.TabIndex = 23;
             // 
             // btnDone1
             // 
-            this.btnDone1.Location = new System.Drawing.Point(143, 201);
+            this.btnDone1.Location = new System.Drawing.Point(136, 165);
             this.btnDone1.Name = "btnDone1";
             this.btnDone1.Size = new System.Drawing.Size(100, 23);
             this.btnDone1.TabIndex = 16;
@@ -504,7 +507,7 @@ namespace Ukupholisa3
             this.cmbSex.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.cmbSex.Location = new System.Drawing.Point(143, 165);
+            this.cmbSex.Location = new System.Drawing.Point(136, 135);
             this.cmbSex.Name = "cmbSex";
             this.cmbSex.Size = new System.Drawing.Size(100, 23);
             this.cmbSex.TabIndex = 14;
@@ -512,7 +515,7 @@ namespace Ukupholisa3
             // lblSex
             // 
             this.lblSex.AutoSize = true;
-            this.lblSex.Location = new System.Drawing.Point(15, 168);
+            this.lblSex.Location = new System.Drawing.Point(13, 138);
             this.lblSex.Name = "lblSex";
             this.lblSex.Size = new System.Drawing.Size(92, 15);
             this.lblSex.TabIndex = 13;
@@ -520,7 +523,7 @@ namespace Ukupholisa3
             // 
             // dtpDOB
             // 
-            this.dtpDOB.Location = new System.Drawing.Point(143, 136);
+            this.dtpDOB.Location = new System.Drawing.Point(136, 109);
             this.dtpDOB.Name = "dtpDOB";
             this.dtpDOB.Size = new System.Drawing.Size(115, 21);
             this.dtpDOB.TabIndex = 12;
@@ -528,7 +531,7 @@ namespace Ukupholisa3
             // lblDOB
             // 
             this.lblDOB.AutoSize = true;
-            this.lblDOB.Location = new System.Drawing.Point(15, 136);
+            this.lblDOB.Location = new System.Drawing.Point(13, 110);
             this.lblDOB.Name = "lblDOB";
             this.lblDOB.Size = new System.Drawing.Size(97, 15);
             this.lblDOB.TabIndex = 11;
@@ -536,7 +539,7 @@ namespace Ukupholisa3
             // 
             // txtDependantID
             // 
-            this.txtDependantID.Location = new System.Drawing.Point(143, 52);
+            this.txtDependantID.Location = new System.Drawing.Point(136, 28);
             this.txtDependantID.Name = "txtDependantID";
             this.txtDependantID.Size = new System.Drawing.Size(100, 21);
             this.txtDependantID.TabIndex = 10;
@@ -544,7 +547,7 @@ namespace Ukupholisa3
             // lblDependantSurname
             // 
             this.lblDependantSurname.AutoSize = true;
-            this.lblDependantSurname.Location = new System.Drawing.Point(15, 111);
+            this.lblDependantSurname.Location = new System.Drawing.Point(13, 85);
             this.lblDependantSurname.Name = "lblDependantSurname";
             this.lblDependantSurname.Size = new System.Drawing.Size(122, 15);
             this.lblDependantSurname.TabIndex = 9;
@@ -553,7 +556,7 @@ namespace Ukupholisa3
             // lblDependantID
             // 
             this.lblDependantID.AutoSize = true;
-            this.lblDependantID.Location = new System.Drawing.Point(15, 55);
+            this.lblDependantID.Location = new System.Drawing.Point(13, 31);
             this.lblDependantID.Name = "lblDependantID";
             this.lblDependantID.Size = new System.Drawing.Size(83, 15);
             this.lblDependantID.TabIndex = 8;
@@ -562,7 +565,7 @@ namespace Ukupholisa3
             // lblDependantName
             // 
             this.lblDependantName.AutoSize = true;
-            this.lblDependantName.Location = new System.Drawing.Point(15, 84);
+            this.lblDependantName.Location = new System.Drawing.Point(13, 58);
             this.lblDependantName.Name = "lblDependantName";
             this.lblDependantName.Size = new System.Drawing.Size(105, 15);
             this.lblDependantName.TabIndex = 7;
@@ -571,7 +574,7 @@ namespace Ukupholisa3
             // lblAccountID
             // 
             this.lblAccountID.AutoSize = true;
-            this.lblAccountID.Location = new System.Drawing.Point(15, 28);
+            this.lblAccountID.Location = new System.Drawing.Point(13, 4);
             this.lblAccountID.Name = "lblAccountID";
             this.lblAccountID.Size = new System.Drawing.Size(65, 15);
             this.lblAccountID.TabIndex = 6;
@@ -579,7 +582,7 @@ namespace Ukupholisa3
             // 
             // btnAddDependant
             // 
-            this.btnAddDependant.Location = new System.Drawing.Point(12, 201);
+            this.btnAddDependant.Location = new System.Drawing.Point(11, 165);
             this.btnAddDependant.Name = "btnAddDependant";
             this.btnAddDependant.Size = new System.Drawing.Size(100, 23);
             this.btnAddDependant.TabIndex = 5;
@@ -589,21 +592,21 @@ namespace Ukupholisa3
             // 
             // txtDepSur
             // 
-            this.txtDepSur.Location = new System.Drawing.Point(143, 105);
+            this.txtDepSur.Location = new System.Drawing.Point(136, 82);
             this.txtDepSur.Name = "txtDepSur";
             this.txtDepSur.Size = new System.Drawing.Size(100, 21);
             this.txtDepSur.TabIndex = 4;
             // 
             // txtDependantName
             // 
-            this.txtDependantName.Location = new System.Drawing.Point(143, 81);
+            this.txtDependantName.Location = new System.Drawing.Point(136, 55);
             this.txtDependantName.Name = "txtDependantName";
             this.txtDependantName.Size = new System.Drawing.Size(100, 21);
             this.txtDependantName.TabIndex = 3;
             // 
             // txtAccountID
             // 
-            this.txtAccountID.Location = new System.Drawing.Point(143, 25);
+            this.txtAccountID.Location = new System.Drawing.Point(136, 1);
             this.txtAccountID.Name = "txtAccountID";
             this.txtAccountID.Size = new System.Drawing.Size(100, 21);
             this.txtAccountID.TabIndex = 1;
@@ -611,9 +614,9 @@ namespace Ukupholisa3
             // dgvAccount
             // 
             this.dgvAccount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAccount.Location = new System.Drawing.Point(293, 263);
+            this.dgvAccount.Location = new System.Drawing.Point(293, 13);
             this.dgvAccount.Name = "dgvAccount";
-            this.dgvAccount.Size = new System.Drawing.Size(479, 220);
+            this.dgvAccount.Size = new System.Drawing.Size(479, 470);
             this.dgvAccount.TabIndex = 22;
             this.dgvAccount.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccount_CellContentClick);
             // 
@@ -628,15 +631,15 @@ namespace Ukupholisa3
             this.pnlAccountAdd.Controls.Add(this.txtHolderKey);
             this.pnlAccountAdd.Controls.Add(this.cmbPackage);
             this.pnlAccountAdd.Controls.Add(this.txtHolderID);
-            this.pnlAccountAdd.Location = new System.Drawing.Point(8, 19);
+            this.pnlAccountAdd.Location = new System.Drawing.Point(8, 69);
             this.pnlAccountAdd.Name = "pnlAccountAdd";
-            this.pnlAccountAdd.Size = new System.Drawing.Size(227, 198);
+            this.pnlAccountAdd.Size = new System.Drawing.Size(261, 188);
             this.pnlAccountAdd.TabIndex = 0;
             // 
             // lblHolderCell
             // 
             this.lblHolderCell.AutoSize = true;
-            this.lblHolderCell.Location = new System.Drawing.Point(15, 111);
+            this.lblHolderCell.Location = new System.Drawing.Point(13, 136);
             this.lblHolderCell.Name = "lblHolderCell";
             this.lblHolderCell.Size = new System.Drawing.Size(68, 15);
             this.lblHolderCell.TabIndex = 9;
@@ -645,7 +648,7 @@ namespace Ukupholisa3
             // lblPackage
             // 
             this.lblPackage.AutoSize = true;
-            this.lblPackage.Location = new System.Drawing.Point(15, 55);
+            this.lblPackage.Location = new System.Drawing.Point(13, 82);
             this.lblPackage.Name = "lblPackage";
             this.lblPackage.Size = new System.Drawing.Size(55, 15);
             this.lblPackage.TabIndex = 8;
@@ -654,7 +657,7 @@ namespace Ukupholisa3
             // lblHolderKey
             // 
             this.lblHolderKey.AutoSize = true;
-            this.lblHolderKey.Location = new System.Drawing.Point(15, 84);
+            this.lblHolderKey.Location = new System.Drawing.Point(13, 109);
             this.lblHolderKey.Name = "lblHolderKey";
             this.lblHolderKey.Size = new System.Drawing.Size(67, 15);
             this.lblHolderKey.TabIndex = 7;
@@ -663,7 +666,7 @@ namespace Ukupholisa3
             // lblHolderID
             // 
             this.lblHolderID.AutoSize = true;
-            this.lblHolderID.Location = new System.Drawing.Point(15, 28);
+            this.lblHolderID.Location = new System.Drawing.Point(13, 53);
             this.lblHolderID.Name = "lblHolderID";
             this.lblHolderID.Size = new System.Drawing.Size(59, 15);
             this.lblHolderID.TabIndex = 6;
@@ -671,7 +674,7 @@ namespace Ukupholisa3
             // 
             // btnAddAccount
             // 
-            this.btnAddAccount.Location = new System.Drawing.Point(99, 135);
+            this.btnAddAccount.Location = new System.Drawing.Point(11, 165);
             this.btnAddAccount.Name = "btnAddAccount";
             this.btnAddAccount.Size = new System.Drawing.Size(100, 23);
             this.btnAddAccount.TabIndex = 5;
@@ -681,14 +684,14 @@ namespace Ukupholisa3
             // 
             // txtHolderCell
             // 
-            this.txtHolderCell.Location = new System.Drawing.Point(99, 108);
+            this.txtHolderCell.Location = new System.Drawing.Point(136, 133);
             this.txtHolderCell.Name = "txtHolderCell";
             this.txtHolderCell.Size = new System.Drawing.Size(100, 21);
             this.txtHolderCell.TabIndex = 4;
             // 
             // txtHolderKey
             // 
-            this.txtHolderKey.Location = new System.Drawing.Point(99, 81);
+            this.txtHolderKey.Location = new System.Drawing.Point(136, 106);
             this.txtHolderKey.Name = "txtHolderKey";
             this.txtHolderKey.Size = new System.Drawing.Size(100, 21);
             this.txtHolderKey.TabIndex = 3;
@@ -696,18 +699,27 @@ namespace Ukupholisa3
             // cmbPackage
             // 
             this.cmbPackage.FormattingEnabled = true;
-            this.cmbPackage.Location = new System.Drawing.Point(99, 52);
+            this.cmbPackage.Location = new System.Drawing.Point(136, 77);
             this.cmbPackage.Name = "cmbPackage";
             this.cmbPackage.Size = new System.Drawing.Size(100, 23);
             this.cmbPackage.TabIndex = 2;
             this.cmbPackage.SelectedIndexChanged += new System.EventHandler(this.cmbPackage_SelectedIndexChanged);
+            this.cmbPackage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.cmbPackage_MouseClick);
             // 
             // txtHolderID
             // 
-            this.txtHolderID.Location = new System.Drawing.Point(99, 25);
+            this.txtHolderID.Location = new System.Drawing.Point(136, 50);
             this.txtHolderID.Name = "txtHolderID";
             this.txtHolderID.Size = new System.Drawing.Size(100, 21);
             this.txtHolderID.TabIndex = 1;
+            // 
+            // dgvViewPackage
+            // 
+            this.dgvViewPackage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvViewPackage.Location = new System.Drawing.Point(18, 263);
+            this.dgvViewPackage.Name = "dgvViewPackage";
+            this.dgvViewPackage.Size = new System.Drawing.Size(240, 220);
+            this.dgvViewPackage.TabIndex = 28;
             // 
             // UserForm
             // 
@@ -733,6 +745,7 @@ namespace Ukupholisa3
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
             this.pnlAccountAdd.ResumeLayout(false);
             this.pnlAccountAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvViewPackage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -804,5 +817,6 @@ namespace Ukupholisa3
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnInsert;
+        private System.Windows.Forms.DataGridView dgvViewPackage;
     }
 }
