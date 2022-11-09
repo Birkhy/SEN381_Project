@@ -53,7 +53,7 @@ namespace Genisis
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(handler.GetPreformance().ToString());
+            //MessageBox.Show(handler.GetPreformance().ToString());
             try
             {
                 if (handler.CheckAdminLog(txtUserName.Text.Trim(), txtPass.Text))
