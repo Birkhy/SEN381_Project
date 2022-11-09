@@ -1637,23 +1637,26 @@ namespace Ukupholisa3
             
         //    //while(counter !=  Row)
         //    //{
-        //        MySqlCommand GetIDs = new MySqlCommand($"Select Package_ID From product Where Package Where Package_ID = 3)", connect);
+        //        MySqlCommand GetIDs = new MySqlCommand("Select Package_ID From product Where Package_ID = 3)", connect);
         //        connect.Open();
         //        MySqlDataReader ReadIDs = GetIDs.ExecuteReader();
         //        IDs.Push(int.Parse(ReadIDs.ToString()));
         //        connect.Close();
         //    //}
 
-        //    for (int i = 0; i <= Row; i++)
-        //    {
-        //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
-        //        connect.Open();
-        //        MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
-        //        Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
-        //        connect.Close();
-        //    }
-        //    return Preformance;
-        //}
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+            for (int i = 0; i <= Row; i++)
+            {
+                MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
+                connect.Open();
+                MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
+                Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
+                connect.Close();
+            }
+            return Preformance;
+        }
 
         // gets all accounts for the dgv
         public DataTable getAccount()
@@ -1726,6 +1729,28 @@ namespace Ukupholisa3
                 return null;
             }
         }
+=======
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+        //    for (int i = 0; i <= Row; i++)
+        //    {
+        //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
+        //        connect.Open();
+        //        MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
+        //        Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
+        //        connect.Close();
+        //    }
+        //    return Preformance;
+        //}
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     }
 
 }

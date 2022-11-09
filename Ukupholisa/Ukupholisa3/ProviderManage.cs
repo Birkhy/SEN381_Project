@@ -368,6 +368,12 @@ namespace Genisis
                 MessageBox.Show($"Somthing went wrong trying to Update Condition: {txtCondtionName.Text}.");
             }
         }
+
+        private void btnProClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void button2_Click_1(object sender, EventArgs e)
         {
             txtName.Clear();
