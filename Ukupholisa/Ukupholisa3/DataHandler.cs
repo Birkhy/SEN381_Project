@@ -194,7 +194,7 @@ namespace Ukupholisa3
                 sql_cmnd.Parameters.AddWithValue("@CallID", CallID);
                 sql_cmnd.Parameters.AddWithValue("@CallDate", CallDate);
                 sql_cmnd.Parameters.AddWithValue("@CallStartTime", CallStartTime);
-                
+
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
@@ -217,7 +217,7 @@ namespace Ukupholisa3
             }
         }
 
-        public bool AddCallEnd(int CallID,string HolderID, DateTime CallEndTime, TimeSpan CallDuration)
+        public bool AddCallEnd(int CallID, string HolderID, DateTime CallEndTime, TimeSpan CallDuration)
         {
             MySqlConnection connect = new MySqlConnection(conn);
             if (CallEndTime != null && CallEndTime != null)
@@ -226,7 +226,7 @@ namespace Ukupholisa3
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("AddCallEnd", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                if(HolderID == null)
+                if (HolderID == null)
                 {
                     sql_cmnd.Parameters.AddWithValue("@HolderID", "Not Regstered");
                 }
@@ -998,40 +998,55 @@ namespace Ukupholisa3
 
             if (Preformance >= 0 || Preformance <= 100)
             {
-                if (Name != "" && Price >= 0 && coverLevel >= 0)
+                if (Name != "" && Name.Length <= 20)
                 {
-                    connect.Open();
-                    MySqlCommand sql_cmnd = new MySqlCommand("updateProduct", connect);
-                    sql_cmnd.CommandType = CommandType.StoredProcedure;
-                    sql_cmnd.Parameters.AddWithValue("@PName", Name);
-                    sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
-                    sql_cmnd.Parameters.AddWithValue("@PAvailability", Availability);
-                    sql_cmnd.Parameters.AddWithValue("@PPerformance", Preformance);
-                    sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
-                    sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
-
-                    int Row = sql_cmnd.ExecuteNonQuery();
-
-                    if (Row > 0)
+                    if (Price >= 0)
                     {
-                        connect.Close();
-                        return $"Product with name {Name} was updated";
+                        if (coverLevel >= 0 && coverLevel <= 11)
+                        {
+                            connect.Open();
+                            MySqlCommand sql_cmnd = new MySqlCommand("updateProduct", connect);
+                            sql_cmnd.CommandType = CommandType.StoredProcedure;
+                            sql_cmnd.Parameters.AddWithValue("@PName", Name);
+                            sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
+                            sql_cmnd.Parameters.AddWithValue("@PAvailability", Availability);
+                            sql_cmnd.Parameters.AddWithValue("@PPerformance", Preformance);
+                            sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
+                            sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
+
+                            int Row = sql_cmnd.ExecuteNonQuery();
+
+                            if (Row > 0)
+                            {
+                                connect.Close();
+                                return $"Product with name {Name} was updated";
+                            }
+                            else
+                            {
+                                connect.Close();
+                                return $"Product with name {Name} was not updated";
+                            }
+                        }
+                        else
+                        {
+                            connect.Close();
+                            return "Please enter a valid Cover level. Must be between 1 and 11.";
+                        }
                     }
                     else
                     {
-                        connect.Close();
-                        return $"Product with name {Name} was not updated";
+                        return "Please enter a valid Pri.";
                     }
                 }
                 else
                 {
-                    connect.Close();
-                    return "Please enter all the needed data for the record to be updated.";
+                    return "Please enter a valid Name.";
                 }
+
             }
             else
             {
-                return "Please make sure you enter a valid precentage for the preformance of the product.";
+                return "Please enter a valid Precentage for the Preformance of the product.";
             }
         }
 
@@ -1042,38 +1057,53 @@ namespace Ukupholisa3
 
             if (Preformance >= 0 || Preformance <= 100)
             {
-                if (Name != "" && Price >= 0 && coverLevel >= 0)
+                if (Name != "" && Name.Length <= 20)
                 {
-                    connect.Open();
-                    MySqlCommand sql_cmnd = new MySqlCommand("insertProduct", connect);
-                    sql_cmnd.CommandType = CommandType.StoredProcedure;
-                    sql_cmnd.Parameters.AddWithValue("@PName", Name);
-                    sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
-                    sql_cmnd.Parameters.AddWithValue("@Avial", Availability);
-                    sql_cmnd.Parameters.AddWithValue("@PPerformance", Preformance);
-                    sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
-                    sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
-                    int Row = sql_cmnd.ExecuteNonQuery();
-                    if (Row > 0)
+                    if (Price >= 0)
                     {
-                        connect.Close();
-                        return "Product with the name " + Name + " was added to the database.";
+                        if (coverLevel >= 0 && coverLevel <= 11)
+                        {
+                            connect.Open();
+                            MySqlCommand sql_cmnd = new MySqlCommand("insertProduct", connect);
+                            sql_cmnd.CommandType = CommandType.StoredProcedure;
+                            sql_cmnd.Parameters.AddWithValue("@PName", Name);
+                            sql_cmnd.Parameters.AddWithValue("@PPrice", Price);
+                            sql_cmnd.Parameters.AddWithValue("@Avial", Availability);
+                            sql_cmnd.Parameters.AddWithValue("@PPerformance", Preformance);
+                            sql_cmnd.Parameters.AddWithValue("@CLevel", coverLevel);
+                            sql_cmnd.Parameters.AddWithValue("@PPromotion", Promotion);
+                            int Row = sql_cmnd.ExecuteNonQuery();
+                            if (Row > 0)
+                            {
+                                connect.Close();
+                                return "Product with the name " + Name + " was added to the database.";
+                            }
+                            else
+                            {
+                                connect.Close();
+                                return $"Product with name {Name} does not exist.";
+                            }
+                        }
+                        else
+                        {
+                            connect.Close();
+                            return "Please enter a valid Cover level. Must be between 1 and 11.";
+                        }
                     }
                     else
                     {
-                        connect.Close();
-                        return $"Product with name {Name} does not exist.";
+                        return "Please enter a valid Pri.";
                     }
                 }
                 else
                 {
-                    connect.Close();
-                    return "Please enter all required data to update the product";
+                    return "Please enter a valid Name.";
                 }
+
             }
             else
             {
-                return "Please make sure you enter a valid precentage for the preformance of the product.";
+                return "Please enter a valid Precentage for the Preformance of the product.";
             }
         }
 
@@ -1083,7 +1113,7 @@ namespace Ukupholisa3
             MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
-            if (Name != "")
+            if (Name != "" && Name.Length <= 20)
             {
                 MySqlCommand command = new MySqlCommand("deleteProduct", connect);
                 command.CommandType = CommandType.StoredProcedure;
@@ -1104,7 +1134,7 @@ namespace Ukupholisa3
             else
             {
                 connect.Close();
-                return "Please enter the Product Name you want to delete.";
+                return "Please enter a valid Product Name for the record to be deleted.";
             }
         }
 
@@ -1136,31 +1166,47 @@ namespace Ukupholisa3
         public string updateProvider(string PName, int Status, string Agreement, string Contact)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (PName != "" && Agreement != "" && Contact != "")
+            if (PName != "" && PName.Length <= 100)
             {
-                connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("updateProvider", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@PName", PName);
-                sql_cmnd.Parameters.AddWithValue("@PStatus", Status);
-                sql_cmnd.Parameters.AddWithValue("@PAgreement", Agreement);
-                sql_cmnd.Parameters.AddWithValue("@PContact", Contact);
-                int Row = sql_cmnd.ExecuteNonQuery();
-                if (Row > 0)
+                if (Agreement != "" && Agreement.Length <= 100)
                 {
-                    connect.Close();
-                    return "Provider with the name " + PName + " was updated in the database.";
+                    if (Contact.Length == 10)
+                    {
+                        connect.Open();
+                        MySqlCommand sql_cmnd = new MySqlCommand("updateProvider", connect);
+                        sql_cmnd.CommandType = CommandType.StoredProcedure;
+                        sql_cmnd.Parameters.AddWithValue("@PName", PName);
+                        sql_cmnd.Parameters.AddWithValue("@PStatus", Status);
+                        sql_cmnd.Parameters.AddWithValue("@PAgreement", Agreement);
+                        sql_cmnd.Parameters.AddWithValue("@PContact", Contact);
+                        int Row = sql_cmnd.ExecuteNonQuery();
+                        if (Row > 0)
+                        {
+                            connect.Close();
+                            return "Provider with the name " + PName + " was updated in the database.";
+                        }
+                        else
+                        {
+                            connect.Close();
+                            return "Provider with the name " + PName + " was not updated in the database.";
+                        }
+                    }
+                    else
+                    {
+                        connect.Close();
+                        return "Please enter a Valid Name.";
+                    }
                 }
                 else
                 {
                     connect.Close();
-                    return "Provider with the name " + PName + " was not updated in the database.";
+                    return "Please enter a Valid Agreement.";
                 }
             }
             else
             {
                 connect.Close();
-                return "Please enter all required data to update the Provider";
+                return "Please enter a Valid contact number";
             }
         }
 
@@ -1168,32 +1214,49 @@ namespace Ukupholisa3
         public string addProvider(string PName, int Status, string Agreement, string Contact)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (PName != "" && Agreement != "" && Contact != "")
+            if (PName != "" && PName.Length <= 100)
             {
-                connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("insertProvider", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@PName", PName);
-                sql_cmnd.Parameters.AddWithValue("@PStatus", Status);
-                sql_cmnd.Parameters.AddWithValue("@PAgreement", Agreement);
-                sql_cmnd.Parameters.AddWithValue("@PContact", Contact);
-                int Row = sql_cmnd.ExecuteNonQuery();
-                if (Row > 0)
+                if (Agreement != "" && Agreement.Length <= 100)
                 {
-                    connect.Close();
-                    return "Provider with the name " + PName + " was added to the database.";
+                    if (Contact.Length == 10)
+                    {
+                        connect.Open();
+                        MySqlCommand sql_cmnd = new MySqlCommand("insertProvider", connect);
+                        sql_cmnd.CommandType = CommandType.StoredProcedure;
+                        sql_cmnd.Parameters.AddWithValue("@PName", PName);
+                        sql_cmnd.Parameters.AddWithValue("@PStatus", Status);
+                        sql_cmnd.Parameters.AddWithValue("@PAgreement", Agreement);
+                        sql_cmnd.Parameters.AddWithValue("@PContact", Contact);
+                        int Row = sql_cmnd.ExecuteNonQuery();
+                        if (Row > 0)
+                        {
+                            connect.Close();
+                            return "Provider with the name " + PName + " was added to the database.";
+                        }
+                        else
+                        {
+                            connect.Close();
+                            return "Provider with the name " + PName + " was not added to the database.";
+                        }
+                    }
+                    else
+                    {
+                        connect.Close();
+                        return "Please enter a Valid Name.";
+                    }
                 }
                 else
                 {
                     connect.Close();
-                    return "Provider with the name " + PName + " was not added to the database.";
+                    return "Please enter a Valid Agreement.";
                 }
             }
             else
             {
                 connect.Close();
-                return "Please enter all required data to update the Provider";
+                return "Please enter a Valid contact number";
             }
+
         }
 
         //The deleteProduct function will be used to delete a product out of the database using the ProductName.
@@ -1255,35 +1318,70 @@ namespace Ukupholisa3
         public string updateUser(string name, string surname, string contact, string ID, string username, string password, int clearance)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (name != "" && surname != "" && contact != "" && ID != "" && username != "" && password != "")
+            if (ID.Length == 13)
             {
-                connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("updateUser", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@EName", name);
-                sql_cmnd.Parameters.AddWithValue("@SName", surname).Value = surname;
-                sql_cmnd.Parameters.AddWithValue("@EContact", contact);
-                sql_cmnd.Parameters.AddWithValue("@EID", username);
-                sql_cmnd.Parameters.AddWithValue("@UName", password);
-                sql_cmnd.Parameters.AddWithValue("@UPassword", clearance);
-                sql_cmnd.Parameters.AddWithValue("@UClearance", ID);
-
-                int Row = sql_cmnd.ExecuteNonQuery();
-                if (Row > 0)
+                if (name != "" && name.Length <= 50)
                 {
-                    connect.Close();
-                    return "User with the ID " + ID + " was updated in the database.";
+                    if (surname != "" && surname.Length <= 150)
+                    {
+                        if (contact.Length == 10)
+                        {
+                            if (username != "" && username.Length <= 50)
+                            {
+                                if (password != "" && password.Length <= 100)
+                                {
+                                    connect.Open();
+                                    MySqlCommand sql_cmnd = new MySqlCommand("updateUser", connect);
+                                    sql_cmnd.CommandType = CommandType.StoredProcedure;
+                                    sql_cmnd.Parameters.AddWithValue("@EName", name);
+                                    sql_cmnd.Parameters.AddWithValue("@SName", surname);
+                                    sql_cmnd.Parameters.AddWithValue("@EContact", contact);
+                                    sql_cmnd.Parameters.AddWithValue("@EID", username);
+                                    sql_cmnd.Parameters.AddWithValue("@UName", password);
+                                    sql_cmnd.Parameters.AddWithValue("@UPassword", clearance);
+                                    sql_cmnd.Parameters.AddWithValue("@UClearance", ID);
+
+                                    int Row = sql_cmnd.ExecuteNonQuery();
+                                    if (Row > 0)
+                                    {
+                                        connect.Close();
+                                        return "User with the ID " + ID + " was updated in the database.";
+                                    }
+                                    else
+                                    {
+                                        connect.Close();
+                                        return $"The User with the ID {ID} does not exist.";
+                                    }
+                                }
+                                else
+                                {
+                                    connect.Close();
+                                    return "Please enter a valid password";
+                                }
+                            }
+                            else
+                            {
+                                return "Please enter a valid username.";
+                            }
+                        }
+                        else
+                        {
+                            return "Please enter a valid contact number.";
+                        }
+                    }
+                    else
+                    {
+                        return "Please enter a valid surname.";
+                    }
                 }
                 else
                 {
-                    connect.Close();
-                    return $"The User with the ID {ID} does not exist.";
+                    return "Please enter a valid Name.";
                 }
             }
             else
             {
-                connect.Close();
-                return "Please enter all required data to update the specified User.";
+                return "Please enter a valid ID.";
             }
         }
 
@@ -1291,34 +1389,69 @@ namespace Ukupholisa3
         public string addUser(string name, string surname, string contact, string ID, string username, string password, int clearance)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (name != "" && surname != "" && contact != "" && ID != "" && username != "" && password != "")
+            if (ID.Length == 13)
             {
-                connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("inserUser", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@EName", name);
-                sql_cmnd.Parameters.AddWithValue("@SName", surname);
-                sql_cmnd.Parameters.AddWithValue("@UContact", contact);
-                sql_cmnd.Parameters.AddWithValue("@UID", ID);
-                sql_cmnd.Parameters.AddWithValue("@UName", username);
-                sql_cmnd.Parameters.AddWithValue("@UPassword", password);
-                sql_cmnd.Parameters.AddWithValue("@UClearance", clearance);
-                int Row = sql_cmnd.ExecuteNonQuery();
-                if (Row > 0)
+                if (name != "" && name.Length <= 50)
                 {
-                    connect.Close();
-                    return "User with the ID " + ID + " was added to the database.";
+                    if (surname != "" && surname.Length <= 150)
+                    {
+                        if (contact.Length == 10)
+                        {
+                            if (username != "" && username.Length <= 50)
+                            {
+                                if (password != "" && password.Length <= 100)
+                                {
+                                    connect.Open();
+                                    MySqlCommand sql_cmnd = new MySqlCommand("inserUser", connect);
+                                    sql_cmnd.CommandType = CommandType.StoredProcedure;
+                                    sql_cmnd.Parameters.AddWithValue("@EName", name);
+                                    sql_cmnd.Parameters.AddWithValue("@SName", surname);
+                                    sql_cmnd.Parameters.AddWithValue("@UContact", contact);
+                                    sql_cmnd.Parameters.AddWithValue("@UID", ID);
+                                    sql_cmnd.Parameters.AddWithValue("@UName", username);
+                                    sql_cmnd.Parameters.AddWithValue("@UPassword", password);
+                                    sql_cmnd.Parameters.AddWithValue("@UClearance", clearance);
+                                    int Row = sql_cmnd.ExecuteNonQuery();
+                                    if (Row > 0)
+                                    {
+                                        connect.Close();
+                                        return "User with the ID " + ID + " was added to the database.";
+                                    }
+                                    else
+                                    {
+                                        connect.Close();
+                                        return $"The User with the ID {ID} does not exist.";
+                                    }
+                                }
+                                else
+                                {
+                                    connect.Close();
+                                    return "Please enter a valid password";
+                                }
+                            }
+                            else
+                            {
+                                return "Please enter a valid username.";
+                            }
+                        }
+                        else
+                        {
+                            return "Please enter a valid contact number.";
+                        }
+                    }
+                    else
+                    {
+                        return "Please enter a valid surname.";
+                    }
                 }
                 else
                 {
-                    connect.Close();
-                    return $"The User with the ID {ID} does not exist.";
+                    return "Please enter a valid Name.";
                 }
             }
             else
             {
-                connect.Close();
-                return "Please enter all required data to insert the specified User.";
+                return "Please enter a valid ID.";
             }
         }
 
@@ -1328,7 +1461,7 @@ namespace Ukupholisa3
             MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
-            if (ID != "")
+            if (ID.Length == 13)
             {
                 MySqlCommand command = new MySqlCommand("deleteUser", connect);
                 command.CommandType = CommandType.StoredProcedure;
@@ -1376,6 +1509,8 @@ namespace Ukupholisa3
                 return dt;
             }
         }
+
+        //getCondition will get the Conditions data and display it in the Data grid view.
         public DataTable getCondition()
         {
             MySqlConnection connect = new MySqlConnection(conn);
@@ -1402,7 +1537,7 @@ namespace Ukupholisa3
         public string updateCondition(string name)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (name != "")
+            if (name != "" && name.Length <= 150)
             {
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("updateCondition", connect);
@@ -1424,7 +1559,7 @@ namespace Ukupholisa3
             else
             {
                 connect.Close();
-                return "Please enter all required data to update the specified Condition.";
+                return "Please enter a valid Condition Name to update the record.";
             }
         }
 
@@ -1432,7 +1567,7 @@ namespace Ukupholisa3
         public string addCondtion(string name)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (name != "")
+            if (name != "" && name.Length <= 150)
             {
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("addCondition", connect);
@@ -1453,7 +1588,7 @@ namespace Ukupholisa3
             else
             {
                 connect.Close();
-                return "Please enter all required data to insert the specified Condition.";
+                return "Please enter a valid Condition Name to insert the record.";
             }
         }
 
@@ -1463,7 +1598,7 @@ namespace Ukupholisa3
             MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
-            if (Name != "")
+            if (Name != "" && Name.Length <= 150)
             {
                 MySqlCommand command = new MySqlCommand("deleteCondition", connect);
                 command.CommandType = CommandType.StoredProcedure;
@@ -1478,14 +1613,46 @@ namespace Ukupholisa3
                 else
                 {
                     connect.Close();
-                    return $"Condition with ID {Name} does not exist.";
+                    return $"Condition with Name {Name} does not exist.";
                 }
             }
             else
             {
                 connect.Close();
-                return "Please enter the Condition Name you want to delete.";
+                return "Please enter a valid Condition Name to delete the record.";
             }
+        }
+
+        public List<int> GetPreformance()
+        {
+            List<int> Preformance = new List<int>();
+            Stack<int> IDs = new Stack<int>();
+            int counter = 0;
+
+            MySqlConnection connect = new MySqlConnection(conn);
+            MySqlCommand command = new MySqlCommand($"Select * From product", connect);
+            connect.Open();
+            int Row = command.ExecuteNonQuery();
+            connect.Close();
+            
+            //while(counter !=  Row)
+            //{
+                MySqlCommand GetIDs = new MySqlCommand($"Select Package_ID From product Where Package Where Package_ID = 3)", connect);
+                connect.Open();
+                MySqlDataReader ReadIDs = GetIDs.ExecuteReader();
+                IDs.Push(int.Parse(ReadIDs.ToString()));
+                connect.Close();
+            //}
+
+            for (int i = 0; i <= Row; i++)
+            {
+                MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
+                connect.Open();
+                MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
+                Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
+                connect.Close();
+            }
+            return Preformance;
         }
     }
 

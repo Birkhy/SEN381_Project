@@ -24,7 +24,7 @@ namespace Genisis
         {
             try
             {
-                dgvTreatments.DataSource =  Handle.SearchTreatment(txtSrchTrt.Text);
+                dgvTreatments.DataSource = Handle.SearchTreatment(txtSrchTrt.Text);
                 dgvTreatments.AutoResizeColumns();
 
             }
@@ -76,7 +76,7 @@ namespace Genisis
                 MessageBox.Show("Somthing went wrong trying to display the Products.");
             }
 
-            
+
             //Will display the Condtions on Initialization
             try
             {
@@ -86,11 +86,6 @@ namespace Genisis
             {
                 MessageBox.Show("Somthing went wrong trying to display the Conditions.");
             }
-        }
-
-        private void dgvTreatments_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
 
         private void Treatments_Click(object sender, EventArgs e)
@@ -127,27 +122,27 @@ namespace Genisis
                 Clearance = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.updateUser(txtUName.Text, txtuSur.Text, txtUContact.Text, txtUID.Text, txtUserName.Text, txtUPass.Text, Clearance));
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Update User with ID: {txtUID.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update User with ID: {txtUID.Text}");
+            }
         }
 
         private void btnShowU_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Somthing went wrong trying to display the Users.");
-            //}
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong trying to display the Users.");
+            }
         }
 
         private void btnUIn_Click(object sender, EventArgs e)
@@ -159,28 +154,28 @@ namespace Genisis
                 Clearance = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.addUser(txtUName.Text, txtuSur.Text, txtUContact.Text, txtUID.Text, txtUserName.Text, txtUPass.Text, Clearance));
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Insert User with ID: {txtUID.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Insert User with ID: {txtUID.Text}");
+            }
         }
 
         private void btnUDel_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.deleteUser(txtUID.Text));
                 dgvUsers.DataSource = Handle.getUser();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Delete User with ID: {txtUID.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Delete User with ID: {txtUID.Text}");
+            }
         }
 
         private void btnProUp_Click(object sender, EventArgs e)
@@ -192,15 +187,15 @@ namespace Genisis
                 Status = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.updateProvider(txtName.Text, Status, txtAgree.Text, txtContact.Text));
                 dgvPro.DataSource = Handle.getProvider();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
+            }
         }
 
         private void btnProIn_Click(object sender, EventArgs e)
@@ -212,28 +207,28 @@ namespace Genisis
                 Status = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.addProvider(txtName.Text, Status, txtAgree.Text, txtContact.Text));
                 dgvPro.DataSource = Handle.getProvider();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update Provider with the Name: {txtName.Text}");
+            }
         }
 
         private void btnProDel_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.deleteProvider(txtName.Text));
                 dgvPro.DataSource = Handle.getProvider();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Delete Provider with the Name: {txtName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Delete Provider with the Name: {txtName.Text}");
+            }
         }
 
         private void btnProdUp_Click(object sender, EventArgs e)
@@ -244,20 +239,21 @@ namespace Genisis
             if (chkAvail.Checked)
             {
                 Avail = 1;
-            }else if (chkPro.Checked)
+            }
+            else if (chkPro.Checked)
             {
                 Pro = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.updateProduct(txtPName.Text, double.Parse(txtPPrice.Text), Avail, double.Parse(txtPerform.Text), int.Parse(cmbCover.Text), Pro));
                 dgvProduct.DataSource = Handle.getProduct();
-            //}
-            //catch
-            //{
-                //MessageBox.Show($"Somthing went wrong trying to Update Product with the Name: {txtPName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Update Product with the Name: {txtPName.Text}");
+            }
         }
 
         private void Product_Click(object sender, EventArgs e)
@@ -279,28 +275,28 @@ namespace Genisis
                 Pro = 1;
             }
 
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.addProduct(txtPName.Text, double.Parse(txtPPrice.Text), Avail, double.Parse(txtPerform.Text), int.Parse(cmbCover.Text), Pro));
                 dgvProduct.DataSource = Handle.getProduct();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Insert Product with the Name: {txtPName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Insert Product with the Name: {txtPName.Text}");
+            }
         }
 
         private void btnProdDel_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 MessageBox.Show(Handle.deleteProduct(txtPName.Text));
                 dgvProduct.DataSource = Handle.getProduct();
-            //}
-            //catch
-            //{
-            //    MessageBox.Show($"Somthing went wrong trying to Delete Product with the Name: {txtPName.Text}");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show($"Somthing went wrong trying to Delete Product with the Name: {txtPName.Text}");
+            }
         }
 
         private void cmbCover_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,14 +306,14 @@ namespace Genisis
 
         private void btnShowPro_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            try
+            {
                 dgvPro.DataSource = Handle.getProduct();
-            //}
-            //catch (Exception)
-            //{
+            }
+            catch (Exception)
+            {
                 MessageBox.Show("Somthing went wrong trying to display the Products.");
-            //}
+            }
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -332,9 +328,10 @@ namespace Genisis
 
         private void btnConDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Handle.deleteCondition(txtCondtionName.Text));
+
             try
             {
+                MessageBox.Show(Handle.deleteCondition(txtCondtionName.Text));
                 dgvConditions.DataSource = Handle.getCondition();
             }
             catch
@@ -345,9 +342,9 @@ namespace Genisis
 
         private void btnConInsert_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Handle.addCondtion(txtCondtionName.Text));
             try
             {
+                MessageBox.Show(Handle.addCondtion(txtCondtionName.Text));
                 dgvConditions.DataSource = Handle.getCondition();
             }
             catch
@@ -358,14 +355,153 @@ namespace Genisis
 
         private void btnConUpdate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Handle.updateCondtion(txtConditionNewName.Text));
             try
             {
+                MessageBox.Show(Handle.updateCondition(txtConditionNewName.Text));
                 dgvConditions.DataSource = Handle.getCondition();
             }
             catch
             {
                 MessageBox.Show($"Somthing went wrong trying to Update Condition: {txtCondtionName.Text}.");
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            txtName.Clear();
+            chkCheck.Checked = false;
+            txtContact.Clear();
+            txtAgree.Clear();
+        }
+
+        private void btnUsersClear_Click(object sender, EventArgs e)
+        {
+            txtUName.Clear();
+            txtuSur.Clear();
+            txtUID.Clear();
+            txtUContact.Clear();
+            txtUserName.Clear();
+            txtUPass.Clear();
+            cbAdmin.Checked = false;
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+            txtPName.Clear();
+            chkAvail.Checked = false;
+            txtPerform.Clear();
+            txtPPrice.Clear();
+            cmbCover.Text = "";
+            chkPro.Checked = false;
+        }
+
+        private void btnTreClear_Click(object sender, EventArgs e)
+        {
+            txtSrchTrt.Clear();
+        }
+
+        private void btnConClear_Click(object sender, EventArgs e)
+        {
+            txtCondtionName.Clear();
+            txtConditionNewName.Clear();
+        }
+
+        private void dgvPro_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvPro.Rows[e.RowIndex];
+                    txtName.Text = Rows.Cells["Provider_Name"].Value.ToString();
+                    chkCheck.Checked = (bool)Rows.Cells["Provider_Status"].Value;
+                    txtAgree.Text = Rows.Cells["Agreement"].Value.ToString();
+                    txtContact.Text = Rows.Cells["Contact"].Value.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvPro_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvUsers.Rows[e.RowIndex];
+                    txtUName.Text = Rows.Cells["Employee_Name"].Value.ToString();
+                    txtuSur.Text = Rows.Cells["Employee_Surname"].Value.ToString();
+                    txtUContact.Text = Rows.Cells["Contact"].Value.ToString();
+                    txtUID.Text = Rows.Cells["Employee_ID"].Value.ToString();
+                    txtUserName.Text = Rows.Cells["Username"].Value.ToString();
+                    txtUPass.Text = Rows.Cells["UserPassword"].Value.ToString();
+                    cbAdmin.Checked = (bool)Rows.Cells["Clearance"].Value;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvProduct.Rows[e.RowIndex];
+                    txtPName.Text = Rows.Cells["Package_Name"].Value.ToString();
+                    txtPPrice.Text = Rows.Cells["Price"].Value.ToString();
+                    chkAvail.Checked = (bool)Rows.Cells["Availability"].Value;
+                    txtPerform.Text = Rows.Cells["Performance"].Value.ToString();
+                    cmbCover.Text = Rows.Cells["Cover_Level"].Value.ToString();
+                    chkPro.Checked = (bool)Rows.Cells["Promotion"].Value;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvTreatments_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvTreatments.Rows[e.RowIndex];
+                    txtSrchTrt.Text = Rows.Cells["Treatment"].Value.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvConditions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvConditions.Rows[e.RowIndex];
+                    txtCondtionName.Text = Rows.Cells["Condition"].Value.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
             }
         }
     }
