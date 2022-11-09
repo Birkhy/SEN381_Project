@@ -26,7 +26,7 @@ namespace Genisis
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //MessageBox.Show(handler.GetPreformance().ToString());
+            
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
