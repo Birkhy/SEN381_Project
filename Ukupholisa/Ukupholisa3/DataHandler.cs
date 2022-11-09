@@ -939,6 +939,35 @@ namespace Ukupholisa3
             return "";
         }
 
+        // sets condition id according to condition name
+        public string setConditionName(string ConditionID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+
+            if (connect.State != ConnectionState.Open)
+            {
+                connect.Open();
+                MySqlCommand command = new MySqlCommand("setConditionName", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@ConditionID", ConditionID);
+                command.Parameters.Add("VCondition", MySqlDbType.String);
+                command.Parameters["VCondition"].Direction = ParameterDirection.Output;
+
+                command.ExecuteNonQuery();
+
+                string AccountID = command.Parameters["VCondition"].Value.ToString();
+
+
+
+
+
+                connect.Close();
+
+                return AccountID;
+            }
+            return "";
+        }
+
         //Method returns datatable to view treatments associated with a package.
         public DataTable ViewPackageTreatments(string PackageName)
         {
@@ -1729,11 +1758,11 @@ namespace Ukupholisa3
                 return null;
             }
         }
-//=======
-//=======
-//>>>>>>> Stashed changes
-//=======
-//>>>>>>> Stashed changes
+        //=======
+        //=======
+        //>>>>>>> Stashed changes
+        //=======
+        //>>>>>>> Stashed changes
         //    for (int i = 0; i <= Row; i++)
         //    {
         //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
@@ -1744,13 +1773,60 @@ namespace Ukupholisa3
         //    }
         //    return Preformance;
         //}
-//<<<<<<< Updated upstream
-//<<<<<<< Updated upstream
-//>>>>>>> Stashed changes
-//=======
-//>>>>>>> Stashed changes
-//======
-//>>>>>>> Stashed changes
+        //<<<<<<< Updated upstream
+        //<<<<<<< Updated upstream
+        //>>>>>>> Stashed changes
+        //=======
+        //>>>>>>> Stashed changes
+        //======
+        //>>>>>>> Stashed changes
+        //updateProvider will be used to update the specified Provider in the database.
+        public string updateAccount(string HolderKey, string HolderID, string HolderCell, int PackageID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            if (HolderID != "" && HolderID.Length == 13)
+            {
+                if (HolderKey != "" && HolderKey.Length == 5)
+                {
+                    if (HolderCell.Length == 10)
+                    {
+                        connect.Open();
+                        MySqlCommand sql_cmnd = new MySqlCommand("updateAccount", connect);
+                        sql_cmnd.CommandType = CommandType.StoredProcedure;
+                        sql_cmnd.Parameters.AddWithValue("@HolderKey", HolderKey);
+                        sql_cmnd.Parameters.AddWithValue("@HolderID", HolderID);
+                        sql_cmnd.Parameters.AddWithValue("@HolderCell", HolderCell);
+                        sql_cmnd.Parameters.AddWithValue("@PackageID", PackageID);
+                        int Row = sql_cmnd.ExecuteNonQuery();
+                        if (Row > 0)
+                        {
+                            connect.Close();
+                            return "Account with the ID " + HolderID + " was updated in the database.";
+                        }
+                        else
+                        {
+                            connect.Close();
+                            return "Account with the ID " + HolderID + " was not updated in the database.";
+                        }
+                    }
+                    else
+                    {
+                        connect.Close();
+                        return "Please enter a Valid cell.";
+                    }
+                }
+                else
+                {
+                    connect.Close();
+                    return "Please enter a Valid Holder Key.";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter a Valid Holder ID";
+            }
+        }
     }
 
 }
