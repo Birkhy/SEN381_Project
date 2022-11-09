@@ -9,9 +9,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Numerics;
 using System.Reflection;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Ukupholisa3
 {
@@ -1621,37 +1623,45 @@ namespace Ukupholisa3
             }
         }
 
-        public Stack<int> GetPreformance()
+        public List<double> GetPreformance()
         {
-            Stack<int> Preformance = new Stack<int>();
-            Stack<int> IDs = new Stack<int>();
-            int counter = 0;
+            List<double> Preformance = new List<double>();
+            List<int> IDs = new List<int>();
+            int accExists = 0;
 
             MySqlConnection connect = new MySqlConnection(conn);
-            MySqlCommand command = new MySqlCommand($"Select * From product", connect);
+            MySqlCommand command = new MySqlCommand($"Select * From account", connect);
             connect.Open();
             int Row = command.ExecuteNonQuery();
             connect.Close();
 
-            while (counter == Row - 1)
+            MySqlCommand GetIDs = new MySqlCommand($"Select * From product", connect);
+            connect.Open();
+            MySqlDataReader reader = GetIDs.ExecuteReader();
+
+            while (reader.Read())
             {
-                MySqlCommand GetIDs = new MySqlCommand($"Select Package_ID From product Where Package_ID = 3", connect);
-                connect.Open();
-                int ID = int.Parse(GetIDs.ExecuteScalar().ToString());
-                IDs.Push(ID);
-                connect.Close();
-                counter++;
+                int ID = int.Parse(reader[0].ToString());
+                IDs.Add(ID);
             }
 
-            for (int i = 0; i <= Row; i++)
+            connect.Close();
+
+            foreach (var item in IDs)
             {
-                MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
+                //MessageBox.Show(item.ToString());
                 connect.Open();
-                int percentComplete = (int)Math.Round((double)(100 * int.Parse(SUPERQUERY.ExecuteScalar().ToString())) / Row);
-                Preformance.Push(percentComplete); ;
+                MySqlCommand SUPERQUERY = new MySqlCommand($"Select Count(*) From account Where account.Package_ID = {item}", connect);
+
+                accExists = int.Parse(SUPERQUERY.ExecuteScalar().ToString());
+                //MessageBox.Show(accExists.ToString()+item);
+
+                double percentComplete = (accExists / Row) * 100;
+                MessageBox.Show(Row.ToString());
+                Preformance.Add(percentComplete);
                 connect.Close();
             }
-            MessageBox.Show(IDs.Pop().ToString());
+
             return Preformance;
         }
 
