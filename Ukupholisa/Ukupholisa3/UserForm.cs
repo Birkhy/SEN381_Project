@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -35,10 +36,31 @@ namespace Ukupholisa3
         Int32 CallID;
         bool accountVerified = false;
 
+        bool checkInsert = false;
+        bool checkUpdate = false;
+        bool checkDelete = false;
+
         DataHandler userHandle = new DataHandler();
+        private readonly Timer timer = new Timer();
+        private readonly Stopwatch sw = new Stopwatch();
+        private const string TimeFormat = "hh\\ \\:\\ mm\\ \\:\\ ss";
+
+
         public UserForm()
         {
             InitializeComponent();
+            timer.Interval = 100;
+            timer.Tick += Timer_Tick;
+        }
+
+        private void UpdateDisplay()
+        {
+            lblTimer.Text = sw.Elapsed.ToString(TimeFormat);
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            UpdateDisplay();
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -75,8 +97,15 @@ namespace Ukupholisa3
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+            pnlAccountAdd.Visible = false;
+            pnlAddConditionDep.Visible = false;
+            pnlDependantAdd.Visible = false;
+
             cmbPackage.DataSource = userHandle.getPackages();
             cmbDepCondition.DataSource = userHandle.getConditions();
+            pnlSelectButtons.Visible = false;
+            pnlButtons.Visible = true;
+
 
         }
 
@@ -91,8 +120,8 @@ namespace Ukupholisa3
             try
             {
 
-                dgvTreatments.DataSource = userHandle.SearchTreatment(txtSrchTrt.Text);
-                dgvTreatments.AutoResizeColumns();
+                //dgvTreatments.DataSource = userHandle.SearchTreatment(txtSrchTrt.Text);
+                //dgvTreatments.AutoResizeColumns();
                 //MessageBox.Show("Handler supposed to work");
                 //Source.DataSource = //Handle.GetClient();
 
@@ -220,6 +249,11 @@ namespace Ukupholisa3
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            sw.Start();
+            UpdateDisplay();
+            timer.Start();
+            
+
             CallStartTime = DateTime.Now;
             CallDate = DateTime.Now;
             CallID = userHandle.getLastCallID();
@@ -234,21 +268,128 @@ namespace Ukupholisa3
 
         private void btnEnd_Click(object sender, EventArgs e)
         {
-            //HolderID = txtHID.Text;
+            sw.Stop();
+            UpdateDisplay();
+            timer.Stop();
+
+            CallID = userHandle.getLastCallID();
             CallEndTime = DateTime.Now;
             MessageBox.Show(CallEndTime.ToString());
             CallDuration = CallEndTime.Subtract(CallStartTime);
             if (userHandle.AddCallEnd(CallID,HolderID,CallEndTime,CallDuration))
             {
-                MessageBox.Show("Call successfully updated");
-
-                //if (userHandle.AddAccountCall(HolderID, CallID))
-                //{
-                //    MessageBox.Show("Call ended");
-                //}
+                if (HolderID==null)
+                {
+                    MessageBox.Show("Call successfully updated");
+                }
+                else
+                {
+                    if (userHandle.AddAccountCall(HolderID, CallID))
+                    {
+                        MessageBox.Show("Call ended");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong");
             }
             
             
+        }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            checkInsert = true;
+            pnlButtons.Visible = false;
+            pnlSelectButtons.Visible = true;
+            
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            checkUpdate = true;
+            pnlButtons.Visible = false;
+            pnlSelectButtons.Visible = true;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            checkDelete = true;
+            pnlButtons.Visible = false;
+            pnlSelectButtons.Visible = true;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            checkDelete = false;
+            checkInsert = false;
+            checkUpdate = false;
+
+            pnlAccountAdd.Visible = false;
+            pnlAddConditionDep.Visible = false;
+            pnlDependantAdd.Visible = false;
+
+            pnlSelectButtons.Visible = false;
+            pnlButtons.Visible = true;
+        }
+
+        private void btnAccount_Click(object sender, EventArgs e)
+        {
+            pnlAddConditionDep.Visible = false;
+            pnlDependantAdd.Visible = false;
+            pnlAccountAdd.Visible = true;
+            if (checkInsert)
+            {
+                btnAddAccount.Text = "Add";
+            }
+            if (checkUpdate)
+            {
+                btnAddAccount.Text = "Update";
+            }
+            if (checkDelete)
+            {
+                btnAddAccount.Text = "Delete";
+            }
+
+        }
+
+        private void btnDependant_Click(object sender, EventArgs e)
+        {
+            pnlAccountAdd.Visible = false;
+            pnlAddConditionDep.Visible = false;
+            pnlDependantAdd.Visible = true;
+            if (checkInsert)
+            {
+                btnAddDependant.Text = "Add";
+            }
+            if (checkUpdate)
+            {
+                btnAddDependant.Text = "Update";
+            }
+            if (checkDelete)
+            {
+                btnAddDependant.Text = "Delete";
+            }
+        }
+
+        private void btnCondition_Click(object sender, EventArgs e)
+        {
+            pnlAccountAdd.Visible = false;
+            pnlDependantAdd.Visible = false;
+            pnlAddConditionDep.Visible = true;
+            if (checkInsert)
+            {
+                btnAddDepCondition.Text = "Add";
+            }
+            if (checkUpdate)
+            {
+                btnAddDepCondition.Text = "Update";
+            }
+            if (checkDelete)
+            {
+                btnAddDepCondition.Text = "Delete";
+            }
         }
     }
 }

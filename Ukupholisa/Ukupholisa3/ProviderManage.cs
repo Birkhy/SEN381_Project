@@ -358,7 +358,7 @@ namespace Genisis
 
         private void btnConUpdate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Handle.updateCondtion(txtConditionNewName.Text));
+            MessageBox.Show(Handle.updateCondition(txtConditionNewName.Text));
             try
             {
                 dgvConditions.DataSource = Handle.getCondition();

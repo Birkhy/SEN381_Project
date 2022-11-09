@@ -179,7 +179,7 @@ namespace Ukupholisa3
                 return lastID;
 
             }
-            return 0;
+            return 1;
         }
 
         //adds call to the call table
@@ -259,7 +259,7 @@ namespace Ukupholisa3
                 return false;
             }
         }
-        //not sure if works yet
+        //adds to accountcall
         public bool AddAccountCall(string HolderID, int CallID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
