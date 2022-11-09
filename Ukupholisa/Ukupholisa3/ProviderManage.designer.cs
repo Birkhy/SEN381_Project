@@ -30,6 +30,7 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Provider = new System.Windows.Forms.TabPage();
+            this.btnProClear = new System.Windows.Forms.Button();
             this.btnProExit = new System.Windows.Forms.Button();
             this.btnProDel = new System.Windows.Forms.Button();
             this.btnProIn = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Users = new System.Windows.Forms.TabPage();
+            this.btnUsersClear = new System.Windows.Forms.Button();
             this.cbAdmin = new System.Windows.Forms.CheckBox();
             this.txtUPass = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
@@ -66,6 +68,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Product = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnProdUp = new System.Windows.Forms.Button();
             this.btnProdExit = new System.Windows.Forms.Button();
             this.btnProdDel = new System.Windows.Forms.Button();
@@ -85,12 +88,16 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.Treatments = new System.Windows.Forms.TabPage();
+            this.btnTreClear = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.txtSrchTrt = new System.Windows.Forms.TextBox();
             this.btnSrchTrt = new System.Windows.Forms.Button();
             this.dgvTreatments = new System.Windows.Forms.DataGridView();
             this.Conditions = new System.Windows.Forms.TabPage();
+            this.btnConClear = new System.Windows.Forms.Button();
+            this.txtConditionNewName = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.txtCondtionName = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.btnConUpdate = new System.Windows.Forms.Button();
@@ -100,8 +107,6 @@
             this.dgvConditions = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
-            this.txtConditionNewName = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Provider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
@@ -131,6 +136,7 @@
             // 
             // Provider
             // 
+            this.Provider.Controls.Add(this.btnProClear);
             this.Provider.Controls.Add(this.btnProExit);
             this.Provider.Controls.Add(this.btnProDel);
             this.Provider.Controls.Add(this.btnProIn);
@@ -154,6 +160,18 @@
             this.Provider.TabIndex = 0;
             this.Provider.Text = "Provider";
             this.Provider.UseVisualStyleBackColor = true;
+            // 
+            // btnProClear
+            // 
+            this.btnProClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProClear.Location = new System.Drawing.Point(0, 506);
+            this.btnProClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnProClear.Name = "btnProClear";
+            this.btnProClear.Size = new System.Drawing.Size(137, 31);
+            this.btnProClear.TabIndex = 17;
+            this.btnProClear.Text = "Clear All";
+            this.btnProClear.UseVisualStyleBackColor = true;
+            this.btnProClear.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // btnProExit
             // 
@@ -200,6 +218,8 @@
             this.dgvPro.RowTemplate.Height = 24;
             this.dgvPro.Size = new System.Drawing.Size(480, 300);
             this.dgvPro.TabIndex = 13;
+            this.dgvPro.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPro_CellClick);
+            this.dgvPro.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPro_CellContentClick);
             // 
             // btnProUp
             // 
@@ -297,6 +317,7 @@
             // 
             // Users
             // 
+            this.Users.Controls.Add(this.btnUsersClear);
             this.Users.Controls.Add(this.cbAdmin);
             this.Users.Controls.Add(this.txtUPass);
             this.Users.Controls.Add(this.txtUserName);
@@ -326,6 +347,18 @@
             this.Users.TabIndex = 1;
             this.Users.Text = "Users";
             this.Users.UseVisualStyleBackColor = true;
+            // 
+            // btnUsersClear
+            // 
+            this.btnUsersClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsersClear.Location = new System.Drawing.Point(0, 506);
+            this.btnUsersClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnUsersClear.Name = "btnUsersClear";
+            this.btnUsersClear.Size = new System.Drawing.Size(137, 31);
+            this.btnUsersClear.TabIndex = 28;
+            this.btnUsersClear.Text = "Clear All";
+            this.btnUsersClear.UseVisualStyleBackColor = true;
+            this.btnUsersClear.Click += new System.EventHandler(this.btnUsersClear_Click);
             // 
             // cbAdmin
             // 
@@ -428,6 +461,7 @@
             this.dgvUsers.RowTemplate.Height = 24;
             this.dgvUsers.Size = new System.Drawing.Size(480, 300);
             this.dgvUsers.TabIndex = 17;
+            this.dgvUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellContentClick);
             // 
             // btnUUp
             // 
@@ -525,6 +559,7 @@
             // 
             // Product
             // 
+            this.Product.Controls.Add(this.button2);
             this.Product.Controls.Add(this.btnProdUp);
             this.Product.Controls.Add(this.btnProdExit);
             this.Product.Controls.Add(this.btnProdDel);
@@ -552,6 +587,18 @@
             this.Product.Text = "Product";
             this.Product.UseVisualStyleBackColor = true;
             this.Product.Click += new System.EventHandler(this.Product_Click);
+            // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(0, 506);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(137, 31);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "Clear All";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_2);
             // 
             // btnProdUp
             // 
@@ -610,6 +657,7 @@
             this.dgvProduct.RowTemplate.Height = 24;
             this.dgvProduct.Size = new System.Drawing.Size(480, 300);
             this.dgvProduct.TabIndex = 17;
+            this.dgvProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProduct_CellContentClick);
             // 
             // cmbCover
             // 
@@ -751,6 +799,7 @@
             // 
             // Treatments
             // 
+            this.Treatments.Controls.Add(this.btnTreClear);
             this.Treatments.Controls.Add(this.label6);
             this.Treatments.Controls.Add(this.button1);
             this.Treatments.Controls.Add(this.txtSrchTrt);
@@ -765,6 +814,18 @@
             this.Treatments.Text = "Treatments";
             this.Treatments.UseVisualStyleBackColor = true;
             this.Treatments.Click += new System.EventHandler(this.Treatments_Click);
+            // 
+            // btnTreClear
+            // 
+            this.btnTreClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTreClear.Location = new System.Drawing.Point(0, 506);
+            this.btnTreClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTreClear.Name = "btnTreClear";
+            this.btnTreClear.Size = new System.Drawing.Size(137, 31);
+            this.btnTreClear.TabIndex = 30;
+            this.btnTreClear.Text = "Clear All";
+            this.btnTreClear.UseVisualStyleBackColor = true;
+            this.btnTreClear.Click += new System.EventHandler(this.btnTreClear_Click);
             // 
             // label6
             // 
@@ -822,6 +883,7 @@
             // 
             // Conditions
             // 
+            this.Conditions.Controls.Add(this.btnConClear);
             this.Conditions.Controls.Add(this.txtConditionNewName);
             this.Conditions.Controls.Add(this.label24);
             this.Conditions.Controls.Add(this.txtCondtionName);
@@ -838,6 +900,38 @@
             this.Conditions.TabIndex = 4;
             this.Conditions.Text = "Conditions";
             this.Conditions.UseVisualStyleBackColor = true;
+            // 
+            // btnConClear
+            // 
+            this.btnConClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConClear.Location = new System.Drawing.Point(0, 504);
+            this.btnConClear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnConClear.Name = "btnConClear";
+            this.btnConClear.Size = new System.Drawing.Size(137, 31);
+            this.btnConClear.TabIndex = 35;
+            this.btnConClear.Text = "Clear All";
+            this.btnConClear.UseVisualStyleBackColor = true;
+            this.btnConClear.Click += new System.EventHandler(this.btnConClear_Click);
+            // 
+            // txtConditionNewName
+            // 
+            this.txtConditionNewName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConditionNewName.Location = new System.Drawing.Point(255, 320);
+            this.txtConditionNewName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtConditionNewName.Name = "txtConditionNewName";
+            this.txtConditionNewName.Size = new System.Drawing.Size(184, 34);
+            this.txtConditionNewName.TabIndex = 34;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(59, 320);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(182, 29);
+            this.label24.TabIndex = 33;
+            this.label24.Text = "Updated Name:";
             // 
             // txtCondtionName
             // 
@@ -886,7 +980,7 @@
             // btnConDelete
             // 
             this.btnConDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConDelete.Location = new System.Drawing.Point(328, 194);
+            this.btnConDelete.Location = new System.Drawing.Point(233, 188);
             this.btnConDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConDelete.Name = "btnConDelete";
             this.btnConDelete.Size = new System.Drawing.Size(137, 31);
@@ -898,7 +992,7 @@
             // btnConInsert
             // 
             this.btnConInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConInsert.Location = new System.Drawing.Point(185, 194);
+            this.btnConInsert.Location = new System.Drawing.Point(90, 188);
             this.btnConInsert.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnConInsert.Name = "btnConInsert";
             this.btnConInsert.Size = new System.Drawing.Size(137, 31);
@@ -916,6 +1010,7 @@
             this.dgvConditions.RowTemplate.Height = 24;
             this.dgvConditions.Size = new System.Drawing.Size(480, 300);
             this.dgvConditions.TabIndex = 26;
+            this.dgvConditions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConditions_CellContentClick);
             // 
             // label11
             // 
@@ -927,26 +1022,6 @@
             this.label11.Size = new System.Drawing.Size(168, 36);
             this.label11.TabIndex = 25;
             this.label11.Text = "Conditions";
-            // 
-            // txtConditionNewName
-            // 
-            this.txtConditionNewName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConditionNewName.Location = new System.Drawing.Point(255, 320);
-            this.txtConditionNewName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtConditionNewName.Name = "txtConditionNewName";
-            this.txtConditionNewName.Size = new System.Drawing.Size(184, 34);
-            this.txtConditionNewName.TabIndex = 34;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(59, 320);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(182, 29);
-            this.label24.TabIndex = 33;
-            this.label24.Text = "Updated Name:";
             // 
             // AdminForm
             // 
@@ -1054,5 +1129,10 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtConditionNewName;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btnProClear;
+        private System.Windows.Forms.Button btnUsersClear;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnTreClear;
+        private System.Windows.Forms.Button btnConClear;
     }
 }

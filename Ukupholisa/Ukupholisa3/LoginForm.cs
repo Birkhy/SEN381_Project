@@ -26,7 +26,7 @@ namespace Genisis
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            MessageBox.Show(handler.GetPreformance().ToString());
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -53,8 +53,9 @@ namespace Genisis
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //try
-            //{
+            MessageBox.Show(handler.GetPreformance().ToString());
+            try
+            {
                 if (handler.CheckAdminLog(txtUserName.Text.Trim(), txtPass.Text))
                 {
                     AdminForm af = new AdminForm();
@@ -65,11 +66,11 @@ namespace Genisis
                 {
                     MessageBox.Show("These credential does not exist within the database.");
                 }
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Somthing whent wrong trying to login to the program, please try again later.");
-            //}
+            }
+            catch
+            {
+                MessageBox.Show("Somthing whent wrong trying to login to the program, please try again later.");
+            }
         }
     }
 }
