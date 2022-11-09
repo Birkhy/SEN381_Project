@@ -1646,6 +1646,7 @@ namespace Ukupholisa3
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             for (int i = 0; i <= Row; i++)
             {
                 MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
@@ -1731,6 +1732,8 @@ namespace Ukupholisa3
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
         //    for (int i = 0; i <= Row; i++)
         //    {
         //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
@@ -1742,6 +1745,9 @@ namespace Ukupholisa3
         //    return Preformance;
         //}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
