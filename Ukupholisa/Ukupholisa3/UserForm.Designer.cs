@@ -615,6 +615,7 @@ namespace Ukupholisa3
             this.dgvAccount.Name = "dgvAccount";
             this.dgvAccount.Size = new System.Drawing.Size(479, 220);
             this.dgvAccount.TabIndex = 22;
+            this.dgvAccount.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccount_CellContentClick);
             // 
             // pnlAccountAdd
             // 

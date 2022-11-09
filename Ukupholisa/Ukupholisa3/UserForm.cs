@@ -40,6 +40,10 @@ namespace Ukupholisa3
         bool checkUpdate = false;
         bool checkDelete = false;
 
+        bool checkAccount = false;
+        bool checkDependant = false;
+        bool checkDepCond = false;
+
         DataHandler userHandle = new DataHandler();
         private readonly Timer timer = new Timer();
         private readonly Stopwatch sw = new Stopwatch();
@@ -338,6 +342,10 @@ namespace Ukupholisa3
         {
             dgvAccount.DataSource = userHandle.getAccount();
 
+            checkAccount = true;
+            checkDependant = false;
+            checkDepCond = false;
+
             pnlAddConditionDep.Visible = false;
             pnlDependantAdd.Visible = false;
             pnlAccountAdd.Visible = true;
@@ -360,6 +368,10 @@ namespace Ukupholisa3
         {
             dgvAccount.DataSource = userHandle.getDependants();
 
+            checkDependant = true;
+            checkAccount = false;
+            checkDepCond = false;
+
             pnlAccountAdd.Visible = false;
             pnlAddConditionDep.Visible = false;
             pnlDependantAdd.Visible = true;
@@ -381,6 +393,10 @@ namespace Ukupholisa3
         {
             dgvAccount.DataSource = userHandle.getDependantCondition();
 
+            checkDepCond = true;
+            checkAccount = false;
+            checkDependant = false;
+
             pnlAccountAdd.Visible = false;
             pnlDependantAdd.Visible = false;
             pnlAddConditionDep.Visible = true;
@@ -396,6 +412,69 @@ namespace Ukupholisa3
             {
                 btnAddDepCondition.Text = "Delete";
             }
+        }
+
+        private void dgvAccount_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (checkAccount)
+            {
+                try
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow Rows = this.dgvAccount.Rows[e.RowIndex];
+                        txtHolderID.Text = Rows.Cells["Holder_ID"].Value.ToString();
+                        cmbPackage.Text = Rows.Cells["Package_ID"].Value.ToString();
+                        txtHolderKey.Text = Rows.Cells["Holder_Key"].Value.ToString();
+                        txtHolderCell.Text = Rows.Cells["Holder_Cell"].Value.ToString();
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Somthing went wrong.");
+                }
+            }
+
+            if (checkDependant)
+            {
+                try
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        DataGridViewRow Rows = this.dgvAccount.Rows[e.RowIndex];
+                        txtAccountID.Text = Rows.Cells["Account_ID"].Value.ToString();
+                        txtDependantID.Text = Rows.Cells["Dependant_ID"].Value.ToString();
+                        cmbSex.Text = Rows.Cells["Sex"].Value.ToString();
+                        txtDependantName.Text = Rows.Cells["Dep_Name"].Value.ToString();
+                        txtDepSur.Text = Rows.Cells["Dep_Surname"].Value.ToString();
+                        dtpDOB.Value = (DateTime)Rows.Cells["DOB"].Value;
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Somthing went wrong.");
+                }
+            }
+
+            if (checkDepCond)
+            {
+                try
+                {
+                    if (e.RowIndex >= 0)
+                    {
+                        
+                        DataGridViewRow Rows = this.dgvAccount.Rows[e.RowIndex];
+                        int ConditionID = (int)Rows.Cells["Condition_ID"].Value;
+                        txtDependantID2.Text = Rows.Cells["Dependant_ID"].Value.ToString();
+                        cmbDepCondition.Text = userHandle.setConditionName(ConditionID.ToString());
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Somthing went wrong.");
+                }
+            }
+
         }
     }
 }
