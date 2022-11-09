@@ -1644,19 +1644,19 @@ namespace Ukupholisa3
         //        connect.Close();
         //    //}
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            for (int i = 0; i <= Row; i++)
-            {
-                MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
-                connect.Open();
-                MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
-                Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
-                connect.Close();
-            }
-            return Preformance;
-        }
+//<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
+        //    for (int i = 0; i <= Row; i++)
+        //    {
+        //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
+        //        connect.Open();
+        //        MySqlDataReader ReadPrecent = SUPERQUERY.ExecuteReader();
+        //        Preformance.Add((int.Parse(ReadPrecent.ToString()) / Row) * 100);
+        //        connect.Close();
+        //    }
+        //    return Preformance;
+        //}
 
         // gets all accounts for the dgv
         public DataTable getAccount()
@@ -1729,11 +1729,11 @@ namespace Ukupholisa3
                 return null;
             }
         }
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+//=======
+//=======
+//>>>>>>> Stashed changes
+//=======
+//>>>>>>> Stashed changes
         //    for (int i = 0; i <= Row; i++)
         //    {
         //        MySqlCommand SUPERQUERY = new MySqlCommand($"Select * From Count(Accounts) Where {IDs.Pop()}", connect);
@@ -1744,13 +1744,13 @@ namespace Ukupholisa3
         //    }
         //    return Preformance;
         //}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+//<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
+//>>>>>>> Stashed changes
+//=======
+//>>>>>>> Stashed changes
+//======
+//>>>>>>> Stashed changes
     }
 
 }
