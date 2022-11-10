@@ -30,10 +30,10 @@ namespace Ukupholisa3
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserForm));
             this.userTabCtrl = new System.Windows.Forms.TabControl();
             this.tabCall = new System.Windows.Forms.TabPage();
             this.lblTimer = new System.Windows.Forms.Label();
-            this.btnEnd = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@ namespace Ukupholisa3
             this.cmbClaimCondition = new System.Windows.Forms.ComboBox();
             this.dgvClaims = new System.Windows.Forms.DataGridView();
             this.tabAddAccount = new System.Windows.Forms.TabPage();
+            this.dgvViewPackage = new System.Windows.Forms.DataGridView();
             this.pnlSelectButtons = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCondition = new System.Windows.Forms.Button();
@@ -90,19 +91,19 @@ namespace Ukupholisa3
             this.txtHolderKey = new System.Windows.Forms.TextBox();
             this.cmbPackage = new System.Windows.Forms.ComboBox();
             this.txtHolderID = new System.Windows.Forms.TextBox();
-            this.dgvViewPackage = new System.Windows.Forms.DataGridView();
+            this.btnEnd = new System.Windows.Forms.Button();
             this.userTabCtrl.SuspendLayout();
             this.tabCall.SuspendLayout();
             this.tabClaims.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClaims)).BeginInit();
             this.tabAddAccount.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvViewPackage)).BeginInit();
             this.pnlSelectButtons.SuspendLayout();
             this.pnlButtons.SuspendLayout();
             this.pnlAddConditionDep.SuspendLayout();
             this.pnlDependantAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
             this.pnlAccountAdd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvViewPackage)).BeginInit();
             this.SuspendLayout();
             // 
             // userTabCtrl
@@ -114,14 +115,13 @@ namespace Ukupholisa3
             this.userTabCtrl.Margin = new System.Windows.Forms.Padding(2);
             this.userTabCtrl.Name = "userTabCtrl";
             this.userTabCtrl.SelectedIndex = 0;
-            this.userTabCtrl.Size = new System.Drawing.Size(803, 517);
+            this.userTabCtrl.Size = new System.Drawing.Size(788, 517);
             this.userTabCtrl.TabIndex = 2;
             this.userTabCtrl.Click += new System.EventHandler(this.tabAddAccount_Click);
             // 
             // tabCall
             // 
             this.tabCall.Controls.Add(this.lblTimer);
-            this.tabCall.Controls.Add(this.btnEnd);
             this.tabCall.Controls.Add(this.btnStart);
             this.tabCall.Controls.Add(this.label5);
             this.tabCall.Controls.Add(this.label4);
@@ -136,7 +136,7 @@ namespace Ukupholisa3
             this.tabCall.Margin = new System.Windows.Forms.Padding(2);
             this.tabCall.Name = "tabCall";
             this.tabCall.Padding = new System.Windows.Forms.Padding(2);
-            this.tabCall.Size = new System.Drawing.Size(795, 491);
+            this.tabCall.Size = new System.Drawing.Size(780, 491);
             this.tabCall.TabIndex = 0;
             this.tabCall.Text = "Call";
             this.tabCall.UseVisualStyleBackColor = true;
@@ -150,25 +150,16 @@ namespace Ukupholisa3
             this.lblTimer.TabIndex = 22;
             this.lblTimer.Text = "Timer";
             // 
-            // btnEnd
-            // 
-            this.btnEnd.Location = new System.Drawing.Point(601, 19);
-            this.btnEnd.Margin = new System.Windows.Forms.Padding(2);
-            this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(76, 24);
-            this.btnEnd.TabIndex = 21;
-            this.btnEnd.Text = "Call End";
-            this.btnEnd.UseVisualStyleBackColor = true;
-            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
-            // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(697, 19);
+            this.btnStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStart.Image = ((System.Drawing.Image)(resources.GetObject("btnStart.Image")));
+            this.btnStart.Location = new System.Drawing.Point(651, 19);
             this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(76, 24);
+            this.btnStart.Size = new System.Drawing.Size(110, 110);
             this.btnStart.TabIndex = 20;
-            this.btnStart.Text = "Start Call";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -261,7 +252,7 @@ namespace Ukupholisa3
             this.tabClaims.Margin = new System.Windows.Forms.Padding(2);
             this.tabClaims.Name = "tabClaims";
             this.tabClaims.Padding = new System.Windows.Forms.Padding(2);
-            this.tabClaims.Size = new System.Drawing.Size(795, 491);
+            this.tabClaims.Size = new System.Drawing.Size(653, 491);
             this.tabClaims.TabIndex = 1;
             this.tabClaims.Text = "Claims";
             this.tabClaims.UseVisualStyleBackColor = true;
@@ -305,10 +296,18 @@ namespace Ukupholisa3
             this.tabAddAccount.Location = new System.Drawing.Point(4, 22);
             this.tabAddAccount.Margin = new System.Windows.Forms.Padding(2);
             this.tabAddAccount.Name = "tabAddAccount";
-            this.tabAddAccount.Size = new System.Drawing.Size(795, 491);
+            this.tabAddAccount.Size = new System.Drawing.Size(653, 491);
             this.tabAddAccount.TabIndex = 2;
             this.tabAddAccount.Text = "Accounts";
             this.tabAddAccount.UseVisualStyleBackColor = true;
+            // 
+            // dgvViewPackage
+            // 
+            this.dgvViewPackage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvViewPackage.Location = new System.Drawing.Point(18, 263);
+            this.dgvViewPackage.Name = "dgvViewPackage";
+            this.dgvViewPackage.Size = new System.Drawing.Size(240, 220);
+            this.dgvViewPackage.TabIndex = 28;
             // 
             // pnlSelectButtons
             // 
@@ -713,20 +712,24 @@ namespace Ukupholisa3
             this.txtHolderID.Size = new System.Drawing.Size(100, 21);
             this.txtHolderID.TabIndex = 1;
             // 
-            // dgvViewPackage
+            // btnEnd
             // 
-            this.dgvViewPackage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvViewPackage.Location = new System.Drawing.Point(18, 263);
-            this.dgvViewPackage.Name = "dgvViewPackage";
-            this.dgvViewPackage.Size = new System.Drawing.Size(240, 220);
-            this.dgvViewPackage.TabIndex = 28;
+            this.btnEnd.Image = ((System.Drawing.Image)(resources.GetObject("btnEnd.Image")));
+            this.btnEnd.Location = new System.Drawing.Point(665, 23);
+            this.btnEnd.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Size = new System.Drawing.Size(110, 110);
+            this.btnEnd.TabIndex = 21;
+            this.btnEnd.UseVisualStyleBackColor = true;
+            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
             // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(805, 518);
+            this.ClientSize = new System.Drawing.Size(786, 517);
             this.Controls.Add(this.userTabCtrl);
+            this.Controls.Add(this.btnEnd);
             this.Name = "UserForm";
             this.Text = "UserForm";
             this.Load += new System.EventHandler(this.UserForm_Load);
@@ -736,6 +739,7 @@ namespace Ukupholisa3
             this.tabClaims.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvClaims)).EndInit();
             this.tabAddAccount.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvViewPackage)).EndInit();
             this.pnlSelectButtons.ResumeLayout(false);
             this.pnlButtons.ResumeLayout(false);
             this.pnlAddConditionDep.ResumeLayout(false);
@@ -745,7 +749,6 @@ namespace Ukupholisa3
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
             this.pnlAccountAdd.ResumeLayout(false);
             this.pnlAccountAdd.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvViewPackage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -761,7 +764,6 @@ namespace Ukupholisa3
         private System.Windows.Forms.TabPage tabCall;
         private System.Windows.Forms.TabPage tabClaims;
         private System.Windows.Forms.TabPage tabAddAccount;
-        private System.Windows.Forms.Button btnEnd;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -818,5 +820,6 @@ namespace Ukupholisa3
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.DataGridView dgvViewPackage;
+        private System.Windows.Forms.Button btnEnd;
     }
 }
