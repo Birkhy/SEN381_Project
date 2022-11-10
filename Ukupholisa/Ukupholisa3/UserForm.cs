@@ -1,4 +1,5 @@
 ﻿using MySql.Data.Types;
+using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +36,7 @@ namespace Ukupholisa3
         TimeSpan CallDuration;
         Int32 CallID;
         bool accountVerified = false;
+        int CurrentConditionID;
 
         bool checkInsert = false;
         bool checkUpdate = false;
@@ -101,6 +103,8 @@ namespace Ukupholisa3
 
         private void UserForm_Load(object sender, EventArgs e)
         {
+            
+
             pnlAccountAdd.Visible = false;
             pnlAddConditionDep.Visible = false;
             pnlDependantAdd.Visible = false;
@@ -109,6 +113,7 @@ namespace Ukupholisa3
             cmbDepCondition.DataSource = userHandle.getConditions();
             pnlSelectButtons.Visible = false;
             pnlButtons.Visible = true;
+            btnEnd.Visible = false;
 
 
         }
@@ -147,6 +152,7 @@ namespace Ukupholisa3
 
             if (checkInsert)
             {
+                
                 AccountID = userHandle.getLastID() + 1;
 
                 try
@@ -170,11 +176,30 @@ namespace Ukupholisa3
             }
             if (checkUpdate)
             {
+               
                 try
                 {
                     MessageBox.Show(userHandle.UpdateAccount(HolderKey, HolderID, HolderCell, PackageID));
 
-                    dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                    dgvAccount.DataSource = userHandle.getAccount();
+                    dgvAccount.AutoResizeColumns();
+                    //MessageBox.Show("Update Account");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
+                }
+            }
+            if (checkDelete)
+            {
+                
+                try
+                {
+                    //MessageBox.Show("Got here");
+                    MessageBox.Show(userHandle.deleteAccount(HolderID));
+
+                    dgvAccount.DataSource = userHandle.getAccount();
+                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
                     dgvAccount.AutoResizeColumns();
                     //MessageBox.Show("Update Account");
                 }
@@ -206,6 +231,7 @@ namespace Ukupholisa3
 
             if (checkInsert)
             {
+                
                 try
                 {
                     if (userHandle.AddDependant(DependantID, AccountID, DependantName, DependantSurname, DOB, DependantSex))
@@ -232,6 +258,7 @@ namespace Ukupholisa3
 
             if (checkUpdate)
             {
+                
                 try
                 {
                     MessageBox.Show(userHandle.updateDependant(DependantID, DependantName, DependantSurname, DOB, DependantSex));
@@ -246,6 +273,27 @@ namespace Ukupholisa3
                     MessageBox.Show("something went wrong");
                 }
             }
+
+            if (checkDelete)
+            {
+                
+                try
+                {
+                    //MessageBox.Show("Got here");
+                    MessageBox.Show(userHandle.deleteDependant(DependantID));
+
+                    dgvAccount.DataSource = userHandle.getDependants();
+                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                    dgvAccount.AutoResizeColumns();
+                    //MessageBox.Show("Update Account");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
+                }
+            }
+
+
 
         }
 
@@ -268,9 +316,11 @@ namespace Ukupholisa3
             //MessageBox.Show(ConditionID.ToString());
             DependantID = txtDependantID2.Text;
             //MessageBox.Show(DependantID);
+            
 
             if (checkInsert)
             {
+               
                 if (userHandle.AddDependantCondition(DependantID, ConditionID))
                 {
                     MessageBox.Show("Successfully added condition");
@@ -280,9 +330,29 @@ namespace Ukupholisa3
 
             if (checkUpdate)
             {
+                
                 try
                 {
-                    MessageBox.Show(userHandle.updateDependantCondition(DependantID, ConditionID));
+                    MessageBox.Show(userHandle.updateDependantCondition(DependantID, CurrentConditionID, ConditionID));
+
+                    dgvAccount.DataSource = userHandle.getDependantCondition();
+                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
+                    dgvAccount.AutoResizeColumns();
+                    //MessageBox.Show("Update Account");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("something went wrong");
+                }
+            }
+
+            if (checkDelete)
+            {
+                
+                try
+                {
+                    //MessageBox.Show("Got here");
+                    MessageBox.Show(userHandle.deleteDependentCondition(DependantID,ConditionID));
 
                     dgvAccount.DataSource = userHandle.getDependantCondition();
                     //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
@@ -320,9 +390,14 @@ namespace Ukupholisa3
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            sw.Start();
+            sw.Restart();
+            //sw.Start();
             UpdateDisplay();
             timer.Start();
+
+            btnStart.Visible = false;
+            btnEnd.Visible=true;
+            btnEnd.BringToFront();
 
 
             CallStartTime = DateTime.Now;
@@ -342,6 +417,10 @@ namespace Ukupholisa3
             sw.Stop();
             UpdateDisplay();
             timer.Stop();
+
+            btnEnd.Visible=false;
+            btnStart.Visible=true;
+            
 
             CallID = userHandle.getLastCallID();
             CallEndTime = DateTime.Now;
@@ -409,6 +488,8 @@ namespace Ukupholisa3
         {
             dgvAccount.DataSource = userHandle.getAccount();
 
+            
+
             checkAccount = true;
             checkDependant = false;
             checkDepCond = false;
@@ -418,14 +499,20 @@ namespace Ukupholisa3
             pnlAccountAdd.Visible = true;
             if (checkInsert)
             {
+                btnDone1.Visible = true;
+                btnDone2.Visible = true;
                 btnAddAccount.Text = "Add";
             }
             if (checkUpdate)
             {
+                btnDone1.Visible = false;
+                btnDone2.Visible = false;
                 btnAddAccount.Text = "Update";
             }
             if (checkDelete)
             {
+                btnDone1.Visible = false;
+                btnDone2.Visible = false;
                 btnAddAccount.Text = "Delete";
             }
 
@@ -444,14 +531,20 @@ namespace Ukupholisa3
             pnlDependantAdd.Visible = true;
             if (checkInsert)
             {
+                btnDone1.Visible = true;
+                btnDone2.Visible = true;
                 btnAddDependant.Text = "Add";
             }
             if (checkUpdate)
             {
+                btnDone1.Visible = false;
+                btnDone2.Visible = false;
                 btnAddDependant.Text = "Update";
             }
             if (checkDelete)
             {
+                btnDone1.Visible = false;
+                btnDone2.Visible = false;
                 btnAddDependant.Text = "Delete";
             }
         }
@@ -469,14 +562,20 @@ namespace Ukupholisa3
             pnlAddConditionDep.Visible = true;
             if (checkInsert)
             {
+                btnDone1.Visible = true;
+                btnDone2.Visible = true;
                 btnAddDepCondition.Text = "Add";
             }
             if (checkUpdate)
             {
+                btnDone1.Visible = false;
+                btnDone2.Visible = false;
                 btnAddDepCondition.Text = "Update";
             }
             if (checkDelete)
             {
+                btnDone1.Visible = false;
+                btnDone2.Visible = false;
                 btnAddDepCondition.Text = "Delete";
             }
         }
@@ -535,6 +634,7 @@ namespace Ukupholisa3
 
                         DataGridViewRow Rows = this.dgvAccount.Rows[e.RowIndex];
                         int ConditionID = (int)Rows.Cells["Condition_ID"].Value;
+                        CurrentConditionID = (int)Rows.Cells["Condition_ID"].Value;
                         txtDependantID2.Text = Rows.Cells["Dependant_ID"].Value.ToString();
                         cmbDepCondition.Text = userHandle.setConditionName(ConditionID.ToString());
                     }

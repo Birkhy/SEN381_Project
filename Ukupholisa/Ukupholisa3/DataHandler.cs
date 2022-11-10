@@ -94,7 +94,7 @@ namespace Ukupholisa3
         {
             MySqlConnection connect = new MySqlConnection(conn);
 
-            if (HolderID.Length == 13)
+            if (HolderID != "" && HolderID.Length == 13 && Regex.Match(HolderID, "^[0-9]{13}$").Success)
             {
                 if (HolderKey != "" && HolderKey.Length == 5)
                 {
@@ -362,33 +362,52 @@ namespace Ukupholisa3
         public bool AddAccount(int AccountID, string HolderKey, string HolderID, string HolderCell, int PackageID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (HolderKey != "" && HolderID != "" && HolderCell != "")
+            if (HolderID != "" && HolderID.Length == 13 && Regex.Match(HolderID, "^[0-9]{13}$").Success)
             {
-                connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("AddAccount", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
-                sql_cmnd.Parameters.AddWithValue("@HolderKey", HolderKey);
-                sql_cmnd.Parameters.AddWithValue("@HolderID", HolderID);
-                sql_cmnd.Parameters.AddWithValue("@HolderCell", HolderCell);
-                sql_cmnd.Parameters.AddWithValue("@PackageID", PackageID);
-                int Row = sql_cmnd.ExecuteNonQuery();
-                if (Row > 0)
+                if (HolderCell != "" && HolderCell.Length == 10 && Regex.Match(HolderCell, "^[0-9]{10}$").Success)
                 {
-                    connect.Close();
-                    MessageBox.Show("Client with ID " + HolderID + " was added.");
-                    return true;
+                    if (HolderKey != "" && HolderKey.Length == 5 && Regex.Match(HolderKey, "^[0-9]{5}$").Success)
+                    {
+                        connect.Open();
+                        MySqlCommand sql_cmnd = new MySqlCommand("AddAccount", connect);
+                        sql_cmnd.CommandType = CommandType.StoredProcedure;
+                        sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
+                        sql_cmnd.Parameters.AddWithValue("@HolderKey", HolderKey);
+                        sql_cmnd.Parameters.AddWithValue("@HolderID", HolderID);
+                        sql_cmnd.Parameters.AddWithValue("@HolderCell", HolderCell);
+                        sql_cmnd.Parameters.AddWithValue("@PackageID", PackageID);
+                        int Row = sql_cmnd.ExecuteNonQuery();
+                        if (Row > 0)
+                        {
+                            connect.Close();
+                            MessageBox.Show("Client with ID " + HolderID + " was added.");
+                            return true;
+                        }
+                        else
+                        {
+                            connect.Close();
+                            MessageBox.Show("Client with ID " + HolderID + " failed to be added.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter valid Key");
+                        connect.Close();
+                        return false;
+                    }
                 }
                 else
                 {
+                    MessageBox.Show("Please enter valid cell");
                     connect.Close();
-                    MessageBox.Show("Client with ID " + HolderID + " failed to be added.");
                     return false;
                 }
+
             }
             else
             {
-                MessageBox.Show("Please enter all required data");
+                MessageBox.Show("Please enter valid ID");
                 connect.Close();
                 return false;
             }
@@ -398,37 +417,57 @@ namespace Ukupholisa3
         public bool AddDependant(string DependantID, int AccountID, string DependantName, string DependantSurname, DateTime DOB, string Sex)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (DependantID != "" && DependantName != "" && DependantSurname != "" && Sex != "")
+            if (DependantID != "" && DependantID.Length == 13 && Regex.Match(DependantID, "^[0-9]{13}$").Success)
             {
-                connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand("AddDependant", connect);
-                sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
-                sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
-                sql_cmnd.Parameters.AddWithValue("@DependantName", DependantName);
-                sql_cmnd.Parameters.AddWithValue("@DependantSurname", DependantSurname);
-                sql_cmnd.Parameters.AddWithValue("@DOB", DOB);
-                sql_cmnd.Parameters.AddWithValue("@Sex", Sex);
-                int Row = sql_cmnd.ExecuteNonQuery();
-                if (Row > 0)
+                if (DependantName != "" && Regex.Match(DependantName, "^[A-Z][a-zA-Z]*$").Success)
                 {
-                    connect.Close();
-                    MessageBox.Show("Client with ID " + DependantID + " was added.");
-                    return true;
+                    if (DependantSurname != "" && Regex.Match(DependantSurname, "^[A-Z][a-zA-Z]*$").Success)
+                    {
+                        connect.Open();
+                        MySqlCommand sql_cmnd = new MySqlCommand("AddDependant", connect);
+                        sql_cmnd.CommandType = CommandType.StoredProcedure;
+                        sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
+                        sql_cmnd.Parameters.AddWithValue("@AccountID", AccountID);
+                        sql_cmnd.Parameters.AddWithValue("@DependantName", DependantName);
+                        sql_cmnd.Parameters.AddWithValue("@DependantSurname", DependantSurname);
+                        sql_cmnd.Parameters.AddWithValue("@DOB", DOB);
+                        sql_cmnd.Parameters.AddWithValue("@Sex", Sex);
+                        int Row = sql_cmnd.ExecuteNonQuery();
+                        if (Row > 0)
+                        {
+                            connect.Close();
+                            MessageBox.Show("Client with ID " + DependantID + " was added.");
+                            return true;
+                        }
+                        else
+                        {
+                            connect.Close();
+                            MessageBox.Show("Client with ID " + DependantID + " failed to be added.");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please enter valid surname");
+                        connect.Close();
+                        return false;
+                    }
+                    
                 }
                 else
                 {
+                    MessageBox.Show("Please enter valid name");
                     connect.Close();
-                    MessageBox.Show("Client with ID " + DependantID + " failed to be added.");
                     return false;
                 }
             }
             else
             {
-                MessageBox.Show("Please enter all required data");
+                MessageBox.Show("Please enter valid ID");
                 connect.Close();
                 return false;
             }
+            
         }
         //adds claim
         public bool AddClaim(int AccountID, string TreatmentName)
@@ -469,9 +508,10 @@ namespace Ukupholisa3
 
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (DependantID != "")
+            if (DependantID != "" && DependantID.Length == 13 && Regex.Match(DependantID, "^[0-9]{13}$").Success)
             {
-                connect.Open();
+                
+                    connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("newAddDependantCondition", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
@@ -494,24 +534,25 @@ namespace Ukupholisa3
             }
             else
             {
-                MessageBox.Show("Please enter all required data");
+                MessageBox.Show("Please valid ID");
                 connect.Close();
                 return false;
             }
         }
 
         //updates dependant condition
-        public string updateDependantCondition(string DependantID, int ConditionID)
+        public string updateDependantCondition(string DependantID, int ConditionID, int CurrentConditionID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
 
-            if (DependantID.Length == 13)
+            if (DependantID != "" && DependantID.Length == 13 && Regex.Match(DependantID, "^[0-9]{13}$").Success)
             {
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("updateDependantCondition", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
                 sql_cmnd.Parameters.AddWithValue("@DependantID", DependantID);
                 sql_cmnd.Parameters.AddWithValue("@ConditionID", ConditionID);
+                sql_cmnd.Parameters.AddWithValue("@CurrentConditionID", CurrentConditionID);
 
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
@@ -531,55 +572,6 @@ namespace Ukupholisa3
             }
         }
 
-        public string DeleteClient(string CID)
-        {
-            SqlConnection connect = new SqlConnection(conn);
-            connect.Open();
-
-            if (CID != "")
-            {
-                SqlCommand command = new SqlCommand("deleteClient", connect);
-                command.CommandType = CommandType.StoredProcedure;
-                int Row = command.ExecuteNonQuery();
-                if (Row >= 0)
-                {
-                    connect.Close();
-                    return "Deleted details of Client with the ID: " + CID + ".";
-                }
-                else
-                {
-                    connect.Close();
-                    return "This Client does not exits.";
-                }
-            }
-            else
-            {
-                connect.Close();
-                return "Please enter the Clients ID.";
-            }
-        }
-
-        public List<Client> SearchClient(string CID)
-        {
-            List<Client> FoundList = new List<Client>();
-            SqlConnection connect = new SqlConnection(conn);
-            if (connect.State != ConnectionState.Open)
-            {
-                connect.Open();
-                SqlCommand command = new SqlCommand("searchClient", connect);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@ID", SqlDbType.NVarChar).Value = CID;
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        FoundList.Add(new Client(reader[0].ToString(), reader[1].ToString(), reader[2].ToString(), reader[3].ToString(), reader[4].ToString(), reader[5].ToString()));
-                    }
-                }
-            }
-            connect.Close();
-            return FoundList;
-        }
 
         // This method returns a datatable to show the treatments that is searched with relevant providers. WORKS!
         public DataTable SearchTreatment(string partialString)
@@ -797,7 +789,7 @@ namespace Ukupholisa3
         public bool checkHolderPhone(string holderPhone, string holderID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (holderPhone != "" && holderPhone.Length == 10)
+            if (holderPhone != "" && holderPhone.Length == 10 && Regex.Match(holderPhone, "^[0-9]{10}$").Success)
             {
                 connect.Open();
 
@@ -1903,6 +1895,99 @@ namespace Ukupholisa3
             else
             {
                 return "Failed";
+            }
+        }
+
+        //deletes account
+        public string deleteAccount(string HolderID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            connect.Open();
+
+            if (HolderID != "" && HolderID.Length == 13)
+            {
+                MySqlCommand command = new MySqlCommand("deleteAccount", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@HolderID", HolderID);
+
+                int Row = command.ExecuteNonQuery();
+                if (Row >= 0)
+                {
+                    connect.Close();
+                    return "Deleted account with ID: " + HolderID + ".";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"Failed to delete account with ID {HolderID}";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter a valid ID to delete the record.";
+            }
+        }
+
+        //deletes dependant
+        public string deleteDependant(string DependantID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            connect.Open();
+
+            if (DependantID != "" && DependantID.Length == 13)
+            {
+                MySqlCommand command = new MySqlCommand("deleteDependant", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@DependantID", DependantID);
+
+                int Row = command.ExecuteNonQuery();
+                if (Row >= 0)
+                {
+                    connect.Close();
+                    return "Deleted dependant with ID: " + DependantID + ".";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"Failed to delete dependant with ID {DependantID}";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter a valid ID to delete the record.";
+            }
+        }
+        //deletes DependentCondition
+        public string deleteDependentCondition(string DependantID, int ConditionID)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            connect.Open();
+
+            if (DependantID != "" && DependantID.Length == 13)
+            {
+                MySqlCommand command = new MySqlCommand("deleteDependentCondition", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@DependantID", DependantID);
+                command.Parameters.AddWithValue("@ConditionID", ConditionID);
+
+                int Row = command.ExecuteNonQuery();
+                if (Row >= 0)
+                {
+                    connect.Close();
+                    return "Deleted condition from dependant with ID: " + DependantID + ".";
+                }
+                else
+                {
+                    connect.Close();
+                    return $"Failed to delete condition from dependant with ID {DependantID}";
+                }
+            }
+            else
+            {
+                connect.Close();
+                return "Please enter a valid ID to delete the record.";
             }
         }
     }
