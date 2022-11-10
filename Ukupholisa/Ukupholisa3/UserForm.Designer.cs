@@ -252,7 +252,7 @@ namespace Ukupholisa3
             this.tabClaims.Margin = new System.Windows.Forms.Padding(2);
             this.tabClaims.Name = "tabClaims";
             this.tabClaims.Padding = new System.Windows.Forms.Padding(2);
-            this.tabClaims.Size = new System.Drawing.Size(653, 491);
+            this.tabClaims.Size = new System.Drawing.Size(780, 491);
             this.tabClaims.TabIndex = 1;
             this.tabClaims.Text = "Claims";
             this.tabClaims.UseVisualStyleBackColor = true;
@@ -296,7 +296,7 @@ namespace Ukupholisa3
             this.tabAddAccount.Location = new System.Drawing.Point(4, 22);
             this.tabAddAccount.Margin = new System.Windows.Forms.Padding(2);
             this.tabAddAccount.Name = "tabAddAccount";
-            this.tabAddAccount.Size = new System.Drawing.Size(653, 491);
+            this.tabAddAccount.Size = new System.Drawing.Size(780, 491);
             this.tabAddAccount.TabIndex = 2;
             this.tabAddAccount.Text = "Accounts";
             this.tabAddAccount.UseVisualStyleBackColor = true;
@@ -732,6 +732,7 @@ namespace Ukupholisa3
             this.Controls.Add(this.btnEnd);
             this.Name = "UserForm";
             this.Text = "UserForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserForm_FormClosed);
             this.Load += new System.EventHandler(this.UserForm_Load);
             this.userTabCtrl.ResumeLayout(false);
             this.tabCall.ResumeLayout(false);

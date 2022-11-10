@@ -543,5 +543,10 @@ namespace Genisis
                 MessageBox.Show("Somthing went wrong.");
             }
         }
+
+        private void AdminForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

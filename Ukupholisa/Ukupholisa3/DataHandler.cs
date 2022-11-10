@@ -266,7 +266,6 @@ namespace Ukupholisa3
                 if (Row > 0)
                 {
                     connect.Close();
-                    MessageBox.Show("Call added");
                     return true;
                 }
                 else
@@ -309,7 +308,6 @@ namespace Ukupholisa3
                 if (Row > 0)
                 {
                     connect.Close();
-                    MessageBox.Show("Call added");
                     return true;
                 }
                 else
@@ -488,7 +486,7 @@ namespace Ukupholisa3
                 if (Row > 0)
                 {
                     connect.Close();
-                    MessageBox.Show("Claim was added.");
+                    MessageBox.Show("Claim has been approved and is being processed");
                     return true;
                 }
                 else
@@ -693,7 +691,7 @@ namespace Ukupholisa3
         public bool checkAccount(string holderID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (holderID != "" && holderID.Length == 13)
+            if (holderID != "" && holderID.Length == 13 && Regex.Match(holderID, "^[0-9]{13}$").Success)
             {
                 connect.Open();
 
@@ -722,43 +720,11 @@ namespace Ukupholisa3
             }
         }
 
-        //public bool checkClaimValid(string ConditionName)
-        //{
-        //    MySqlConnection connect = new MySqlConnection(conn);
-        //    if (ConditionName != "")
-        //    {
-        //        connect.Open();
-
-        //        // THIS WORKS AS WELL!!!!!!!
-        //        MySqlCommand check_if_account_exists = new MySqlCommand("SELECT COUNT(*) FROM account WHERE Holder_ID =@hID", connect);
-        //        check_if_account_exists.Parameters.AddWithValue("@hID", ConditionName);
-        //        Int32 accExists = Convert.ToInt32(check_if_account_exists.ExecuteScalar());
-
-        //        if (accExists > 0)
-        //        {
-        //            connect.Close();
-        //            return true;
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Account does not exist within the system!");
-        //            connect.Close();
-        //            return false;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Invalid ID number");
-        //        connect.Close();
-        //        return false;
-        //    }
-        //}
-
         //This method verifies an account holderkey and returns a boolean, it works.
         public bool checkHolderKey(string holderKey, string holderID)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (holderKey != "" && (holderKey.ToString()).Length == 5)
+            if (holderKey != "" && holderKey.Length == 5 && Regex.Match(holderKey, "^[0-9]{5}$").Success)
             {
                 connect.Open();
 
@@ -871,33 +837,6 @@ namespace Ukupholisa3
             }
             return "";
         }
-
-        //public Int32 getLastID()
-        //{
-        //    MySqlConnection connect = new MySqlConnection(conn);
-        //    if (connect.State != ConnectionState.Open)
-        //    {
-        //        connect.Open();
-        //        MySqlCommand selectlastID = new MySqlCommand("getLastAccountID", connect);
-        //        selectlastID.CommandType = CommandType.StoredProcedure;
-        //        selectlastID.Parameters.Add("lastAccountID", MySqlDbType.Int32);
-        //        selectlastID.Parameters["lastAccountID"].Direction = ParameterDirection.Output;
-
-        //        selectlastID.ExecuteNonQuery();
-
-        //        Int32 lastID = (Int32)selectlastID.Parameters["lastAccountID"].Value;
-
-
-
-
-
-        //        connect.Close();
-
-        //        return lastID;
-
-        //    }
-        //    return 0;
-        //}
 
         //Method returns List to populate combobox associated with conditions.
         public List<string> getConditions()
@@ -1454,13 +1393,13 @@ namespace Ukupholisa3
         public string updateUser(string name, string surname, string contact, string ID, string username, string password, int clearance)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (ID.Length == 13)
+            if (ID != "" && ID.Length == 13 && Regex.Match(ID, "^[0-9]{13}$").Success)
             {
-                if (name != "" && name.Length <= 50)
+                if (name != "" && name.Length <= 50 && Regex.Match(name, "^[A-Z][a-zA-Z]*$").Success)
                 {
-                    if (surname != "" && surname.Length <= 150)
+                    if (surname != "" && surname.Length <= 150 && Regex.Match(surname, "^[A-Z][a-zA-Z]*$").Success)
                     {
-                        if (contact.Length == 10)
+                        if (contact != "" && contact.Length == 10 && Regex.Match(contact, "^[0-9]{10}$").Success)
                         {
                             if (username != "" && username.Length <= 50)
                             {
@@ -1525,13 +1464,13 @@ namespace Ukupholisa3
         public string addUser(string name, string surname, string contact, string ID, string username, string password, int clearance)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (ID.Length == 13)
+            if (ID != "" && ID.Length == 13 && Regex.Match(ID, "^[0-9]{13}$").Success)
             {
-                if (name != "" && name.Length <= 50)
+                if (name != "" && name.Length <= 50 && Regex.Match(name, "^[A-Z][a-zA-Z]*$").Success)
                 {
-                    if (surname != "" && surname.Length <= 150)
+                    if (surname != "" && surname.Length <= 150 && Regex.Match(surname, "^[A-Z][a-zA-Z]*$").Success)
                     {
-                        if (contact.Length == 10)
+                        if (contact != "" && contact.Length == 10 && Regex.Match(contact, "^[0-9]{10}$").Success)
                         {
                             if (username != "" && username.Length <= 50)
                             {
@@ -1597,7 +1536,7 @@ namespace Ukupholisa3
             MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
-            if (ID.Length == 13)
+            if (ID != "" && ID.Length == 13 && Regex.Match(ID, "^[0-9]{13}$").Success)
             {
                 MySqlCommand command = new MySqlCommand("deleteUser", connect);
                 command.CommandType = CommandType.StoredProcedure;
@@ -1964,7 +1903,7 @@ namespace Ukupholisa3
             MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
-            if (HolderID != "" && HolderID.Length == 13)
+            if (HolderID != "" && HolderID.Length == 13 && Regex.Match(HolderID, "^[0-9]{13}$").Success)
             {
                 MySqlCommand command = new MySqlCommand("deleteAccount", connect);
                 command.CommandType = CommandType.StoredProcedure;
@@ -1995,7 +1934,7 @@ namespace Ukupholisa3
             MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
-            if (DependantID != "" && DependantID.Length == 13)
+            if (DependantID != "" && DependantID.Length == 13 && Regex.Match(DependantID, "^[0-9]{13}$").Success)
             {
                 MySqlCommand command = new MySqlCommand("deleteDependant", connect);
                 command.CommandType = CommandType.StoredProcedure;
@@ -2025,7 +1964,7 @@ namespace Ukupholisa3
             MySqlConnection connect = new MySqlConnection(conn);
             connect.Open();
 
-            if (DependantID != "" && DependantID.Length == 13)
+            if (DependantID != "" && DependantID.Length == 13 && Regex.Match(DependantID, "^[0-9]{13}$").Success)
             {
                 MySqlCommand command = new MySqlCommand("deleteDependentCondition", connect);
                 command.CommandType = CommandType.StoredProcedure;

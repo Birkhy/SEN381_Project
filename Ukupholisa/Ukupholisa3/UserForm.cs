@@ -78,9 +78,7 @@ namespace Ukupholisa3
             {
                 if (userHandle.checkAccount(HolderID) && userHandle.checkHolderKey(HolderKey, HolderID) && userHandle.checkHolderPhone(HolderCell, HolderID))
                 {
-                    MessageBox.Show("Account Exists");
                     userTabCtrl.SelectTab(tabClaims);
-                    //dgvClaims.DataSource = userHandle.ViewAccountCall(holderID);
                     dgvClaims.DataSource = userHandle.ViewPackageTreatments(PackageName);
                     dgvClaims.AutoResizeColumns();
                     cmbClaimCondition.DataSource = userHandle.getPackageTreatments(int.Parse(userHandle.setPackageIDClaim(HolderID)));
@@ -96,7 +94,6 @@ namespace Ukupholisa3
             }
             catch (Exception)
             {
-                //e.GetBaseException();
                 MessageBox.Show("Something went wrong trying to check account.");
             }
         }
@@ -126,20 +123,7 @@ namespace Ukupholisa3
 
         private void btnSrchTrt_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-                //dgvTreatments.DataSource = userHandle.SearchTreatment(txtSrchTrt.Text);
-                //dgvTreatments.AutoResizeColumns();
-                //MessageBox.Show("Handler supposed to work");
-                //Source.DataSource = //Handle.GetClient();
-
-            }
-            catch (Exception)
-            {
-                //e.GetBaseException();
-                MessageBox.Show("Something went wrong trying to view Treatments.");
-            }
+           
         }
 
         private void btnAddAccount_Click(object sender, EventArgs e)
@@ -160,14 +144,12 @@ namespace Ukupholisa3
                     if (userHandle.AddAccount(AccountID, HolderKey, HolderID, HolderCell, PackageID))
                     {
                         dgvAccount.DataSource = userHandle.getAccount();
-                        //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
                         dgvAccount.AutoResizeColumns();
                         pnlAccountAdd.Visible = false;
                         pnlDependantAdd.Visible = true;
                         txtAccountID.Text = AccountID.ToString();
                         txtDependantID.Text = HolderID;
                     }
-                    //MessageBox.Show("Add Account");
                 }
                 catch (Exception)
                 {
@@ -183,7 +165,6 @@ namespace Ukupholisa3
 
                     dgvAccount.DataSource = userHandle.getAccount();
                     dgvAccount.AutoResizeColumns();
-                    //MessageBox.Show("Update Account");
                 }
                 catch (Exception)
                 {
@@ -195,13 +176,10 @@ namespace Ukupholisa3
                 
                 try
                 {
-                    //MessageBox.Show("Got here");
                     MessageBox.Show(userHandle.deleteAccount(HolderID));
 
                     dgvAccount.DataSource = userHandle.getAccount();
-                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
                     dgvAccount.AutoResizeColumns();
-                    //MessageBox.Show("Update Account");
                 }
                 catch (Exception)
                 {
@@ -216,8 +194,6 @@ namespace Ukupholisa3
 
         private void tabAddAccount_Click(object sender, EventArgs e)
         {
-            // pnlDependantAdd.Visible = false;
-            // pnlAddConditionDep.Visible = false;
         }
 
         private void btnAddDependant_Click(object sender, EventArgs e)
@@ -264,9 +240,7 @@ namespace Ukupholisa3
                     MessageBox.Show(userHandle.updateDependant(DependantID, DependantName, DependantSurname, DOB, DependantSex));
 
                     dgvAccount.DataSource = userHandle.getDependants();
-                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
                     dgvAccount.AutoResizeColumns();
-                    //MessageBox.Show("Update Account");
                 }
                 catch (Exception)
                 {
@@ -279,13 +253,10 @@ namespace Ukupholisa3
                 
                 try
                 {
-                    //MessageBox.Show("Got here");
                     MessageBox.Show(userHandle.deleteDependant(DependantID));
 
                     dgvAccount.DataSource = userHandle.getDependants();
-                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
                     dgvAccount.AutoResizeColumns();
-                    //MessageBox.Show("Update Account");
                 }
                 catch (Exception)
                 {
@@ -313,9 +284,7 @@ namespace Ukupholisa3
         {
             VCondition = cmbDepCondition.Text;
             ConditionID = int.Parse(userHandle.setConditionID(VCondition));
-            //MessageBox.Show(ConditionID.ToString());
             DependantID = txtDependantID2.Text;
-            //MessageBox.Show(DependantID);
             
 
             if (checkInsert)
@@ -323,7 +292,6 @@ namespace Ukupholisa3
                
                 if (userHandle.AddDependantCondition(DependantID, ConditionID))
                 {
-                    MessageBox.Show("Successfully added condition");
                     dgvAccount.DataSource = userHandle.getDependantCondition();
                 }
             }
@@ -336,9 +304,7 @@ namespace Ukupholisa3
                     MessageBox.Show(userHandle.updateDependantCondition(DependantID, CurrentConditionID, ConditionID));
 
                     dgvAccount.DataSource = userHandle.getDependantCondition();
-                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
                     dgvAccount.AutoResizeColumns();
-                    //MessageBox.Show("Update Account");
                 }
                 catch (Exception)
                 {
@@ -351,13 +317,10 @@ namespace Ukupholisa3
                 
                 try
                 {
-                    //MessageBox.Show("Got here");
                     MessageBox.Show(userHandle.deleteDependentCondition(DependantID,ConditionID));
 
                     dgvAccount.DataSource = userHandle.getDependantCondition();
-                    //dgvAccount.DataSource = userHandle.ViewAccount(HolderID);
                     dgvAccount.AutoResizeColumns();
-                    //MessageBox.Show("Update Account");
                 }
                 catch (Exception)
                 {
@@ -371,15 +334,12 @@ namespace Ukupholisa3
 
         private void btnSubmitClaim_Click(object sender, EventArgs e)
         {
-
-            MessageBox.Show(HolderID);
             AccountID = Int32.Parse(userHandle.getAccountID(HolderID));
-            MessageBox.Show(AccountID.ToString());
             try
             {
                 if (userHandle.AddClaim(AccountID, cmbClaimCondition.Text))
                 {
-                    MessageBox.Show("Claim has been approved and is being processed");
+                    //MessageBox.Show("Claim has been approved and is being processed");
                 }
             }
             catch (Exception)
@@ -407,9 +367,6 @@ namespace Ukupholisa3
             {
                 MessageBox.Show("Successfully added call");
             }
-            MessageBox.Show(CallStartTime.ToString());
-
-
         }
 
         private void btnEnd_Click(object sender, EventArgs e)
@@ -424,19 +381,18 @@ namespace Ukupholisa3
 
             CallID = userHandle.getLastCallID();
             CallEndTime = DateTime.Now;
-            MessageBox.Show(CallEndTime.ToString());
             CallDuration = CallEndTime.Subtract(CallStartTime);
             if (userHandle.AddCallEnd(CallID, HolderID, CallEndTime, CallDuration))
             {
                 if (HolderID == null)
                 {
-                    MessageBox.Show("Call successfully updated");
+                    MessageBox.Show("Unregistered call ended");
                 }
                 else
                 {
                     if (userHandle.AddAccountCall(HolderID, CallID))
                     {
-                        MessageBox.Show("Call ended");
+                        MessageBox.Show("Registered call ended");
                     }
                 }
             }
@@ -650,6 +606,11 @@ namespace Ukupholisa3
         private void cmbPackage_MouseClick(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void UserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
