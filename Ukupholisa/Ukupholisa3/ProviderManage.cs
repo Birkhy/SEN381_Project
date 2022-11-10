@@ -86,6 +86,18 @@ namespace Genisis
             {
                 MessageBox.Show("Somthing went wrong trying to display the Conditions.");
             }
+
+            //Wil update the percentage
+            try
+            {
+                Handle.updatePrecentages(Handle.getAccountIDs(), Handle.getPerformance(Handle.getAccountIDs()));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong trying to display the Conditions.");
+            }
+            
+            //Handle.updateProductPromotion(Handle.getProdcutIDs(), Handle.checkPromotion(Handle.getProdcutIDs()));
         }
 
         private void DgvTreatments_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -252,6 +264,7 @@ namespace Genisis
             try
             {
                 MessageBox.Show(Handle.updateProduct(txtPName.Text, double.Parse(txtPPrice.Text), Avail, double.Parse(txtPerform.Text), int.Parse(cmbCover.Text), Pro));
+                //Handle.updateProductPromotion(Handle.getProdcutIDs(), Handle.checkPromotion(Handle.getProdcutIDs()));
                 dgvProduct.DataSource = Handle.getProduct();
             }
             catch
@@ -282,6 +295,7 @@ namespace Genisis
             try
             {
                 MessageBox.Show(Handle.addProduct(txtPName.Text, double.Parse(txtPPrice.Text), Avail, double.Parse(txtPerform.Text), int.Parse(cmbCover.Text), Pro));
+                //Handle.updateProductPromotion(Handle.getProdcutIDs(), Handle.checkPromotion(Handle.getProdcutIDs()));
                 dgvProduct.DataSource = Handle.getProduct();
             }
             catch
@@ -332,9 +346,9 @@ namespace Genisis
 
         private void btnConDelete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Handle.deleteCondition(txtCondtionName.Text));
             try
             {
+                MessageBox.Show(Handle.deleteCondition(txtCondtionName.Text));
                 dgvConditions.DataSource = Handle.getCondition();
             }
             catch
@@ -345,9 +359,9 @@ namespace Genisis
 
         private void btnConInsert_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Handle.addCondtion(txtCondtionName.Text));
             try
             {
+                MessageBox.Show(Handle.addCondtion(txtCondtionName.Text));
                 dgvConditions.DataSource = Handle.getCondition();
             }
             catch
@@ -358,9 +372,9 @@ namespace Genisis
 
         private void btnConUpdate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Handle.updateCondition(txtConditionNewName.Text));
             try
             {
+                MessageBox.Show(Handle.updateCondition(txtConSelect.Text, txtConditionNewName.Text));
                 dgvConditions.DataSource = Handle.getCondition();
             }
             catch
@@ -505,6 +519,23 @@ namespace Genisis
                 {
                     DataGridViewRow Rows = this.dgvConditions.Rows[e.RowIndex];
                     txtCondtionName.Text = Rows.Cells["Condition"].Value.ToString();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Somthing went wrong.");
+            }
+        }
+
+        private void dgvConditions_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0)
+                {
+                    DataGridViewRow Rows = this.dgvConditions.Rows[e.RowIndex];
+                    txtCondtionName.Text = Rows.Cells["Condition"].Value.ToString();
+                    txtConSelect.Text = Rows.Cells["Condition"].Value.ToString();
                 }
             }
             catch (Exception)

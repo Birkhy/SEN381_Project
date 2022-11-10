@@ -104,9 +104,11 @@
             this.btnConExit = new System.Windows.Forms.Button();
             this.btnConDelete = new System.Windows.Forms.Button();
             this.btnConInsert = new System.Windows.Forms.Button();
-            this.dgvConditions = new System.Windows.Forms.DataGridView();
             this.label11 = new System.Windows.Forms.Label();
             this.customInstaller1 = new MySql.Data.MySqlClient.CustomInstaller();
+            this.dgvConditions = new System.Windows.Forms.DataGridView();
+            this.txtConSelect = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Provider.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPro)).BeginInit();
@@ -883,6 +885,9 @@
             // 
             // Conditions
             // 
+            this.Conditions.Controls.Add(this.txtConSelect);
+            this.Conditions.Controls.Add(this.label25);
+            this.Conditions.Controls.Add(this.dgvConditions);
             this.Conditions.Controls.Add(this.btnConClear);
             this.Conditions.Controls.Add(this.txtConditionNewName);
             this.Conditions.Controls.Add(this.label24);
@@ -892,7 +897,6 @@
             this.Conditions.Controls.Add(this.btnConExit);
             this.Conditions.Controls.Add(this.btnConDelete);
             this.Conditions.Controls.Add(this.btnConInsert);
-            this.Conditions.Controls.Add(this.dgvConditions);
             this.Conditions.Controls.Add(this.label11);
             this.Conditions.Location = new System.Drawing.Point(4, 25);
             this.Conditions.Name = "Conditions";
@@ -1001,17 +1005,6 @@
             this.btnConInsert.UseVisualStyleBackColor = true;
             this.btnConInsert.Click += new System.EventHandler(this.btnConInsert_Click);
             // 
-            // dgvConditions
-            // 
-            this.dgvConditions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConditions.Location = new System.Drawing.Point(489, 26);
-            this.dgvConditions.Name = "dgvConditions";
-            this.dgvConditions.RowHeadersWidth = 51;
-            this.dgvConditions.RowTemplate.Height = 24;
-            this.dgvConditions.Size = new System.Drawing.Size(480, 300);
-            this.dgvConditions.TabIndex = 26;
-            this.dgvConditions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConditions_CellContentClick);
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -1022,6 +1015,37 @@
             this.label11.Size = new System.Drawing.Size(168, 36);
             this.label11.TabIndex = 25;
             this.label11.Text = "Conditions";
+            // 
+            // dgvConditions
+            // 
+            this.dgvConditions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvConditions.Location = new System.Drawing.Point(449, 3);
+            this.dgvConditions.Name = "dgvConditions";
+            this.dgvConditions.RowHeadersWidth = 51;
+            this.dgvConditions.RowTemplate.Height = 24;
+            this.dgvConditions.Size = new System.Drawing.Size(551, 239);
+            this.dgvConditions.TabIndex = 36;
+            this.dgvConditions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConditions_CellContentClick_1);
+            // 
+            // txtConSelect
+            // 
+            this.txtConSelect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConSelect.Location = new System.Drawing.Point(255, 273);
+            this.txtConSelect.Margin = new System.Windows.Forms.Padding(4);
+            this.txtConSelect.Name = "txtConSelect";
+            this.txtConSelect.Size = new System.Drawing.Size(184, 34);
+            this.txtConSelect.TabIndex = 38;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(59, 278);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(186, 29);
+            this.label25.TabIndex = 37;
+            this.label25.Text = "Selected Name:";
             // 
             // AdminForm
             // 
@@ -1123,7 +1147,6 @@
         private System.Windows.Forms.Button btnConExit;
         private System.Windows.Forms.Button btnConDelete;
         private System.Windows.Forms.Button btnConInsert;
-        private System.Windows.Forms.DataGridView dgvConditions;
         private System.Windows.Forms.Button btnConUpdate;
         private System.Windows.Forms.TextBox txtCondtionName;
         private System.Windows.Forms.Label label23;
@@ -1134,5 +1157,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnTreClear;
         private System.Windows.Forms.Button btnConClear;
+        private System.Windows.Forms.DataGridView dgvConditions;
+        private System.Windows.Forms.TextBox txtConSelect;
+        private System.Windows.Forms.Label label25;
     }
 }

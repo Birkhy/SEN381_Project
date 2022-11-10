@@ -1,6 +1,8 @@
 ﻿using Genisis;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Relational;
 using Org.BouncyCastle.Asn1.X509;
+using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Utilities.Encoders;
 using System;
 using System.Collections;
@@ -9,6 +11,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Numerics;
 using System.Reflection;
+using System.Runtime.Remoting.Contexts;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
@@ -1675,26 +1678,27 @@ namespace Ukupholisa3
         }
 
         //updateConditions will be used to update the specified Conditions in the database.
-        public string updateCondition(string name)
+        public string updateCondition(string Name, string NewName)
         {
             MySqlConnection connect = new MySqlConnection(conn);
-            if (name != "" && name.Length <= 150)
+            if (Name != "" && Name.Length <= 150)
             {
                 connect.Open();
                 MySqlCommand sql_cmnd = new MySqlCommand("updateCondition", connect);
                 sql_cmnd.CommandType = CommandType.StoredProcedure;
-                sql_cmnd.Parameters.AddWithValue("@CName", name);
+                sql_cmnd.Parameters.AddWithValue("@CName", Name);
+                sql_cmnd.Parameters.AddWithValue("@NewName", NewName);
 
                 int Row = sql_cmnd.ExecuteNonQuery();
                 if (Row > 0)
                 {
                     connect.Close();
-                    return "Condition with the Name " + name + " was updated in the database.";
+                    return "Condition with the Name " + Name + " was updated in the database.";
                 }
                 else
                 {
                     connect.Close();
-                    return $"The Condition with the Name {name} does not exist.";
+                    return $"The Condition with the Name {Name} does not exist.";
                 }
             }
             else
@@ -1764,19 +1768,11 @@ namespace Ukupholisa3
             }
         }
 
-        public List<double> GetPreformance()
+        public List<int> getAccountIDs()
         {
-            List<double> Preformance = new List<double>();
-            List<int> IDs = new List<int>();
-            int accExists = 0;
-
             MySqlConnection connect = new MySqlConnection(conn);
-            MySqlCommand command = new MySqlCommand($"Select * From account", connect);
-            connect.Open();
-            int Row = command.ExecuteNonQuery();
-            connect.Close();
-
-            MySqlCommand GetIDs = new MySqlCommand($"Select * From product", connect);
+            List<int> IDs = new List<int>();
+            MySqlCommand GetIDs = new MySqlCommand($"Select * From account", connect);
             connect.Open();
             MySqlDataReader reader = GetIDs.ExecuteReader();
 
@@ -1786,24 +1782,54 @@ namespace Ukupholisa3
                 IDs.Add(ID);
             }
 
+            return IDs;
+        }
+
+        public List<double> getPerformance(List<int> IDs)
+        {
+            List<double> Preformance = new List<double>();
+            int accExists = 0;
+
+            MySqlConnection connect = new MySqlConnection(conn);
+            connect.Open();
+
+            MySqlCommand GetRows = new MySqlCommand($"Select Count(*) From account", connect);
+            double Row = int.Parse(GetRows.ExecuteScalar().ToString());
+
             connect.Close();
 
             foreach (var item in IDs)
             {
-                //MessageBox.Show(item.ToString());
                 connect.Open();
                 MySqlCommand SUPERQUERY = new MySqlCommand($"Select Count(*) From account Where account.Package_ID = {item}", connect);
 
                 accExists = int.Parse(SUPERQUERY.ExecuteScalar().ToString());
-                //MessageBox.Show(accExists.ToString()+item);
 
                 double percentComplete = (accExists / Row) * 100;
-                MessageBox.Show(Row.ToString());
                 Preformance.Add(percentComplete);
+
                 connect.Close();
             }
 
             return Preformance;
+        }
+
+        //updatePrecentages will be used to update the Precentages in the database.
+        public void updatePrecentages(List<int> IDs, List<double> Preformance)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            int counter = 0;
+            connect.Open();
+            int row = 0;
+            foreach (var ID in IDs)
+            {
+                MySqlCommand command = new MySqlCommand("updatePercentages", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@PID", ID);
+                command.Parameters.AddWithValue("@ProPerformance", Preformance[counter]);
+                row = command.ExecuteNonQuery();
+                counter++;
+            }
         }
 
         // gets all accounts for the dgv
@@ -1878,31 +1904,65 @@ namespace Ukupholisa3
             }
         }
 
-        //updatePrecentages will be used to update the Precentages in the database.
-        public string updatePrecentages(Stack<int> Precentages)
+        public List<int> getProdcutIDs()
         {
-            int counter = -1;
             MySqlConnection connect = new MySqlConnection(conn);
-            MySqlCommand command = new MySqlCommand($"Select * From product", connect);
+            List<int> IDs = new List<int>();
+            MySqlCommand GetIDs = new MySqlCommand($"Select * From product", connect);
             connect.Open();
-            int Row = command.ExecuteNonQuery();
+            MySqlDataReader reader = GetIDs.ExecuteReader();
+
+            while (reader.Read())
+            {
+                int ID = int.Parse(reader[0].ToString());
+                IDs.Add(ID);
+            }
+
+            return IDs;
+        }
+
+        public List<double> checkPromotion(List<int> IDs)
+        {
+            List<double> myList = new List<double>();
+            bool CheckingChecked;
+            int CheckingPrice;
+
+            MySqlConnection connect = new MySqlConnection(conn);
+            connect.Open();
+
+            foreach (var item in IDs)
+            {
+                MySqlCommand CheckPrice = new MySqlCommand($"Select Price From product Where product.package_ID = {item}", connect);
+
+                CheckingPrice = int.Parse(CheckPrice.ExecuteScalar().ToString());
+
+                MySqlCommand CheckChecked = new MySqlCommand($"Select Price From product Where product.package_ID = {item}", connect);
+                if (CheckingChecked = bool.Parse(CheckChecked.ExecuteScalar().ToString()))
+                {
+                    double newPrice = CheckingPrice * 0.8;
+                    myList.Add(newPrice);
+                }
+            }
+
             connect.Close();
+            return myList;
+        }
 
-            while(counter == Row - 1)
+        //updatePrecentages will be used to update the Precentages in the database.
+        public void updateProductPromotion(List<int> IDs, List<double> myList)
+        {
+            MySqlConnection connect = new MySqlConnection(conn);
+            int counter = 0;
+            connect.Open();
+            int row = 0;
+            foreach (var ID in IDs)
             {
-                connect.Open();
-                MySqlCommand sql_cmnd = new MySqlCommand($"Update product set Performance = {Precentages.Pop()} limit {Row},1", connect);
-                connect.Close();
-                Row--;
-            }
-
-            if(Row == counter)
-            {
-                return "Success";
-            }
-            else
-            {
-                return "Failed";
+                MySqlCommand command = new MySqlCommand("updatePromotion", connect);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@PID", ID);
+                command.Parameters.AddWithValue("@NewPrice", myList[counter]);
+                row = command.ExecuteNonQuery();
+                counter++;
             }
         }
     }
